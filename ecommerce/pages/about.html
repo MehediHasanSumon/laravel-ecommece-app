@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ShopEase</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <a href="../index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-indigo-600 transition" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Navigation Icons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="searchToggle">
+                        <i class="fas fa-search text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="darkModeToggle">
+                        <i class="fas fa-moon text-xl"></i>
+                    </a>
+                    <a href="wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                    </a>
+                    <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                    </a>
+                    <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-user text-xl mr-1"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2">
+                <nav class="flex flex-col space-y-3 py-4">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                    <div class="flex items-center space-x-4 pt-3 border-t border-gray-100">
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="mobileSearchToggle">
+                            <i class="fas fa-search text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="mobileDarkModeToggle">
+                            <i class="fas fa-moon text-xl"></i>
+                        </a>
+                        <a href="wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                            <i class="fas fa-heart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                        </a>
+                        <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                        </a>
+                        <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                            <i class="fas fa-user text-xl"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="hidden bg-white border-t" id="searchOverlay">
+            <div class="container mx-auto px-4 py-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search for products..." class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <button id="closeSearch" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-sm font-medium text-gray-600 mb-2">Popular Searches:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Wireless Headphones</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Smart Watches</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Fitness Trackers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Bluetooth Speakers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Laptop Accessories</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-2 text-sm">
+                <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                <span class="text-gray-400">/</span>
+                <span class="text-indigo-600 font-medium">About Us</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <div class="bg-indigo-600 rounded-xl overflow-hidden mb-12">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 p-8 md:p-12 flex items-center">
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Story</h1>
+                        <p class="text-indigo-100 mb-6">Founded in 2018, ShopEase was born from a simple idea: shopping should be easy, enjoyable, and accessible to everyone. What started as a small online store has grown into a trusted e-commerce destination serving customers worldwide.</p>
+                        <p class="text-indigo-100 mb-6">Our mission is to provide high-quality products at affordable prices while delivering exceptional customer service and a seamless shopping experience.</p>
+                        <div class="flex space-x-4">
+                            <a href="contact.html" class="bg-white text-indigo-600 hover:bg-gray-100 py-2 px-6 rounded-lg font-medium transition">Contact Us</a>
+                            <a href="shop.html" class="border border-white text-white hover:bg-indigo-700 py-2 px-6 rounded-lg font-medium transition">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 bg-indigo-700 flex items-center justify-center p-8">
+                    <div class="w-full h-64 md:h-full bg-indigo-800 rounded-lg flex items-center justify-center">
+                        <!-- Placeholder for about image -->
+                        <div class="text-center text-indigo-200">
+                            <i class="fas fa-store text-6xl mb-4"></i>
+                            <p class="text-xl font-medium">ShopEase Storefront</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Our Values -->
+        <div class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Our Values</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">At ShopEase, our core values guide everything we do. They shape our culture, influence our decisions, and define how we interact with our customers and partners.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Quality</h3>
+                    <p class="text-gray-600">We're committed to offering products that meet the highest standards of quality and durability. We carefully select our suppliers and rigorously test all products before they reach our customers.</p>
+                </div>
+                
+                <!-- Value 2 -->
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Customer-Centric</h3>
+                    <p class="text-gray-600">Our customers are at the heart of everything we do. We listen to your feedback, anticipate your needs, and continuously improve our services to exceed your expectations.</p>
+                </div>
+                
+                <!-- Value 3 -->
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-2xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Sustainability</h3>
+                    <p class="text-gray-600">We're committed to reducing our environmental footprint. From eco-friendly packaging to partnering with sustainable brands, we strive to make responsible choices for our planet.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Our Journey -->
+        <div class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Our Journey</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">From our humble beginnings to where we are today, our journey has been filled with growth, learning, and memorable milestones.</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-indigo-200 hidden md:block"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- 2018 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                            <h3 class="text-xl font-bold text-indigo-600 mb-2">2018</h3>
+                            <h4 class="text-lg font-semibold mb-2">The Beginning</h4>
+                            <p class="text-gray-600">ShopEase was founded with just 50 products and a small team of 3 passionate individuals working from a garage.</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 relative">
+                            <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:translate-y-0 md:-translate-x-16 z-10">
+                                <i class="fas fa-flag text-white"></i>
+                            </div>
+                            <div class="bg-white rounded-lg shadow-sm p-6 md:ml-4">
+                                <div class="w-full h-40 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+                                    <!-- Placeholder for 2018 image -->
+                                    <div class="text-center text-gray-400">
+                                        <i class="fas fa-home text-3xl mb-2"></i>
+                                        <p>Our First Office</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 italic">"We started with a simple idea and a lot of determination." - ShopEase Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2020 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0 md:order-2">
+                            <h3 class="text-xl font-bold text-indigo-600 mb-2">2020</h3>
+                            <h4 class="text-lg font-semibold mb-2">Expansion & Growth</h4>
+                            <p class="text-gray-600">We expanded our product range to over 1,000 items and grew our team to 25 employees. We also launched our mobile app and opened our first physical showroom.</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 relative md:order-1">
+                            <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:translate-y-0 md:translate-x-6 z-10">
+                                <i class="fas fa-chart-line text-white"></i>
+                            </div>
+                            <div class="bg-white rounded-lg shadow-sm p-6 md:mr-4">
+                                <div class="w-full h-40 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+                                    <!-- Placeholder for 2020 image -->
+                                    <div class="text-center text-gray-400">
+                                        <i class="fas fa-building text-3xl mb-2"></i>
+                                        <p>Our First Showroom</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 italic">"Despite the global challenges of 2020, we adapted and continued to grow by focusing on our customers' changing needs."</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2022 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                            <h3 class="text-xl font-bold text-indigo-600 mb-2">2022</h3>
+                            <h4 class="text-lg font-semibold mb-2">International Expansion</h4>
+                            <p class="text-gray-600">We expanded to international markets, shipping to over 50 countries worldwide. We also launched our loyalty program and sustainable product line.</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 relative">
+                            <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:translate-y-0 md:-translate-x-16 z-10">
+                                <i class="fas fa-globe text-white"></i>
+                            </div>
+                            <div class="bg-white rounded-lg shadow-sm p-6 md:ml-4">
+                                <div class="w-full h-40 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+                                    <!-- Placeholder for 2022 image -->
+                                    <div class="text-center text-gray-400">
+                                        <i class="fas fa-globe-americas text-3xl mb-2"></i>
+                                        <p>Global Presence</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 italic">"Going global was a natural next step in our mission to make quality products accessible to everyone."</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Today -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0 md:order-2">
+                            <h3 class="text-xl font-bold text-indigo-600 mb-2">Today</h3>
+                            <h4 class="text-lg font-semibold mb-2">Looking to the Future</h4>
+                            <p class="text-gray-600">Today, ShopEase is a thriving e-commerce platform with over 10,000 products, 100+ employees, and a community of more than 1 million satisfied customers worldwide.</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 relative md:order-1">
+                            <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:translate-y-0 md:translate-x-6 z-10">
+                                <i class="fas fa-rocket text-white"></i>
+                            </div>
+                            <div class="bg-white rounded-lg shadow-sm p-6 md:mr-4">
+                                <div class="w-full h-40 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+                                    <!-- Placeholder for Today image -->
+                                    <div class="text-center text-gray-400">
+                                        <i class="fas fa-users text-3xl mb-2"></i>
+                                        <p>Our Growing Team</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 italic">"We're just getting started. Our vision is to become the most customer-centric e-commerce platform in the world."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Meet Our Team -->
+        <div class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Meet Our Team</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">The passionate individuals behind ShopEase who work tirelessly to bring you the best shopping experience.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-64 bg-gray-200">
+                        <!-- Placeholder for team member image -->
+                        <div class="w-full h-full flex items-center justify-center bg-gray-300">
+                            <i class="fas fa-user text-4xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-1">Sarah Johnson</h3>
+                        <p class="text-indigo-600 text-sm mb-3">Founder & CEO</p>
+                        <p class="text-gray-600 text-sm mb-4">With over 15 years of retail experience, Sarah leads our company with vision and passion.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-64 bg-gray-200">
+                        <!-- Placeholder for team member image -->
+                        <div class="w-full h-full flex items-center justify-center bg-gray-300">
+                            <i class="fas fa-user text-4xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-1">Michael Chen</h3>
+                        <p class="text-indigo-600 text-sm mb-3">CTO</p>
+                        <p class="text-gray-600 text-sm mb-4">Michael oversees our technology infrastructure and leads our development team.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-64 bg-gray-200">
+                        <!-- Placeholder for team member image -->
+                        <div class="w-full h-full flex items-center justify-center bg-gray-300">
+                            <i class="fas fa-user text-4xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-1">Emily Rodriguez</h3>
+                        <p class="text-indigo-600 text-sm mb-3">Head of Customer Experience</p>
+                        <p class="text-gray-600 text-sm mb-4">Emily ensures that every customer interaction with ShopEase is exceptional.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-64 bg-gray-200">
+                        <!-- Placeholder for team member image -->
+                        <div class="w-full h-full flex items-center justify-center bg-gray-300">
+                            <i class="fas fa-user text-4xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold mb-1">David Patel</h3>
+                        <p class="text-indigo-600 text-sm mb-3">Product Director</p>
+                        <p class="text-gray-600 text-sm mb-4">David leads our product strategy and ensures we offer the best selection.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-indigo-600 transition">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="careers.html" class="text-indigo-600 hover:text-indigo-800 font-medium">
+                    View Career Opportunities <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Testimonials -->
+        <div class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">What Our Customers Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Don't just take our word for it. Here's what our customers have to say about their ShopEase experience.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"I've been shopping with ShopEase for over a year now, and I'm consistently impressed by their product quality and customer service. The website is easy to navigate, and my orders always arrive on time."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full mr-4">
+                            <!-- Placeholder for customer avatar -->
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Robert Williams</h4>
+                            <p class="text-gray-500 text-sm">Loyal Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"The customer service at ShopEase is exceptional! I had an issue with my order, and their team resolved it immediately. They went above and beyond to ensure I was satisfied. I highly recommend shopping here."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full mr-4">
+                            <!-- Placeholder for customer avatar -->
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Jennifer Lopez</h4>
+                            <p class="text-gray-500 text-sm">Happy Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"I love the variety of products available on ShopEase. The prices are competitive, and the shipping is always fast. The mobile app makes it even easier to shop on the go. Definitely my go-to online store!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full mr-4">
+                            <!-- Placeholder for customer avatar -->
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Marcus Johnson</h4>
+                            <p class="text-gray-500 text-sm">Repeat Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="bg-indigo-100 rounded-xl p-8 md:p-12 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-indigo-800 mb-4">Ready to Experience ShopEase?</h2>
+            <p class="text-indigo-600 mb-6 max-w-2xl mx-auto">Join our community of satisfied customers and discover why ShopEase is the preferred online shopping destination for millions worldwide.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="shop.html" class="bg-indigo-600 text-white hover:bg-indigo-700 py-3 px-8 rounded-lg font-medium transition">Start Shopping</a>
+                <a href="contact.html" class="border border-indigo-600 text-indigo-600 hover:bg-indigo-50 py-3 px-8 rounded-lg font-medium transition">Contact Us</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">ShopEase</h3>
+                    <p class="text-gray-400 mb-4">Your one-stop destination for quality products at affordable prices. Shop with ease, shop with confidence.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white transition">Shop</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white transition">Categories</a></li>
+                        <li><a href="deals.html" class="text-gray-400 hover:text-white transition">Flash Sales</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="account.html" class="text-gray-400 hover:text-white transition">My Account</a></li>
+                        <li><a href="orders.html" class="text-gray-400 hover:text-white transition">Order History</a></li>
+                        <li><a href="wishlist.html" class="text-gray-400 hover:text-white transition">Wishlist</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="returns.html" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
+                        <li><a href="shipping.html" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-indigo-400 mt-1 mr-2"></i>
+                            <span class="text-gray-400">123 Commerce St, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">(123) 456-7890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">support@shopease.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">Mon-Fri: 9AM - 8PM EST</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 ShopEase. All rights reserved.</p>
+                    <div class="flex space-x-4">
+                        <a href="terms.html" class="text-gray-400 hover:text-white transition text-sm">Terms of Service</a>
+                        <a href="privacy.html" class="text-gray-400 hover:text-white transition text-sm">Privacy Policy</a>
+                        <a href="sitemap.html" class="text-gray-400 hover:text-white transition text-sm">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 scale-0">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

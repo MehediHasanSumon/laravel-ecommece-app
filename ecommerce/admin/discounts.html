@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discounts Management - Admin Panel</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* Admin Panel Styles */
+        .sidebar {
+            width: 250px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-link:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+        
+        .sidebar-link.active {
+            background-color: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid #6366f1;
+        }
+        
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        /* Dark mode styles */
+        .dark .card {
+            background-color: #1f2937;
+        }
+        
+        .dark .sidebar-link:hover {
+            background-color: rgba(99, 102, 241, 0.2);
+        }
+        
+        .dark .sidebar-link.active {
+            background-color: rgba(99, 102, 241, 0.2);
+        }
+        
+        /* Discount specific styles */
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .discount-card {
+            transition: all 0.3s ease;
+        }
+        
+        .discount-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+    <!-- Desktop Sidebar -->
+    <div class="flex h-screen overflow-hidden">
+        <aside class="hidden md:flex flex-col bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 sidebar">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                <h2 class="text-xl font-bold text-indigo-600 dark:text-indigo-400">E-Commerce Admin</h2>
+            </div>
+            
+            <nav class="flex-1 overflow-y-auto py-4">
+                <ul>
+                    <li class="mb-1">
+                        <a href="index.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="products.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-box w-5 h-5 mr-3"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="orders.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-shopping-cart w-5 h-5 mr-3"></i>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="customers.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-users w-5 h-5 mr-3"></i>
+                            <span>Customers</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="categories.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-tags w-5 h-5 mr-3"></i>
+                            <span>Categories</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="discounts.html" class="sidebar-link active flex items-center px-4 py-3 text-indigo-600 dark:text-indigo-400 font-medium">
+                            <i class="fas fa-percent w-5 h-5 mr-3"></i>
+                            <span>Discounts</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-file-alt w-5 h-5 mr-3"></i>
+                            <span>Content</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-chart-bar w-5 h-5 mr-3"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-cog w-5 h-5 mr-3"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin User" class="w-8 h-8 rounded-full mr-3">
+                    <div>
+                        <p class="text-sm font-medium">John Doe</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Mobile Sidebar -->
+        <div id="mobileSidebar" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 md:hidden hidden">
+            <div class="absolute top-0 left-0 w-64 h-full bg-white dark:bg-gray-800 shadow-lg">
+                <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+                    <h2 class="text-xl font-bold text-indigo-600 dark:text-indigo-400">E-Commerce Admin</h2>
+                    <button id="closeSidebar" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <nav class="py-4">
+                    <ul>
+                        <li class="mb-1">
+                            <a href="index.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="products.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-box w-5 h-5 mr-3"></i>
+                                <span>Products</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="orders.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-shopping-cart w-5 h-5 mr-3"></i>
+                                <span>Orders</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="customers.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-users w-5 h-5 mr-3"></i>
+                                <span>Customers</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="categories.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-tags w-5 h-5 mr-3"></i>
+                                <span>Categories</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="discounts.html" class="sidebar-link active flex items-center px-4 py-3 text-indigo-600 dark:text-indigo-400 font-medium">
+                                <i class="fas fa-percent w-5 h-5 mr-3"></i>
+                                <span>Discounts</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-file-alt w-5 h-5 mr-3"></i>
+                                <span>Content</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-chart-bar w-5 h-5 mr-3"></i>
+                                <span>Analytics</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-cog w-5 h-5 mr-3"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin User" class="w-8 h-8 rounded-full mr-3">
+                        <div>
+                            <p class="text-sm font-medium">John Doe</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Header -->
+            <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 flex items-center justify-between">
+                <div class="flex items-center">
+                    <button id="sidebarToggle" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 md:hidden">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h1 class="text-xl font-bold text-gray-800 dark:text-white ml-4 md:ml-0">Discounts</h1>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search..." class="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                    
+                    <button class="relative p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute top-0 right-0 h-4 w-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">3</span>
+                    </button>
+                    
+                    <button id="darkModeToggle" class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <i class="fas fa-moon text-xl"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-6">
+                <!-- Action Bar -->
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                    <div class="mb-4 md:mb-0">
+                        <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Manage Discounts</h2>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Create, edit, and organize your promotional discounts</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                        <button id="addDiscountBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center">
+                            <i class="fas fa-plus mr-2"></i> Add Discount
+                        </button>
+                        
+                        <div class="relative">
+                            <select class="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-white appearance-none">
+                                <option value="all">All Discounts</option>
+                                <option value="active">Active</option>
+                                <option value="scheduled">Scheduled</option>
+                                <option value="expired">Expired</option>
+                            </select>
+                            <i class="fas fa-chevron-down absolute right-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Discount Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Discount Card 1 -->
+                    <div class="discount-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden relative">
+                        <div class="discount-badge bg-green-500 text-white">Active</div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-800 dark:text-white">Summer Sale</h3>
+                                <span class="text-2xl font-bold text-red-600 dark:text-red-400">25% OFF</span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Get 25% off on all summer clothing and accessories.</p>
+                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Jun 1, 2023 - Aug 31, 2023</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Fashion</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Summer</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Clothing</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Code:</span>
+                                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded text-sm font-mono">SUMMER25</span>
+                                </div>
+                                
+                                <div class="flex space-x-2">
+                                    <button class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Discount Card 2 -->
+                    <div class="discount-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden relative">
+                        <div class="discount-badge bg-blue-500 text-white">Scheduled</div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-800 dark:text-white">Black Friday</h3>
+                                <span class="text-2xl font-bold text-red-600 dark:text-red-400">40% OFF</span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Massive discounts on electronics and gadgets.</p>
+                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Nov 24, 2023 - Nov 27, 2023</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Electronics</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Black Friday</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Sale</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Code:</span>
+                                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded text-sm font-mono">BF40</span>
+                                </div>
+                                
+                                <div class="flex space-x-2">
+                                    <button class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Discount Card 3 -->
+                    <div class="discount-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden relative">
+                        <div class="discount-badge bg-gray-500 text-white">Expired</div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-800 dark:text-white">Spring Collection</h3>
+                                <span class="text-2xl font-bold text-red-600 dark:text-red-400">15% OFF</span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Discount on our new spring collection items.</p>
+                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Mar 1, 2023 - May 31, 2023</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Fashion</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Spring</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">New Arrivals</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Code:</span>
+                                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded text-sm font-mono">SPRING15</span>
+                                </div>
+                                
+                                <div class="flex space-x-2">
+                                    <button class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Discount Card 4 -->
+                    <div class="discount-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden relative">
+                        <div class="discount-badge bg-green-500 text-white">Active</div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-800 dark:text-white">New Customer</h3>
+                                <span class="text-2xl font-bold text-red-600 dark:text-red-400">10% OFF</span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Special discount for first-time customers.</p>
+                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Jan 1, 2023 - Dec 31, 2023</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">All Categories</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">New Customers</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Code:</span>
+                                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded text-sm font-mono">WELCOME10</span>
+                                </div>
+                                
+                                <div class="flex space-x-2">
+                                    <button class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Discount Card 5 -->
+                    <div class="discount-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden relative">
+                        <div class="discount-badge bg-green-500 text-white">Active</div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-800 dark:text-white">Free Shipping</h3>
+                                <span class="text-2xl font-bold text-green-600 dark:text-green-400">FREE</span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Free shipping on orders over $50.</p>
+                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Jan 1, 2023 - Dec 31, 2023</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">All Categories</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Shipping</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Code:</span>
+                                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded text-sm font-mono">FREESHIP</span>
+                                </div>
+                                
+                                <div class="flex space-x-2">
+                                    <button class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Discount Card 6 -->
+                    <div class="discount-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden relative">
+                        <div class="discount-badge bg-blue-500 text-white">Scheduled</div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-800 dark:text-white">Holiday Special</h3>
+                                <span class="text-2xl font-bold text-red-600 dark:text-red-400">30% OFF</span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Special holiday discounts on selected items.</p>
+                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Dec 15, 2023 - Dec 31, 2023</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">All Categories</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Holiday</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 rounded-full text-xs">Christmas</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Code:</span>
+                                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded text-sm font-mono">HOLIDAY30</span>
+                                </div>
+                                
+                                <div class="flex space-x-2">
+                                    <button class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Add Discount Modal -->
+    <div id="addDiscountModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Add New Discount</h3>
+                    <button id="closeAddDiscountModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form id="addDiscountForm">
+                    <div class="mb-4">
+                        <label for="discountName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Discount Name</label>
+                        <input type="text" id="discountName" name="discountName" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white" required>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="discountType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Discount Type</label>
+                            <select id="discountType" name="discountType" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                <option value="percentage">Percentage</option>
+                                <option value="fixed">Fixed Amount</option>
+                                <option value="free_shipping">Free Shipping</option>
+                                <option value="buy_x_get_y">Buy X Get Y</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="discountValue" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Discount Value</label>
+                            <div class="relative">
+                                <input type="number" id="discountValue" name="discountValue" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white" required>
+                                <span class="absolute right-3 top-2 text-gray-500 dark:text-gray-400">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="discountCode" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Discount Code</label>
+                        <input type="text" id="discountCode" name="discountCode" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="discountDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Description</label>
+                        <textarea id="discountDescription" name="discountDescription" rows="3" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="startDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Start Date</label>
+                            <input type="date" id="startDate" name="startDate" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white" required>
+                        </div>
+                        
+                        <div>
+                            <label for="endDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">End Date</label>
+                            <input type="date" id="endDate" name="endDate" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Applicable Categories</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="catElectronics" name="categories[]" value="electronics" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="catElectronics" class="ml-2 text-sm text-gray-700 dark:text-gray-300">Electronics</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="catFashion" name="categories[]" value="fashion" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="catFashion" class="ml-2 text-sm text-gray-700 dark:text-gray-300">Fashion</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="catHome" name="categories[]" value="home" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="catHome" class="ml-2 text-sm text-gray-700 dark:text-gray-300">Home & Kitchen</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="catBeauty" name="categories[]" value="beauty" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="catBeauty" class="ml-2 text-sm text-gray-700 dark:text-gray-300">Beauty</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="catSports" name="categories[]" value="sports" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="catSports" class="ml-2 text-sm text-gray-700 dark:text-gray-300">Sports</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="catAll" name="categories[]" value="all" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="catAll" class="ml-2 text-sm text-gray-700 dark:text-gray-300">All Categories</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="discountTags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tags (comma separated)</label>
+                        <input type="text" id="discountTags" name="discountTags" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="discountStatus" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
+                        <select id="discountStatus" name="discountStatus" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                            <option value="active">Active</option>
+                            <option value="scheduled">Scheduled</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center justify-end space-x-4">
+                        <button type="button" id="cancelAddDiscount" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">Add Discount</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const addDiscountBtn = document.getElementById('addDiscountBtn');
+        const addDiscountModal = document.getElementById('addDiscountModal');
+        const closeAddDiscountModal = document.getElementById('closeAddDiscountModal');
+        const cancelAddDiscount = document.getElementById('cancelAddDiscount');
+        const addDiscountForm = document.getElementById('addDiscountForm');
+        const discountType = document.getElementById('discountType');
+        const discountValue = document.getElementById('discountValue');
+        
+        // Dark Mode Toggle
+        if (darkModeToggle) {
+            // Check for saved theme preference or respect OS preference
+            if (localStorage.getItem('darkMode') === 'true' || 
+                (localStorage.getItem('darkMode') === null && 
+                window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+            }
+            
+            // Toggle dark mode
+            darkModeToggle.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('darkMode', 'false');
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon text-xl"></i>';
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('darkMode', 'true');
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+                }
+            });
+        }
+        
+        // Mobile Sidebar Toggle
+        if (sidebarToggle && mobileSidebar && closeSidebar) {
+            sidebarToggle.addEventListener('click', () => {
+                mobileSidebar.classList.remove('hidden');
+            });
+            
+            closeSidebar.addEventListener('click', () => {
+                mobileSidebar.classList.add('hidden');
+            });
+            
+            // Close sidebar when clicking outside
+            mobileSidebar.addEventListener('click', (e) => {
+                if (e.target === mobileSidebar) {
+                    mobileSidebar.classList.add('hidden');
+                }
+            });
+        }
+        
+        // Add Discount Modal
+        if (addDiscountBtn && addDiscountModal && closeAddDiscountModal && cancelAddDiscount) {
+            addDiscountBtn.addEventListener('click', () => {
+                addDiscountModal.classList.remove('hidden');
+            });
+            
+            closeAddDiscountModal.addEventListener('click', () => {
+                addDiscountModal.classList.add('hidden');
+            });
+            
+            cancelAddDiscount.addEventListener('click', () => {
+                addDiscountModal.classList.add('hidden');
+            });
+            
+            // Close modal when clicking outside
+            addDiscountModal.addEventListener('click', (e) => {
+                if (e.target === addDiscountModal) {
+                    addDiscountModal.classList.add('hidden');
+                }
+            });
+        }
+        
+        // Discount Type Change
+        if (discountType && discountValue) {
+            discountType.addEventListener('change', () => {
+                const valueLabel = document.querySelector('label[for="discountValue"]');
+                const valueSymbol = document.querySelector('#discountValue + span');
+                
+                if (discountType.value === 'percentage') {
+                    valueLabel.textContent = 'Discount Value';
+                    valueSymbol.textContent = '%';
+                    discountValue.setAttribute('placeholder', 'e.g. 25');
+                } else if (discountType.value === 'fixed') {
+                    valueLabel.textContent = 'Discount Amount';
+                    valueSymbol.textContent = '$';
+                    discountValue.setAttribute('placeholder', 'e.g. 10.99');
+                } else if (discountType.value === 'free_shipping') {
+                    valueLabel.textContent = 'Minimum Order Value';
+                    valueSymbol.textContent = '$';
+                    discountValue.setAttribute('placeholder', 'e.g. 50');
+                } else if (discountType.value === 'buy_x_get_y') {
+                    valueLabel.textContent = 'Buy X Get Y Free';
+                    valueSymbol.textContent = '';
+                    discountValue.setAttribute('placeholder', 'e.g. 1');
+                }
+            });
+        }
+        
+        // Add Discount Form Submission
+        if (addDiscountForm) {
+            addDiscountForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Here you would typically send the form data to your backend
+                // For demo purposes, we'll just show a success message and close the modal
+                
+                // Show success notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+                notification.innerHTML = '<div class="flex items-center"><i class="fas fa-check-circle mr-2"></i> Discount added successfully!</div>';
+                document.body.appendChild(notification);
+                
+                // Close modal
+                addDiscountModal.classList.add('hidden');
+                
+                // Reset form
+                addDiscountForm.reset();
+                
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            });
+        }
+        
+        // Discount Edit/Delete Buttons
+        document.querySelectorAll('.discount-card .text-indigo-600').forEach(editBtn => {
+            editBtn.addEventListener('click', function() {
+                // In a real application, you would populate the form with discount data
+                // For demo purposes, we'll just show the add discount modal
+                addDiscountModal.classList.remove('hidden');
+                
+                // Set form title to Edit Discount
+                document.querySelector('#addDiscountModal h3').textContent = 'Edit Discount';
+                document.querySelector('#addDiscountForm button[type="submit"]').textContent = 'Update Discount';
+            });
+        });
+        
+        document.querySelectorAll('.discount-card .text-red-600').forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this discount?')) {
+                    // Here you would typically send a delete request to your backend
+                    // For demo purposes, we'll just show a success message
+                    
+                    // Show success notification
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+                    notification.innerHTML = '<div class="flex items-center"><i class="fas fa-check-circle mr-2"></i> Discount deleted successfully!</div>';
+                    document.body.appendChild(notification);
+                    
+                    // Remove notification after 3 seconds
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

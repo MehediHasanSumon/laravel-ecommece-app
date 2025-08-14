@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Your One-Stop Shopping Destination</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center flex-1 max-w-md mx-4">
+                    <div class="relative w-full">
+                        <input type="text" placeholder="Search for products..." class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <button class="absolute right-2 top-2 text-gray-500 hover:text-indigo-600">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="pages/shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="pages/categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="pages/deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="pages/blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                </nav>
+                
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <a href="pages/wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                    </a>
+                    <a href="pages/cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">2</span>
+                    </a>
+                    <a href="pages/account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-user text-xl"></i>
+                    </a>
+                    <button id="darkModeToggle" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-moon text-xl"></i>
+                    </button>
+                    <button class="md:hidden text-gray-600 hover:text-indigo-600 transition" id="mobileMenuButton">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Search (Hidden on Desktop) -->
+            <div class="mt-3 md:hidden">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Search for products..." class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button class="absolute right-2 top-2 text-gray-500 hover:text-indigo-600">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu (Hidden by Default) -->
+            <div class="md:hidden hidden" id="mobileMenu">
+                <nav class="mt-3 flex flex-col space-y-3 pb-3">
+                    <a href="pages/shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="pages/categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="pages/deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="pages/blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h20v20H0z" fill="none"%3E%3C/path%3E%3Cpath d="M10 10l5-5M10 10l-5 5M10 10l5 5M10 10l-5-5" stroke="%23fff" stroke-width=".5"%3E%3C/path%3E%3C/svg%3E'); background-size: 20px 20px;"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 animate-slide-up">
+                    <span class="inline-block bg-white bg-opacity-20 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">Limited Time Offer</span>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Summer Collection <span class="text-yellow-300">2023</span></h1>
+                    <p class="text-xl mb-6 text-indigo-100">Discover the season's hottest styles with up to 50% off on selected items.</p>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <a href="pages/shop.html" class="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105 shadow-lg flex items-center justify-center">
+                            <span>Shop Now</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="pages/deals.html" class="border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition transform hover:scale-105 flex items-center justify-center">
+                            <i class="fas fa-tag mr-2"></i>
+                            <span>View Deals</span>
+                        </a>
+                    </div>
+                    <div class="mt-8 flex items-center">
+                        <div class="flex -space-x-2">
+                            <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Customer" class="w-10 h-10 rounded-full border-2 border-white">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer" class="w-10 h-10 rounded-full border-2 border-white">
+                            <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Customer" class="w-10 h-10 rounded-full border-2 border-white">
+                        </div>
+                        <div class="ml-4">
+                            <div class="flex text-yellow-300">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="text-sm">Trusted by 10,000+ happy customers</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative animate-fade-in">
+                    <img src="images/hero-banner.svg" alt="Summer Sale" class="rounded-2xl shadow-2xl w-full transform hover:scale-105 transition duration-500">
+                    <div class="absolute -bottom-5 -left-5 bg-yellow-400 text-indigo-900 rounded-lg py-2 px-4 font-bold shadow-lg animate-pulse">
+                        <span class="text-2xl">50%</span>
+                        <span class="text-lg">OFF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent"></div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-semibold mb-3">DISCOVER</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Shop by Category</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore our wide range of products across various categories tailored to meet your everyday needs with style and quality.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <a href="pages/categories.html?category=electronics" class="group">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition transform group-hover:scale-105 border border-gray-100 h-full">
+                        <div class="h-48 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                            <i class="fas fa-laptop text-6xl text-indigo-500 transform group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="font-bold text-xl mb-2 text-gray-800 group-hover:text-indigo-600 transition">Electronics</h3>
+                            <p class="text-gray-600">Latest gadgets and tech accessories for your digital lifestyle</p>
+                            <div class="mt-4 inline-flex items-center text-indigo-600 font-medium">
+                                <span>Shop Now</span>
+                                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="pages/categories.html?category=fashion" class="group">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition transform group-hover:scale-105 border border-gray-100 h-full">
+                        <div class="h-48 bg-gradient-to-br from-pink-50 to-purple-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-purple-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                            <i class="fas fa-tshirt text-6xl text-purple-500 transform group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="font-bold text-xl mb-2 text-gray-800 group-hover:text-purple-600 transition">Fashion</h3>
+                            <p class="text-gray-600">Trendy clothing, accessories, and footwear for every season</p>
+                            <div class="mt-4 inline-flex items-center text-purple-600 font-medium">
+                                <span>Shop Now</span>
+                                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="pages/categories.html?category=home" class="group">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition transform group-hover:scale-105 border border-gray-100 h-full">
+                        <div class="h-48 bg-gradient-to-br from-green-50 to-teal-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-teal-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                            <i class="fas fa-home text-6xl text-teal-500 transform group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="font-bold text-xl mb-2 text-gray-800 group-hover:text-teal-600 transition">Home & Living</h3>
+                            <p class="text-gray-600">Beautiful decor, furniture, and essentials for your living space</p>
+                            <div class="mt-4 inline-flex items-center text-teal-600 font-medium">
+                                <span>Shop Now</span>
+                                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="pages/categories.html?category=beauty" class="group">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition transform group-hover:scale-105 border border-gray-100 h-full">
+                        <div class="h-48 bg-gradient-to-br from-yellow-50 to-amber-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-amber-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                            <i class="fas fa-spa text-6xl text-amber-500 transform group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="font-bold text-xl mb-2 text-gray-800 group-hover:text-amber-600 transition">Beauty</h3>
+                            <p class="text-gray-600">Premium skincare, makeup, and personal care products</p>
+                            <div class="mt-4 inline-flex items-center text-amber-600 font-medium">
+                                <span>Shop Now</span>
+                                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="pages/categories.html" class="inline-flex items-center justify-center px-8 py-3 border border-indigo-600 text-indigo-600 bg-white rounded-lg font-semibold hover:bg-indigo-600 hover:text-white transition duration-300 shadow-md">
+                    <span>View All Categories</span>
+                    <i class="fas fa-th-large ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Products -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-semibold mb-3">POPULAR CHOICES</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Trending Products</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Discover our most popular items that customers are loving right now. Updated weekly based on sales and reviews.</p>
+            </div>
+            
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex space-x-2">
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition">All</button>
+                    <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition">New Arrivals</button>
+                    <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition">Best Sellers</button>
+                    <button class="bg-white text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition">Featured</button>
+                </div>
+                <a href="pages/shop.html" class="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center">
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="relative">
+                        <img src="images/product-placeholder.svg" alt="Wireless Earbuds" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white font-bold px-3 py-1 rounded-full shadow-md">
+                            <span class="text-sm">20% OFF</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <button class="bg-white p-2 rounded-full shadow-md hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                            <button class="bg-white p-3 rounded-full shadow-md hover:bg-indigo-500 hover:text-white transition transform hover:scale-110">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="bg-indigo-600 p-3 rounded-full shadow-md hover:bg-indigo-700 text-white transition transform hover:scale-110">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-3 left-3 bg-yellow-400 text-xs font-bold px-2 py-1 rounded-full flex items-center">
+                            <i class="fas fa-bolt mr-1"></i>
+                            <span>TRENDING</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-medium text-indigo-600 bg-indigo-50 px-2 py-1 rounded">Electronics</span>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-gray-500 text-sm ml-1">(42)</span>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2 text-gray-800 group-hover:text-indigo-600 transition">Wireless Earbuds Pro</h3>
+                        <p class="text-gray-600 mb-4">Premium sound quality with active noise cancellation and 24-hour battery life.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex flex-col">
+                                <span class="text-gray-400 line-through text-sm">$129.99</span>
+                                <span class="text-indigo-600 font-bold text-xl">$99.99</span>
+                            </div>
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i>
+                                <span>Add to Cart</span>
+                            </button>
+                        </div>
+                        <div class="mt-4 text-sm text-gray-500 flex items-center">
+                            <i class="fas fa-truck mr-2"></i>
+                            <span>Free shipping</span>
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-box-open mr-2"></i>
+                            <span>In stock</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden group">
+                    <div class="relative">
+                        <img src="images/product-placeholder.svg" alt="Smart Watch" class="w-full h-64 object-cover">
+                        <div class="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</div>
+                        <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-2">
+                            <button class="bg-white p-2 rounded-full hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="bg-white p-2 rounded-full hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="bg-white p-2 rounded-full hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(87)</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-1">Smart Watch Series 5</h3>
+                        <p class="text-gray-600 text-sm mb-2">Health tracking & notifications</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-indigo-600 font-bold">$199.99</span>
+                            </div>
+                            <button class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden group">
+                    <div class="relative">
+                        <img src="images/product-placeholder.svg" alt="Laptop Backpack" class="w-full h-64 object-cover">
+                        <div class="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">HOT</div>
+                        <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-2">
+                            <button class="bg-white p-2 rounded-full hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="bg-white p-2 rounded-full hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="bg-white p-2 rounded-full hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(35)</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-1">Premium Laptop Backpack</h3>
+                        <p class="text-gray-600 text-sm mb-2">Water-resistant with USB port</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-400 line-through">$89.99</span>
+                                <span class="text-indigo-600 font-bold ml-2">$69.99</span>
+                            </div>
+                            <button class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden group">
+                    <div class="relative">
+                        <img src="images/product-placeholder.svg" alt="Bluetooth Speaker" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-2">
+                            <button class="bg-white p-2 rounded-full hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="bg-white p-2 rounded-full hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="bg-white p-2 rounded-full hover:bg-indigo-500 hover:text-white transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(19)</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-1">Portable Bluetooth Speaker</h3>
+                        <p class="text-gray-600 text-sm mb-2">Waterproof with 20hr battery</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-indigo-600 font-bold">$79.99</span>
+                            </div>
+                            <button class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Sale Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="bg-gradient-to-r from-red-500 to-pink-500 rounded-xl overflow-hidden">
+                <div class="flex flex-col md:flex-row items-center p-6 md:p-10">
+                    <div class="md:w-1/2 text-white mb-6 md:mb-0">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-3">Flash Sale</h2>
+                        <p class="text-lg mb-4">Hurry up! These deals won't last long.</p>
+                        <div class="flex space-x-4 mb-6">
+                            <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                <span class="block text-2xl font-bold" id="hours">24</span>
+                                <span class="text-sm">Hours</span>
+                            </div>
+                            <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                <span class="block text-2xl font-bold" id="minutes">00</span>
+                                <span class="text-sm">Minutes</span>
+                            </div>
+                            <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                <span class="block text-2xl font-bold" id="seconds">00</span>
+                                <span class="text-sm">Seconds</span>
+                            </div>
+                        </div>
+                        <a href="pages/deals.html" class="inline-block bg-white text-red-500 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">Shop Flash Sale</a>
+                    </div>
+                    <div class="md:w-1/2 grid grid-cols-2 gap-4">
+                        <div class="bg-white rounded-lg p-4 transform hover:scale-105 transition">
+                            <div class="relative">
+                                <img src="images/product-placeholder.svg" alt="Flash Sale Product" class="w-full h-32 object-cover rounded">
+                                <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-70%</div>
+                            </div>
+                            <h3 class="font-semibold mt-2">Wireless Charger</h3>
+                            <div class="flex justify-between items-center mt-1">
+                                <div>
+                                    <span class="text-gray-400 line-through text-xs">$49.99</span>
+                                    <span class="text-red-500 font-bold">$14.99</span>
+                                </div>
+                                <div class="text-xs text-gray-500">12 sold</div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 transform hover:scale-105 transition">
+                            <div class="relative">
+                                <img src="images/product-placeholder.svg" alt="Flash Sale Product" class="w-full h-32 object-cover rounded">
+                                <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-60%</div>
+                            </div>
+                            <h3 class="font-semibold mt-2">Smart Bulb Set</h3>
+                            <div class="flex justify-between items-center mt-1">
+                                <div>
+                                    <span class="text-gray-400 line-through text-xs">$39.99</span>
+                                    <span class="text-red-500 font-bold">$15.99</span>
+                                </div>
+                                <div class="text-xs text-gray-500">8 sold</div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 transform hover:scale-105 transition">
+                            <div class="relative">
+                                <img src="images/product-placeholder.svg" alt="Flash Sale Product" class="w-full h-32 object-cover rounded">
+                                <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-50%</div>
+                            </div>
+                            <h3 class="font-semibold mt-2">Phone Gimbal</h3>
+                            <div class="flex justify-between items-center mt-1">
+                                <div>
+                                    <span class="text-gray-400 line-through text-xs">$99.99</span>
+                                    <span class="text-red-500 font-bold">$49.99</span>
+                                </div>
+                                <div class="text-xs text-gray-500">5 sold</div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 transform hover:scale-105 transition">
+                            <div class="relative">
+                                <img src="images/product-placeholder.svg" alt="Flash Sale Product" class="w-full h-32 object-cover rounded">
+                                <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-40%</div>
+                            </div>
+                            <h3 class="font-semibold mt-2">Fitness Tracker</h3>
+                            <div class="flex justify-between items-center mt-1">
+                                <div>
+                                    <span class="text-gray-400 line-through text-xs">$79.99</span>
+                                    <span class="text-red-500 font-bold">$47.99</span>
+                                </div>
+                                <div class="text-xs text-gray-500">15 sold</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gradient-to-b from-white to-indigo-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-semibold mb-3">TESTIMONIALS</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our Customers Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Don't just take our word for it. Here's what our satisfied customers have to say about their shopping experience with us.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 relative hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-indigo-600 rounded-full p-3 shadow-lg">
+                        <i class="fas fa-quote-right text-white text-xl"></i>
+                    </div>
+                    <div class="pt-4">
+                        <div class="flex text-yellow-400 mb-4 justify-center">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center italic">"I've been shopping with ShopEase for over a year now, and I'm consistently impressed by their product quality and customer service. The delivery is always on time, and returns are hassle-free!"</p>
+                        <div class="flex items-center justify-center">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer" class="w-12 h-12 rounded-full border-2 border-indigo-100 mr-4">
+                            <div>
+                                <h4 class="font-bold text-gray-800">Sarah Johnson</h4>
+                                <p class="text-gray-500 text-sm">Loyal Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 relative hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-indigo-600 rounded-full p-3 shadow-lg">
+                        <i class="fas fa-quote-right text-white text-xl"></i>
+                    </div>
+                    <div class="pt-4">
+                        <div class="flex text-yellow-400 mb-4 justify-center">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center italic">"The variety of products available is amazing! I found exactly what I was looking for at a great price. The website is easy to navigate, and checkout was a breeze. Will definitely shop here again."</p>
+                        <div class="flex items-center justify-center">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Customer" class="w-12 h-12 rounded-full border-2 border-indigo-100 mr-4">
+                            <div>
+                                <h4 class="font-bold text-gray-800">Michael Chen</h4>
+                                <p class="text-gray-500 text-sm">New Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 relative hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-indigo-600 rounded-full p-3 shadow-lg">
+                        <i class="fas fa-quote-right text-white text-xl"></i>
+                    </div>
+                    <div class="pt-4">
+                        <div class="flex text-yellow-400 mb-4 justify-center">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center italic">"The customer support team went above and beyond to help me with a special order. The products are high quality, and the prices are competitive. ShopEase has become my go-to online store!"</p>
+                        <div class="flex items-center justify-center">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Customer" class="w-12 h-12 rounded-full border-2 border-indigo-100 mr-4">
+                            <div>
+                                <h4 class="font-bold text-gray-800">Emily Rodriguez</h4>
+                                <p class="text-gray-500 text-sm">Regular Shopper</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">10K+</div>
+                    <p class="text-gray-600">Happy Customers</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">5K+</div>
+                    <p class="text-gray-600">Products</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">99%</div>
+                    <p class="text-gray-600">Satisfaction Rate</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">15+</div>
+                    <p class="text-gray-600">Countries Served</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+                <div class="flex flex-col md:flex-row items-center p-8 md:p-12">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-semibold mb-3">STAY UPDATED</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+                        <p class="text-gray-600 mb-6">Get the latest updates on new products, upcoming sales, and exclusive offers directly to your inbox.</p>
+                        <div class="flex flex-col sm:flex-row">
+                            <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-lg sm:rounded-r-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-3 sm:mb-0">
+                            <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg sm:rounded-l-none font-semibold hover:bg-indigo-700 transition shadow-md">
+                                <span>Subscribe</span>
+                                <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-3">By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.</p>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center bg-indigo-50 rounded-lg p-6 transform transition hover:scale-105">
+                                <div class="bg-indigo-100 rounded-full p-4 inline-block mb-4 text-indigo-600">
+                                    <i class="fas fa-tag text-3xl"></i>
+                                </div>
+                                <h3 class="font-bold text-lg mb-2">Exclusive Deals</h3>
+                                <p class="text-gray-600 text-sm">Be the first to know about our special promotions and discounts.</p>
+                            </div>
+                            <div class="text-center bg-indigo-50 rounded-lg p-6 transform transition hover:scale-105">
+                                <div class="bg-indigo-100 rounded-full p-4 inline-block mb-4 text-indigo-600">
+                                    <i class="fas fa-gift text-3xl"></i>
+                                </div>
+                                <h3 class="font-bold text-lg mb-2">Special Gifts</h3>
+                                <p class="text-gray-600 text-sm">Receive complimentary gifts with purchases on special occasions.</p>
+                            </div>
+                            <div class="text-center bg-indigo-50 rounded-lg p-6 transform transition hover:scale-105">
+                                <div class="bg-indigo-100 rounded-full p-4 inline-block mb-4 text-indigo-600">
+                                    <i class="fas fa-bell text-3xl"></i>
+                                </div>
+                                <h3 class="font-bold text-lg mb-2">New Arrivals</h3>
+                                <p class="text-gray-600 text-sm">Stay updated on the latest products added to our collection.</p>
+                            </div>
+                            <div class="text-center bg-indigo-50 rounded-lg p-6 transform transition hover:scale-105">
+                                <div class="bg-indigo-100 rounded-full p-4 inline-block mb-4 text-indigo-600">
+                                    <i class="fas fa-percent text-3xl"></i>
+                                </div>
+                                <h3 class="font-bold text-lg mb-2">Loyalty Rewards</h3>
+                                <p class="text-gray-600 text-sm">Earn points with every purchase and redeem for discounts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-gray-800 to-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <!-- Top Footer Section with Logo and Newsletter -->
+            <div class="flex flex-col lg:flex-row justify-between items-center mb-12 pb-12 border-b border-gray-700">
+                <div class="mb-8 lg:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-600 rounded-full p-2 mr-3">
+                            <i class="fas fa-shopping-bag text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold">ShopEase</h2>
+                    </div>
+                    <p class="text-gray-400 max-w-md mb-6">Your one-stop destination for premium products at competitive prices. We're committed to providing an exceptional shopping experience.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-700 hover:bg-indigo-600 h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-indigo-600 h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-indigo-600 h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-indigo-600 h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 hover:bg-indigo-600 h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full lg:w-auto">
+                    <div class="bg-gray-700 rounded-xl p-6 max-w-md mx-auto lg:mx-0">
+                        <h3 class="text-xl font-bold mb-3">Download Our App</h3>
+                        <p class="text-gray-400 mb-4">Shop on the go with our mobile app. Get exclusive app-only deals and manage your orders easily.</p>
+                        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                            <a href="#" class="flex items-center bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                                <i class="fab fa-apple text-2xl mr-2"></i>
+                                <div>
+                                    <div class="text-xs">Download on the</div>
+                                    <div class="text-sm font-semibold">App Store</div>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                                <i class="fab fa-google-play text-2xl mr-2"></i>
+                                <div>
+                                    <div class="text-xs">Get it on</div>
+                                    <div class="text-sm font-semibold">Google Play</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Footer Links -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-6 flex items-center">
+                        <span class="bg-indigo-600 h-6 w-1 mr-3 rounded-full"></span>
+                        Quick Links
+                    </h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Home</a></li>
+                        <li><a href="pages/shop.html" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Shop</a></li>
+                        <li><a href="pages/about.html" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> About Us</a></li>
+                        <li><a href="pages/contact.html" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Contact</a></li>
+                        <li><a href="pages/blog.html" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Blog</a></li>
+                        <li><a href="pages/faq.html" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 flex items-center">
+                        <span class="bg-indigo-600 h-6 w-1 mr-3 rounded-full"></span>
+                        Customer Service
+                    </h3>
+                    <ul class="space-y-3">
+                        <li><a href="pages/shipping.html" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Shipping Info</a></li>
+                        <li><a href="pages/returns.html" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Returns & Refunds</a></li>
+                        <li><a href="pages/order-tracking.html" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Order Tracking</a></li>
+                        <li><a href="pages/wishlist.html" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Wishlist</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Gift Cards</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Secure Payment</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 flex items-center">
+                        <span class="bg-indigo-600 h-6 w-1 mr-3 rounded-full"></span>
+                        Contact Us
+                    </h3>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start">
+                            <div class="bg-gray-700 rounded-full p-2 mr-3 mt-1">
+                                <i class="fas fa-map-marker-alt text-indigo-400"></i>
+                            </div>
+                            <span>123 Commerce St, Shopping City, SC 12345</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-700 rounded-full p-2 mr-3 mt-1">
+                                <i class="fas fa-phone-alt text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <p>+1 (123) 456-7890</p>
+                                <p class="text-sm text-gray-500">Mon-Fri: 9AM - 8PM</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-700 rounded-full p-2 mr-3 mt-1">
+                                <i class="fas fa-envelope text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <p>support@shopease.com</p>
+                                <p class="text-sm text-gray-500">24/7 Customer Support</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-700 rounded-full p-2 mr-3 mt-1">
+                                <i class="fas fa-clock text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <p>Store Hours:</p>
+                                <p class="text-sm text-gray-500">Mon-Sat: 10AM - 8PM</p>
+                                <p class="text-sm text-gray-500">Sunday: 12PM - 6PM</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 flex items-center">
+                        <span class="bg-indigo-600 h-6 w-1 mr-3 rounded-full"></span>
+                        We Accept
+                    </h3>
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="bg-gray-700 rounded-lg p-2 flex items-center justify-center">
+                            <img src="images/visa.svg" alt="Visa" class="h-8">
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-2 flex items-center justify-center">
+                            <img src="images/mastercard.svg" alt="Mastercard" class="h-8">
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-2 flex items-center justify-center">
+                            <img src="images/paypal.svg" alt="PayPal" class="h-8">
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-2 flex items-center justify-center">
+                            <img src="images/apple-pay.svg" alt="Apple Pay" class="h-8">
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-2 flex items-center justify-center">
+                            <i class="fab fa-cc-discover text-white text-3xl"></i>
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-2 flex items-center justify-center">
+                            <i class="fab fa-cc-amex text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <span class="bg-indigo-600 h-6 w-1 mr-3 rounded-full"></span>
+                        Secure Shopping
+                    </h3>
+                    <div class="flex items-center space-x-3 mb-2">
+                        <i class="fas fa-shield-alt text-indigo-400 text-xl"></i>
+                        <span class="text-gray-400">SSL Secured Checkout</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-lock text-indigo-400 text-xl"></i>
+                        <span class="text-gray-400">100% Data Protection</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400">&copy; 2023 ShopEase. All rights reserved.</p>
+                    <div class="flex space-x-4 mt-2 text-sm text-gray-500">
+                        <a href="pages/privacy-policy.html" class="hover:text-gray-400 transition">Privacy Policy</a>
+                        <span>|</span>
+                        <a href="pages/terms.html" class="hover:text-gray-400 transition">Terms of Service</a>
+                        <span>|</span>
+                        <a href="#" class="hover:text-gray-400 transition">Sitemap</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gray-500 mr-2">Language:</span>
+                    <select class="bg-gray-700 text-white rounded-lg px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="chatToggle" class="bg-indigo-600 text-white rounded-full p-4 shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-110 flex items-center justify-center">
+            <i class="fas fa-comments text-xl"></i>
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse">1</span>
+        </button>
+        <div id="chatWidget" class="hidden bg-white rounded-xl shadow-2xl w-80 md:w-96 overflow-hidden border border-gray-100 transform transition-all duration-300">
+            <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white p-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="bg-white rounded-full p-2 mr-3">
+                        <i class="fas fa-headset text-indigo-600 text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">Customer Support</h3>
+                        <div class="flex items-center text-xs">
+                            <span class="inline-block h-2 w-2 rounded-full bg-green-400 mr-2"></span>
+                            <span>Online | Typically replies in minutes</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="chatClose" class="text-white hover:text-gray-200 transition bg-indigo-700 hover:bg-indigo-800 rounded-full h-8 w-8 flex items-center justify-center">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="h-96 p-4 overflow-y-auto" id="chatMessages">
+                <div class="flex items-start mb-4">
+                    <div class="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center mr-2 mt-1">
+                        <i class="fas fa-user text-indigo-600"></i>
+                    </div>
+                    <div class="bg-indigo-100 rounded-lg p-3 max-w-3/4">
+                        <p class="text-gray-800">Hello! Welcome to ShopEase customer support. How can I help you today?</p>
+                        <span class="text-xs text-gray-500 mt-1 block">10:00 AM</span>
+                    </div>
+                </div>
+                <div class="flex items-start mb-4">
+                    <div class="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center mr-2 mt-1">
+                        <i class="fas fa-user text-indigo-600"></i>
+                    </div>
+                    <div class="bg-indigo-100 rounded-lg p-3 max-w-3/4">
+                        <p class="text-gray-800">We're here to assist with product inquiries, order status, returns, or any other questions you might have!</p>
+                        <span class="text-xs text-gray-500 mt-1 block">10:01 AM</span>
+                    </div>
+                </div>
+                <div class="flex justify-center my-4">
+                    <div class="bg-gray-200 rounded-full px-3 py-1 text-xs text-gray-600">Today</div>
+                </div>
+                <div class="flex flex-col space-y-2 mb-4">
+                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-left px-4 py-2 rounded-lg transition">
+                        <i class="fas fa-question-circle mr-2 text-indigo-500"></i> What's your return policy?
+                    </button>
+                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-left px-4 py-2 rounded-lg transition">
+                        <i class="fas fa-truck mr-2 text-indigo-500"></i> Track my order
+                    </button>
+                    <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-left px-4 py-2 rounded-lg transition">
+                        <i class="fas fa-tag mr-2 text-indigo-500"></i> Current promotions
+                    </button>
+                </div>
+            </div>
+            <div class="border-t p-4 bg-gray-50">
+                <div class="flex items-center mb-2">
+                    <span class="text-xs text-gray-500 mr-auto">Powered by ShopEase Support</span>
+                    <div class="flex space-x-2">
+                        <button class="text-gray-400 hover:text-indigo-600 transition">
+                            <i class="fas fa-image"></i>
+                        </button>
+                        <button class="text-gray-400 hover:text-indigo-600 transition">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <button class="text-gray-400 hover:text-indigo-600 transition">
+                            <i class="fas fa-smile"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex">
+                    <input type="text" id="chatInput" placeholder="Type your message..." class="flex-1 px-4 py-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    <button id="chatSend" class="bg-indigo-600 text-white px-4 rounded-r-lg hover:bg-indigo-700 transition flex items-center justify-center">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-24 bg-gradient-to-r from-indigo-600 to-indigo-800 text-white rounded-full p-3 shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-110 hidden z-50">
+        <i class="fas fa-arrow-up animate-bounce"></i>
+        <span class="absolute -top-8 -right-2 bg-white text-indigo-600 text-xs rounded-lg px-2 py-1 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Back to top</span>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

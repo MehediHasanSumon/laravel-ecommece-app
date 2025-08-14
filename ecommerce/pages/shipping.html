@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Policy - ShopEase</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <a href="../index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-indigo-600 transition" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Navigation Icons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="searchToggle">
+                        <i class="fas fa-search text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="darkModeToggle">
+                        <i class="fas fa-moon text-xl"></i>
+                    </a>
+                    <a href="wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                    </a>
+                    <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                    </a>
+                    <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-user text-xl mr-1"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2">
+                <nav class="flex flex-col space-y-3 py-4">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                    <div class="flex items-center space-x-4 pt-3 border-t border-gray-100">
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="mobileSearchToggle">
+                            <i class="fas fa-search text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="mobileDarkModeToggle">
+                            <i class="fas fa-moon text-xl"></i>
+                        </a>
+                        <a href="wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                            <i class="fas fa-heart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                        </a>
+                        <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                        </a>
+                        <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                            <i class="fas fa-user text-xl"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="hidden bg-white border-t" id="searchOverlay">
+            <div class="container mx-auto px-4 py-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search for products..." class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <button id="closeSearch" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-sm font-medium text-gray-600 mb-2">Popular Searches:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Wireless Headphones</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Smart Watches</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Fitness Trackers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Bluetooth Speakers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Laptop Accessories</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-2 text-sm">
+                <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                <span class="text-gray-400">/</span>
+                <span class="text-indigo-600 font-medium">Shipping Policy</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6 md:p-8">
+            <h1 class="text-3xl font-bold mb-6 text-gray-900">Shipping Policy</h1>
+            <p class="text-gray-600 mb-6">Last Updated: January 1, 2023</p>
+            
+            <div class="prose max-w-none text-gray-700">
+                <p class="mb-4">At ShopEase, we strive to provide you with the best shipping experience possible. This Shipping Policy outlines our shipping procedures, delivery timeframes, and other important information to help you understand how we deliver your orders.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">1. Processing Time</h2>
+                
+                <p class="mb-6">All orders are processed within 1-2 business days (excluding weekends and holidays) after receiving your order confirmation email. Orders placed after 12 PM EST will be processed the next business day.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">2. Shipping Methods & Delivery Times</h2>
+                
+                <p class="mb-4">We offer several shipping methods to meet your needs:</p>
+                
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full border border-gray-200 rounded-lg">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b">Shipping Method</th>
+                                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b">Estimated Delivery Time</th>
+                                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b">Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-3 px-4 text-sm">Standard Shipping</td>
+                                <td class="py-3 px-4 text-sm">5-7 business days</td>
+                                <td class="py-3 px-4 text-sm">$4.99 (Free on orders over $50)</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-sm">Expedited Shipping</td>
+                                <td class="py-3 px-4 text-sm">3-5 business days</td>
+                                <td class="py-3 px-4 text-sm">$9.99</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-sm">Express Shipping</td>
+                                <td class="py-3 px-4 text-sm">1-2 business days</td>
+                                <td class="py-3 px-4 text-sm">$19.99</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-sm">Same-Day Delivery</td>
+                                <td class="py-3 px-4 text-sm">Same day (order before 10 AM, select cities only)</td>
+                                <td class="py-3 px-4 text-sm">$29.99</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p class="mb-4">Please note that these delivery times are estimates and not guarantees. Delivery times may vary based on your location, customs processing for international orders, and other factors outside our control.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">3. Shipping Locations</h2>
+                
+                <p class="mb-4">We currently ship to the following locations:</p>
+                
+                <ul class="list-disc pl-6 mb-6">
+                    <li class="mb-2">All 50 United States and U.S. territories</li>
+                    <li class="mb-2">Canada</li>
+                    <li class="mb-2">Most European countries</li>
+                    <li class="mb-2">Australia and New Zealand</li>
+                    <li class="mb-2">Select Asian countries (Japan, South Korea, Singapore, Hong Kong)</li>
+                </ul>
+                
+                <p class="mb-4">If your country is not listed, please contact our customer service team to inquire about shipping options.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">4. Tracking Your Order</h2>
+                
+                <p class="mb-6">Once your order ships, you will receive a shipping confirmation email with a tracking number. You can track your package by:</p>
+                
+                <ul class="list-disc pl-6 mb-6">
+                    <li class="mb-2">Clicking the tracking link in your shipping confirmation email</li>
+                    <li class="mb-2">Logging into your ShopEase account and viewing your order history</li>
+                    <li class="mb-2">Contacting our customer service team with your order number</li>
+                </ul>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">5. International Shipping</h2>
+                
+                <p class="mb-4">For international orders, please note the following:</p>
+                
+                <ul class="list-disc pl-6 mb-6">
+                    <li class="mb-2">International delivery times typically range from 7-21 business days, depending on the destination and customs processing.</li>
+                    <li class="mb-2">The customer is responsible for all duties, taxes, and customs fees imposed by their country.</li>
+                    <li class="mb-2">Some products may not be eligible for international shipping due to regulations or restrictions in certain countries.</li>
+                    <li class="mb-2">International orders over $200 may require a signature upon delivery.</li>
+                </ul>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">6. Shipping Restrictions</h2>
+                
+                <p class="mb-6">Certain products cannot be shipped to specific locations due to local regulations or shipping carrier restrictions. If you place an order for a restricted item, we will notify you and provide options for modifying your order.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">7. Order Issues</h2>
+                
+                <h3 class="text-lg font-semibold mt-6 mb-3 text-gray-900">7.1 Lost Packages</h3>
+                
+                <p class="mb-4">If your tracking information shows that your package was delivered but you haven't received it:</p>
+                
+                <ul class="list-disc pl-6 mb-4">
+                    <li class="mb-2">Check with neighbors or others at your address who may have accepted the package</li>
+                    <li class="mb-2">Look around the delivery location for the package (porch, garage, side door, etc.)</li>
+                    <li class="mb-2">Contact the shipping carrier with your tracking number to inquire about the delivery details</li>
+                    <li class="mb-2">If you still cannot locate your package, please contact our customer service team within 7 days of the expected delivery date</li>
+                </ul>
+                
+                <h3 class="text-lg font-semibold mt-6 mb-3 text-gray-900">7.2 Damaged Items</h3>
+                
+                <p class="mb-6">If your item arrives damaged, please contact our customer service team within 48 hours of delivery with photos of the damaged item and packaging. We will arrange for a replacement or refund.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">8. Shipping for Returns</h2>
+                
+                <p class="mb-6">For information about return shipping, please refer to our <a href="returns.html" class="text-indigo-600 hover:text-indigo-800 transition">Returns & Refunds Policy</a>.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">9. Subscription Orders</h2>
+                
+                <p class="mb-6">For subscription-based products, shipping is automatically processed according to your selected delivery frequency. You can manage your subscription shipping preferences in your account settings.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">10. Shipping Address Changes</h2>
+                
+                <p class="mb-6">If you need to change your shipping address after placing an order, please contact our customer service team immediately. We can only accommodate address changes if the order has not yet been processed for shipping.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">11. Contact Us</h2>
+                
+                <p class="mb-4">If you have any questions about our shipping policy, please contact us at:</p>
+                
+                <ul class="list-none mb-6">
+                    <li class="mb-2"><strong>ShopEase Customer Service</strong></li>
+                    <li class="mb-2">Phone: (123) 456-7890</li>
+                    <li class="mb-2">Email: shipping@shopease.com</li>
+                    <li class="mb-2">Hours: Monday-Friday, 9AM - 8PM EST</li>
+                </ul>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <p class="text-gray-600 text-sm">This Shipping Policy was last updated on January 1, 2023, and is subject to change. Any changes will be posted on this page with an updated revision date.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">ShopEase</h3>
+                    <p class="text-gray-400 mb-4">Your one-stop destination for quality products at affordable prices. Shop with ease, shop with confidence.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white transition">Shop</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white transition">Categories</a></li>
+                        <li><a href="deals.html" class="text-gray-400 hover:text-white transition">Flash Sales</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="account.html" class="text-gray-400 hover:text-white transition">My Account</a></li>
+                        <li><a href="orders.html" class="text-gray-400 hover:text-white transition">Order History</a></li>
+                        <li><a href="wishlist.html" class="text-gray-400 hover:text-white transition">Wishlist</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="returns.html" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
+                        <li><a href="shipping.html" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-indigo-400 mt-1 mr-2"></i>
+                            <span class="text-gray-400">123 Commerce St, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">(123) 456-7890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">support@shopease.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">Mon-Fri: 9AM - 8PM EST</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 ShopEase. All rights reserved.</p>
+                    <div class="flex space-x-4">
+                        <a href="terms.html" class="text-gray-400 hover:text-white transition text-sm">Terms of Service</a>
+                        <a href="privacy.html" class="text-gray-400 hover:text-white transition text-sm">Privacy Policy</a>
+                        <a href="sitemap.html" class="text-gray-400 hover:text-white transition text-sm">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 scale-0">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

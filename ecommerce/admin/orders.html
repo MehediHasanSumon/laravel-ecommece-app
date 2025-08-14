@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Management - ShopEase Admin</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Admin Panel Specific Styles */
+        .sidebar-active {
+            background-color: rgba(79, 70, 229, 0.1);
+            border-left: 3px solid #4F46E5;
+            color: #4F46E5;
+        }
+        
+        .sidebar-link:hover {
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+        
+        .admin-card {
+            transition: all 0.3s ease;
+        }
+        
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Table Styles */
+        .admin-table th {
+            position: relative;
+        }
+        
+        .admin-table th:after {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #9CA3AF;
+            cursor: pointer;
+        }
+        
+        /* Dark Mode Styles */
+        .dark .admin-card {
+            background-color: #1F2937;
+            color: #F3F4F6;
+        }
+        
+        .dark .sidebar-active {
+            background-color: rgba(79, 70, 229, 0.2);
+        }
+        
+        .dark .admin-table th:after {
+            border-top: 5px solid #D1D5DB;
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 15px;
+            height: 100%;
+            width: 2px;
+            background-color: #E5E7EB;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 9px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #4F46E5;
+            border: 2px solid #fff;
+            z-index: 1;
+        }
+
+        .dark .timeline-container::before {
+            background-color: #374151;
+        }
+
+        .dark .timeline-dot {
+            border-color: #1F2937;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="hidden md:flex md:flex-col w-64 bg-white shadow-md z-30">
+            <!-- Logo -->
+            <div class="flex items-center justify-between p-4 border-b">
+                <a href="../index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                <span class="px-2 py-1 text-xs font-semibold text-white bg-indigo-600 rounded-md">Admin</span>
+            </div>
+            
+            <!-- Admin Navigation -->
+            <nav class="flex-1 overflow-y-auto py-4">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="index.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                            <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                            <i class="fas fa-box w-5 h-5 mr-3"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html" class="sidebar-link sidebar-active flex items-center px-4 py-3 text-gray-700">
+                            <i class="fas fa-shopping-cart w-5 h-5 mr-3"></i>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="customers.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                            <i class="fas fa-users w-5 h-5 mr-3"></i>
+                            <span>Customers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="categories.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                            <i class="fas fa-tags w-5 h-5 mr-3"></i>
+                            <span>Categories</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="discounts.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                            <i class="fas fa-percent w-5 h-5 mr-3"></i>
+                            <span>Discounts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="content.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                            <i class="fas fa-file-alt w-5 h-5 mr-3"></i>
+                            <span>Content</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                            <i class="fas fa-chart-line w-5 h-5 mr-3"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                            <i class="fas fa-cog w-5 h-5 mr-3"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="mt-8 px-4">
+                    <div class="p-4 bg-indigo-50 rounded-lg">
+                        <h4 class="text-sm font-medium text-indigo-800 mb-2">Need Help?</h4>
+                        <p class="text-xs text-indigo-700 mb-3">Check our documentation for help with admin features.</p>
+                        <a href="#" class="text-xs font-medium text-indigo-600 hover:text-indigo-800 transition">
+                            View Documentation <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Admin User -->
+            <div class="p-4 border-t">
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                        <p class="text-sm font-medium">John Doe</p>
+                        <p class="text-xs text-gray-500">Administrator</p>
+                    </div>
+                    <div class="ml-auto">
+                        <button class="text-gray-500 hover:text-indigo-600 transition">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Mobile Sidebar Toggle -->
+        <div class="md:hidden fixed bottom-4 right-4 z-40">
+            <button id="sidebarToggle" class="bg-indigo-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Sidebar (Hidden by default) -->
+        <div id="mobileSidebar" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-50 hidden">
+            <div class="absolute right-0 top-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 translate-x-0">
+                <!-- Mobile Sidebar Content -->
+                <div class="flex items-center justify-between p-4 border-b">
+                    <a href="../index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                    <button id="closeSidebar" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Admin Navigation -->
+                <nav class="overflow-y-auto py-4">
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="index.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                                <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="products.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                                <i class="fas fa-box w-5 h-5 mr-3"></i>
+                                <span>Products</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="orders.html" class="sidebar-link sidebar-active flex items-center px-4 py-3 text-gray-700">
+                                <i class="fas fa-shopping-cart w-5 h-5 mr-3"></i>
+                                <span>Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="customers.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                                <i class="fas fa-users w-5 h-5 mr-3"></i>
+                                <span>Customers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="categories.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                                <i class="fas fa-tags w-5 h-5 mr-3"></i>
+                                <span>Categories</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="discounts.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                                <i class="fas fa-percent w-5 h-5 mr-3"></i>
+                                <span>Discounts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="content.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                                <i class="fas fa-file-alt w-5 h-5 mr-3"></i>
+                                <span>Content</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="analytics.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                                <i class="fas fa-chart-line w-5 h-5 mr-3"></i>
+                                <span>Analytics</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="settings.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 hover:text-indigo-600 transition">
+                                <i class="fas fa-cog w-5 h-5 mr-3"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Admin User -->
+                <div class="p-4 border-t mt-auto">
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="text-sm font-medium">John Doe</p>
+                            <p class="text-xs text-gray-500">Administrator</p>
+                        </div>
+                        <div class="ml-auto">
+                            <button class="text-gray-500 hover:text-indigo-600 transition">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto bg-gray-50">
+            <!-- Top Header -->
+            <header class="bg-white shadow-sm sticky top-0 z-20">
+                <div class="flex items-center justify-between p-4">
+                    <!-- Page Title -->
+                    <h1 class="text-xl font-semibold text-gray-800">Orders</h1>
+                    
+                    <!-- Header Actions -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Search -->
+                        <div class="relative hidden md:block">
+                            <input type="text" placeholder="Search orders..." class="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        
+                        <!-- Notifications -->
+                        <div class="relative">
+                            <button class="text-gray-500 hover:text-indigo-600 transition">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">3</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Dark Mode Toggle -->
+                        <button class="text-gray-500 hover:text-indigo-600 transition" id="darkModeToggle">
+                            <i class="fas fa-moon text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Orders Content -->
+            <div class="p-4 md:p-6">
+                <!-- Action Bar -->
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 flex items-center transition-all">
+                            <i class="fas fa-filter mr-2"></i> Filter
+                        </button>
+                        <select class="border border-gray-300 rounded-lg px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            <option value="all">All Orders</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 flex items-center transition-all">
+                            <i class="fas fa-file-export mr-2"></i> Export
+                        </button>
+                        <button class="bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 flex items-center transition-all">
+                            <i class="fas fa-print mr-2"></i> Print
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Orders Table -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+                    <div class="p-4 border-b flex flex-wrap items-center justify-between gap-4">
+                        <h2 class="text-lg font-medium">All Orders</h2>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-500">Show</span>
+                            <select class="border border-gray-300 rounded-md px-2 py-1 text-sm">
+                                <option>10</option>
+                                <option>25</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                            <span class="text-sm text-gray-500">entries</span>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="admin-table w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </div>
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <!-- Order 1 -->
+                                <tr class="order-row" data-order-id="ORD-7842">
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-indigo-600">#ORD-7842</div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            <div class="h-8 w-8 flex-shrink-0 rounded-full bg-gray-200 overflow-hidden">
+                                                <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Customer" class="h-full w-full object-cover">
+                                            </div>
+                                            <div class="ml-3">
+                                                <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
+                                                <div class="text-xs text-gray-500">sarah.j@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">May 24, 2023</div>
+                                        <div class="text-xs text-gray-500">10:45 AM</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">$129.99</div>
+                                        <div class="text-xs text-gray-500">3 items</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">Processing</span>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <i class="fab fa-cc-visa text-blue-600 mr-1"></i>
+                                            <span class="text-sm text-gray-900">Visa</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                                        <div class="flex space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900" title="Print">
+                                                <i class="fas fa-print"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900" title="Cancel">
+                                                <i class="fas fa-times-circle"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Order 2 -->
+                                <tr class="order-row" data-order-id="ORD-7843">
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-indigo-600">#ORD-7843</div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            <div class="h-8 w-8 flex-shrink-0 rounded-full bg-gray-200 overflow-hidden">
+                                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer" class="h-full w-full object-cover">
+                                            </div>
+                                            <div class="ml-3">
+                                                <div class="text-sm font-medium text-gray-900">Michael Chen</div>
+                                                <div class="text-xs text-gray-500">m.chen@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">May 23, 2023</div>
+                                        <div class="text-xs text-gray-500">3:22 PM</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">$249.99</div>
+                                        <div class="text-xs text-gray-500">2 items</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Shipped</span>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <i class="fab fa-cc-paypal text-blue-800 mr-1"></i>
+                                            <span class="text-sm text-gray-900">PayPal</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                                        <div class="flex space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900" title="Print">
+                                                <i class="fas fa-print"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900" title="Cancel">
+                                                <i class="fas fa-times-circle"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Order 3 -->
+                                <tr class="order-row" data-order-id="ORD-7844">
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-indigo-600">#ORD-7844</div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            <div class="h-8 w-8 flex-shrink-0 rounded-full bg-gray-200 overflow-hidden">
+                                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer" class="h-full w-full object-cover">
+                                            </div>
+                                            <div class="ml-3">
+                                                <div class="text-sm font-medium text-gray-900">Emily Rodriguez</div>
+                                                <div class="text-xs text-gray-500">e.rodriguez@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">May 22, 2023</div>
+                                        <div class="text-xs text-gray-500">9:15 AM</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">$49.99</div>
+                                        <div class="text-xs text-gray-500">1 item</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Delivered</span>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <i class="fab fa-cc-mastercard text-red-600 mr-1"></i>
+                                            <span class="text-sm text-gray-900">MasterCard</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                                        <div class="flex space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900" title="Print">
+                                                <i class="fas fa-print"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900" title="Cancel">
+                                                <i class="fas fa-times-circle"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Order 4 -->
+                                <tr class="order-row" data-order-id="ORD-7845">
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-indigo-600">#ORD-7845</div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            <div class="h-8 w-8 flex-shrink-0 rounded-full bg-gray-200 overflow-hidden">
+                                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Customer" class="h-full w-full object-cover">
+                                            </div>
+                                            <div class="ml-3">
+                                                <div class="text-sm font-medium text-gray-900">David Wilson</div>
+                                                <div class="text-xs text-gray-500">d.wilson@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">May 21, 2023</div>
+                                        <div class="text-xs text-gray-500">5:30 PM</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">$34.99</div>
+                                        <div class="text-xs text-gray-500">1 item</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full">Pending</span>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <i class="fab fa-cc-visa text-blue-600 mr-1"></i>
+                                            <span class="text-sm text-gray-900">Visa</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                                        <div class="flex space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900" title="Print">
+                                                <i class="fas fa-print"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900" title="Cancel">
+                                                <i class="fas fa-times-circle"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Order 5 -->
+                                <tr class="order-row" data-order-id="ORD-7846">
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-indigo-600">#ORD-7846</div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex items-center">
+                                            <div class="h-8 w-8 flex-shrink-0 rounded-full bg-gray-200 overflow-hidden">
+                                                <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Customer" class="h-full w-full object-cover">
+                                            </div>
+                                            <div class="ml-3">
+                                                <div class="text-sm font-medium text-gray-900">Sophia Martinez</div>
+                                                <div class="text-xs text-gray-500">s.martinez@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">May 20, 2023</div>
+                                        <div class="text-xs text-gray-500">11:45 AM</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">$24.99</div>
+                                        <div class="text-xs text-gray-500">1 item</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">Cancelled</span>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <i class="fab fa-cc-amex text-blue-800 mr-1"></i>
+                                            <span class="text-sm text-gray-900">Amex</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                                        <div class="flex space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900" title="Print">
+                                                <i class="fas fa-print"></i>
+                                            </button>
+                                            <button class="text-gray-400 cursor-not-allowed" title="Cancel">
+                                                <i class="fas fa-times-circle"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="p-4 border-t flex flex-wrap items-center justify-between gap-4">
+                        <div class="text-sm text-gray-500">
+                            Showing 1 to 5 of 28 entries
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                Previous
+                            </button>
+                            <button class="px-3 py-1 rounded-md border border-indigo-500 bg-indigo-500 text-white">
+                                1
+                            </button>
+                            <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">
+                                2
+                            </button>
+                            <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">
+                                3
+                            </button>
+                            <button class="px-3 py-1 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order Detail Section (Hidden by default) -->
+            <div id="orderDetail" class="hidden p-4 md:p-6">
+                <div class="mb-6 flex items-center">
+                    <button id="backToOrders" class="text-indigo-600 hover:text-indigo-800 mr-4">
+                        <i class="fas fa-arrow-left mr-1"></i> Back to Orders
+                    </button>
+                    <h2 class="text-xl font-semibold">Order #<span id="detailOrderId">ORD-7842</span></h2>
+                    <div class="ml-auto flex space-x-2">
+                        <button class="bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 flex items-center transition-all">
+                            <i class="fas fa-print mr-2"></i> Print
+                        </button>
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center transition-all">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Invoice
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Order Info -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+                            <div class="p-4 border-b">
+                                <h3 class="text-lg font-medium">Order Information</h3>
+                            </div>
+                            <div class="p-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Order Details -->
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-500 mb-2">ORDER DETAILS</h4>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">Order ID:</span>
+                                                <span class="text-sm font-medium">#ORD-7842</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">Date Placed:</span>
+                                                <span class="text-sm">May 24, 2023 10:45 AM</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">Status:</span>
+                                                <span class="px-2 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">Processing</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">Payment Method:</span>
+                                                <span class="text-sm"><i class="fab fa-cc-visa text-blue-600 mr-1"></i> Visa ending in 4242</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Customer Details -->
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-500 mb-2">CUSTOMER</h4>
+                                        <div class="flex items-center mb-3">
+                                            <div class="h-10 w-10 flex-shrink-0 rounded-full bg-gray-200 overflow-hidden">
+                                                <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Customer" class="h-full w-full object-cover">
+                                            </div>
+                                            <div class="ml-3">
+                                                <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
+                                                <div class="text-xs text-gray-500">Customer since Jan 2023</div>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-1">
+                                            <div class="text-sm"><i class="fas fa-envelope text-gray-400 w-5"></i> sarah.j@example.com</div>
+                                            <div class="text-sm"><i class="fas fa-phone text-gray-400 w-5"></i> (555) 123-4567</div>
+                                            <div class="text-sm"><i class="fas fa-shopping-bag text-gray-400 w-5"></i> 5 previous orders</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-t my-4"></div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Shipping Address -->
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-500 mb-2">SHIPPING ADDRESS</h4>
+                                        <div class="text-sm space-y-1">
+                                            <p class="font-medium">Sarah Johnson</p>
+                                            <p>123 Main Street</p>
+                                            <p>Apt 4B</p>
+                                            <p>New York, NY 10001</p>
+                                            <p>United States</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Billing Address -->
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-500 mb-2">BILLING ADDRESS</h4>
+                                        <div class="text-sm space-y-1">
+                                            <p class="font-medium">Sarah Johnson</p>
+                                            <p>123 Main Street</p>
+                                            <p>Apt 4B</p>
+                                            <p>New York, NY 10001</p>
+                                            <p>United States</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Order Items -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+                            <div class="p-4 border-b">
+                                <h3 class="text-lg font-medium">Order Items</h3>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <!-- Item 1 -->
+                                        <tr>
+                                            <td class="px-4 py-3">
+                                                <div class="flex items-center">
+                                                    <div class="h-16 w-16 flex-shrink-0 rounded-md bg-gray-200 overflow-hidden">
+                                                        <img src="https://via.placeholder.com/150" alt="Product" class="h-full w-full object-cover">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Wireless Bluetooth Headphones</div>
+                                                        <div class="text-xs text-gray-500">SKU: PRD-7842</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">$79.99</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">1</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">$79.99</div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- Item 2 -->
+                                        <tr>
+                                            <td class="px-4 py-3">
+                                                <div class="flex items-center">
+                                                    <div class="h-16 w-16 flex-shrink-0 rounded-md bg-gray-200 overflow-hidden">
+                                                        <img src="https://via.placeholder.com/150" alt="Product" class="h-full w-full object-cover">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Smartphone Charging Cable</div>
+                                                        <div class="text-xs text-gray-500">SKU: PRD-7843</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">$14.99</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">2</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">$29.98</div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- Item 3 -->
+                                        <tr>
+                                            <td class="px-4 py-3">
+                                                <div class="flex items-center">
+                                                    <div class="h-16 w-16 flex-shrink-0 rounded-md bg-gray-200 overflow-hidden">
+                                                        <img src="https://via.placeholder.com/150" alt="Product" class="h-full w-full object-cover">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Wireless Phone Charger</div>
+                                                        <div class="text-xs text-gray-500">SKU: PRD-7844</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">$20.02</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">1</div>
+                                            </td>
+                                            <td class="px-4 py-3 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">$20.02</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="bg-gray-50">
+                                        <tr>
+                                            <td colspan="2" class="px-4 py-3"></td>
+                                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Subtotal</td>
+                                            <td class="px-4 py-3 text-sm font-medium text-gray-900">$129.99</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="px-4 py-3"></td>
+                                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Shipping</td>
+                                            <td class="px-4 py-3 text-sm font-medium text-gray-900">$0.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="px-4 py-3"></td>
+                                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Tax</td>
+                                            <td class="px-4 py-3 text-sm font-medium text-gray-900">$0.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="px-4 py-3"></td>
+                                            <td class="px-4 py-3 text-sm font-bold text-gray-700">Total</td>
+                                            <td class="px-4 py-3 text-sm font-bold text-gray-900">$129.99</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Actions & Timeline -->
+                    <div>
+                        <!-- Order Actions -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
+                            <div class="p-4 border-b">
+                                <h3 class="text-lg font-medium">Order Actions</h3>
+                            </div>
+                            <div class="p-4">
+                                <div class="space-y-3">
+                                    <div>
+                                        <label for="orderStatus" class="block text-sm font-medium text-gray-700 mb-1">Update Status</label>
+                                        <select id="orderStatus" class="form-select w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                            <option value="pending">Pending</option>
+                                            <option value="processing" selected>Processing</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="trackingNumber" class="block text-sm font-medium text-gray-700 mb-1">Tracking Number</label>
+                                        <input type="text" id="trackingNumber" class="form-input w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Enter tracking number">
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="orderNotes" class="block text-sm font-medium text-gray-700 mb-1">Add Note</label>
+                                        <textarea id="orderNotes" rows="3" class="form-textarea w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Add a note about this order"></textarea>
+                                    </div>
+                                    
+                                    <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center justify-center transition-all">
+                                        <i class="fas fa-save mr-2"></i> Save Changes
+                                    </button>
+                                    
+                                    <div class="border-t my-3"></div>
+                                    
+                                    <button class="w-full bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 flex items-center justify-center transition-all">
+                                        <i class="fas fa-paper-plane mr-2"></i> Email Customer
+                                    </button>
+                                    
+                                    <button class="w-full bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-lg border border-red-200 flex items-center justify-center transition-all">
+                                        <i class="fas fa-times-circle mr-2"></i> Cancel Order
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Order Timeline -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="p-4 border-b">
+                                <h3 class="text-lg font-medium">Order Timeline</h3>
+                            </div>
+                            <div class="p-4">
+                                <div class="timeline-container">
+                                    <!-- Timeline Item 1 -->
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot"></div>
+                                        <div>
+                                            <h4 class="text-sm font-medium text-gray-900">Order Processing</h4>
+                                            <p class="text-xs text-gray-500">May 24, 2023 - 11:30 AM</p>
+                                            <p class="text-sm text-gray-600 mt-1">Your order has been received and is being processed.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Timeline Item 2 -->
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot"></div>
+                                        <div>
+                                            <h4 class="text-sm font-medium text-gray-900">Payment Confirmed</h4>
+                                            <p class="text-xs text-gray-500">May 24, 2023 - 10:45 AM</p>
+                                            <p class="text-sm text-gray-600 mt-1">Payment has been confirmed via Visa ending in 4242.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Timeline Item 3 -->
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot"></div>
+                                        <div>
+                                            <h4 class="text-sm font-medium text-gray-900">Order Placed</h4>
+                                            <p class="text-xs text-gray-500">May 24, 2023 - 10:45 AM</p>
+                                            <p class="text-sm text-gray-600 mt-1">Order #ORD-7842 was placed successfully.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const orderRows = document.querySelectorAll('.order-row');
+        const orderDetail = document.getElementById('orderDetail');
+        const ordersContent = document.querySelector('.p-4.md\:p-6');
+        const backToOrders = document.getElementById('backToOrders');
+        const detailOrderId = document.getElementById('detailOrderId');
+        
+        // Dark Mode Toggle
+        if (darkModeToggle) {
+            // Check for saved theme preference or respect OS preference
+            if (localStorage.getItem('darkMode') === 'true' || 
+                (localStorage.getItem('darkMode') === null && 
+                window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+            }
+            
+            // Toggle dark mode
+            darkModeToggle.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('darkMode', 'false');
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon text-xl"></i>';
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('darkMode', 'true');
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+                }
+            });
+        }
+        
+        // Mobile Sidebar Toggle
+        if (sidebarToggle && mobileSidebar && closeSidebar) {
+            sidebarToggle.addEventListener('click', () => {
+                mobileSidebar.classList.remove('hidden');
+            });
+            
+            closeSidebar.addEventListener('click', () => {
+                mobileSidebar.classList.add('hidden');
+            });
+            
+            // Close sidebar when clicking outside
+            mobileSidebar.addEventListener('click', (e) => {
+                if (e.target === mobileSidebar) {
+                    mobileSidebar.classList.add('hidden');
+                }
+            });
+        }
+        
+        // Order Detail View
+        if (orderRows && orderDetail && ordersContent && backToOrders) {
+            orderRows.forEach(row => {
+                const viewBtn = row.querySelector('.text-indigo-600');
+                if (viewBtn) {
+                    viewBtn.addEventListener('click', () => {
+                        const orderId = row.dataset.orderId;
+                        detailOrderId.textContent = orderId;
+                        ordersContent.classList.add('hidden');
+                        orderDetail.classList.remove('hidden');
+                    });
+                }
+            });
+            
+            backToOrders.addEventListener('click', () => {
+                orderDetail.classList.add('hidden');
+                ordersContent.classList.remove('hidden');
+            });
+        }
+    </script>
+</body>
+</html>

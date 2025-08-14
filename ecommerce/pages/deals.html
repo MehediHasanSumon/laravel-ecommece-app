@@ -1,0 +1,2482 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Special Deals & Offers - ShopEase</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .animate-pulse-slow {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      .backdrop-blur-sm {
+        backdrop-filter: blur(4px);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between py-4">
+          <!-- Logo -->
+          <a href="../index.html" class="text-2xl font-bold text-indigo-600"
+            >ShopEase</a
+          >
+          <!-- Navigation -->
+          <nav class="hidden md:flex items-center space-x-8">
+            <a
+              href="../index.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Home</a
+            >
+            <a
+              href="shop.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Shop</a
+            >
+            <a
+              href="categories.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Categories</a
+            >
+            <a
+              href="deals.html"
+              class="text-gray-600 hover:text-indigo-600 transition font-semibold text-indigo-600"
+              >Deals</a
+            >
+            <a
+              href="blog.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Blog</a
+            >
+            <a
+              href="contact.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Contact</a
+            >
+          </nav>
+          <!-- Mobile Menu Button -->
+          <button
+            class="md:hidden text-gray-600 hover:text-indigo-600 transition"
+            id="mobileMenuButton"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+          <!-- Navigation Icons -->
+          <div class="hidden md:flex items-center space-x-4">
+            <a
+              href="#"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              id="searchToggle"
+            >
+              <i class="fas fa-search text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-600 hover:text-indigo-600 transition relative"
+              id="darkModeToggle"
+            >
+              <i class="fas fa-moon text-xl"></i>
+            </a>
+            <a
+              href="wishlist.html"
+              class="text-gray-600 hover:text-indigo-600 transition relative"
+            >
+              <i class="fas fa-heart text-xl"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+                >3</span
+              >
+            </a>
+            <a
+              href="cart.html"
+              class="text-gray-600 hover:text-indigo-600 transition relative"
+            >
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+                >2</span
+              >
+            </a>
+            <a
+              href="account.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+            >
+              <i class="fas fa-user text-xl"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Mobile Menu (Hidden by Default) -->
+        <div class="md:hidden hidden" id="mobileMenu">
+          <nav class="py-4 flex flex-col space-y-2">
+            <a
+              href="../index.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Home</a
+            >
+            <a
+              href="shop.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Shop</a
+            >
+            <a
+              href="categories.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Categories</a
+            >
+            <a
+              href="deals.html"
+              class="text-gray-600 hover:text-indigo-600 transition font-semibold text-indigo-600"
+              >Deals</a
+            >
+            <a
+              href="blog.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Blog</a
+            >
+            <a
+              href="contact.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              >Contact</a
+            >
+          </nav>
+          <div class="flex items-center space-x-4 py-4">
+            <a
+              href="#"
+              class="text-gray-600 hover:text-indigo-600 transition"
+              id="mobileSearchToggle"
+            >
+              <i class="fas fa-search text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-600 hover:text-indigo-600 transition relative"
+              id="mobileDarkModeToggle"
+            >
+              <i class="fas fa-moon text-xl"></i>
+            </a>
+            <a
+              href="wishlist.html"
+              class="text-gray-600 hover:text-indigo-600 transition relative"
+            >
+              <i class="fas fa-heart text-xl"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+                >3</span
+              >
+            </a>
+            <a
+              href="cart.html"
+              class="text-gray-600 hover:text-indigo-600 transition relative"
+            >
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+                >2</span
+              >
+            </a>
+            <a
+              href="account.html"
+              class="text-gray-600 hover:text-indigo-600 transition"
+            >
+              <i class="fas fa-user text-xl"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Search Overlay (Hidden by Default) -->
+        <div class="hidden" id="searchOverlay">
+          <div class="py-4">
+            <div class="relative">
+              <input
+                type="text"
+                placeholder="Search for products..."
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              <button class="absolute right-3 top-2">
+                <i class="fas fa-search text-gray-500"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center space-x-2 text-sm">
+          <a
+            href="../index.html"
+            class="text-gray-600 hover:text-indigo-600 transition"
+            >Home</a
+          >
+          <span class="text-gray-500">/</span>
+          <span class="text-indigo-600 font-medium">Deals & Offers</span>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <!-- Hero Banner -->
+      <section
+        class="relative mb-16 overflow-hidden rounded-2xl shadow-2xl group"
+      >
+        <!-- Background with overlay -->
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-indigo-900/90 via-purple-900/80 to-indigo-800/90 z-10"
+        ></div>
+        <div
+          class="absolute inset-0 bg-[url('https://placehold.co/1200x600/4F46E5/FFFFFF?text=Summer+Sale')] bg-cover bg-center group-hover:scale-105 transition-transform duration-700 ease-in-out"
+        ></div>
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+          <div
+            class="absolute top-10 left-10 w-32 h-32 bg-yellow-400 rounded-full opacity-20 animate-pulse"
+          ></div>
+          <div
+            class="absolute bottom-10 right-10 w-40 h-40 bg-pink-500 rounded-full opacity-20 animate-pulse delay-1000"
+          ></div>
+        </div>
+        <!-- Content -->
+        <div
+          class="relative z-20 flex flex-col md:flex-row items-center py-16 px-8 md:px-16"
+        >
+          <div class="md:w-3/5 text-white">
+            <div
+              class="inline-block px-4 py-1 bg-yellow-400 text-indigo-900 font-bold rounded-full text-sm mb-4 animate-pulse shadow-lg"
+            >
+              <i class="fas fa-bolt mr-1"></i> LIMITED TIME OFFER
+            </div>
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight"
+            >
+              Summer
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-500"
+                >MEGA</span
+              >
+              Sale
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-xl">
+              Discover incredible savings with up to
+              <span class="font-bold text-yellow-400">50% off</span> on our
+              premium selection. Don't miss these exclusive deals on top brands
+              and trending products!
+            </p>
+            <!-- Enhanced Countdown Timer -->
+            <div class="mb-8">
+              <p class="text-gray-300 mb-3 text-lg flex items-center">
+                <i class="fas fa-clock mr-2"></i> Hurry! Sale Ends In:
+              </p>
+              <div class="flex space-x-4">
+                <div
+                  class="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-xl text-center shadow-lg border border-white/20 hover:bg-white/20 transition-all"
+                >
+                  <span id="days" class="block text-3xl font-bold">02</span>
+                  <span class="text-sm text-gray-300">Days</span>
+                </div>
+                <div
+                  class="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-xl text-center shadow-lg border border-white/20 hover:bg-white/20 transition-all"
+                >
+                  <span id="hours" class="block text-3xl font-bold">18</span>
+                  <span class="text-sm text-gray-300">Hours</span>
+                </div>
+                <div
+                  class="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-xl text-center shadow-lg border border-white/20 hover:bg-white/20 transition-all"
+                >
+                  <span id="minutes" class="block text-3xl font-bold">45</span>
+                  <span class="text-sm text-gray-300">Minutes</span>
+                </div>
+                <div
+                  class="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-xl text-center shadow-lg border border-white/20 hover:bg-white/20 transition-all"
+                >
+                  <span id="seconds" class="block text-3xl font-bold">30</span>
+                  <span class="text-sm text-gray-300">Seconds</span>
+                </div>
+              </div>
+            </div>
+            <!-- Benefits -->
+            <div class="mb-8 grid grid-cols-2 gap-3">
+              <div class="flex items-center">
+                <i class="fas fa-check-circle text-yellow-400 mr-2"></i>
+                <span>Free shipping on orders $50+</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-check-circle text-yellow-400 mr-2"></i>
+                <span>30-day money back guarantee</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-check-circle text-yellow-400 mr-2"></i>
+                <span>Secure checkout</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-check-circle text-yellow-400 mr-2"></i>
+                <span>24/7 customer support</span>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="shop.html"
+                class="inline-block bg-yellow-400 text-indigo-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition-all transform hover:-translate-y-1 shadow-lg"
+              >
+                Shop Now <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+              <a
+                href="#all-deals"
+                class="inline-block bg-transparent border-2 border-white/50 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-all"
+              >
+                View All Deals
+              </a>
+            </div>
+          </div>
+          <div class="md:w-2/5 mt-8 md:mt-0 hidden md:block">
+            <div class="relative">
+              <div
+                class="absolute -top-6 -right-6 bg-yellow-400 text-indigo-900 text-xl font-bold h-24 w-24 rounded-full flex items-center justify-center transform rotate-12 shadow-lg"
+              >
+                50% OFF
+              </div>
+              <img
+                src="https://placehold.co/400x400/3B82F6/FFFFFF?text=Headphones"
+                alt="Featured Deal"
+                class="w-full h-auto object-cover rounded-xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-all duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Deal Categories -->
+      <section class="mb-16" id="all-deals">
+        <div class="flex justify-between items-center mb-8">
+          <div>
+            <h2 class="text-3xl font-bold">Deal Categories</h2>
+            <p class="text-gray-600 mt-2">
+              Browse our hottest deals by category
+            </p>
+          </div>
+          <a
+            href="categories.html"
+            class="text-indigo-600 hover:text-indigo-800 transition flex items-center group"
+          >
+            <span>View All Categories</span>
+            <i
+              class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"
+            ></i>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <!-- Electronics Category -->
+          <a href="shop.html?category=electronics&deals=true" class="group">
+            <div
+              class="relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform group-hover:-translate-y-2 h-60"
+            >
+              <!-- Background Image with Overlay -->
+              <div
+                class="absolute inset-0 bg-gradient-to-b from-blue-500/80 to-indigo-700/90 z-10"
+              ></div>
+              <div
+                class="absolute inset-0 bg-[url('https://placehold.co/400x300/3B82F6/FFFFFF?text=Electronics')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700 ease-in-out"
+              ></div>
+              <!-- Content -->
+              <div
+                class="absolute inset-0 z-20 p-6 flex flex-col justify-between"
+              >
+                <div
+                  class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-3 group-hover:bg-white/30 transition-all"
+                >
+                  <i class="fas fa-laptop text-white text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">Electronics</h3>
+                  <div class="flex items-center justify-between">
+                    <p class="text-white/90">Up to 40% off</p>
+                    <span
+                      class="bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center group-hover:bg-white/40 transition-all"
+                    >
+                      <i class="fas fa-arrow-right text-white"></i>
+                    </span>
+                  </div>
+                  <!-- Product Count Badge -->
+                  <div
+                    class="mt-2 inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-white"
+                  >
+                    <i class="fas fa-tag mr-1"></i> 42 products on sale
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- Fashion Category -->
+          <a href="shop.html?category=fashion&deals=true" class="group">
+            <div
+              class="relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform group-hover:-translate-y-2 h-60"
+            >
+              <!-- Background Image with Overlay -->
+              <div
+                class="absolute inset-0 bg-gradient-to-b from-pink-500/80 to-rose-700/90 z-10"
+              ></div>
+              <div
+                class="absolute inset-0 bg-[url('https://placehold.co/400x300/ec4899/FFFFFF?text=Fashion')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700 ease-in-out"
+              ></div>
+              <!-- Content -->
+              <div
+                class="absolute inset-0 z-20 p-6 flex flex-col justify-between"
+              >
+                <div
+                  class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-3 group-hover:bg-white/30 transition-all"
+                >
+                  <i class="fas fa-tshirt text-white text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">Fashion</h3>
+                  <div class="flex items-center justify-between">
+                    <p class="text-white/90">Up to 50% off</p>
+                    <span
+                      class="bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center group-hover:bg-white/40 transition-all"
+                    >
+                      <i class="fas fa-arrow-right text-white"></i>
+                    </span>
+                  </div>
+                  <!-- Product Count Badge -->
+                  <div
+                    class="mt-2 inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-white"
+                  >
+                    <i class="fas fa-tag mr-1"></i> 56 products on sale
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- Home Category -->
+          <a href="shop.html?category=home&deals=true" class="group">
+            <div
+              class="relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform group-hover:-translate-y-2 h-60"
+            >
+              <!-- Background Image with Overlay -->
+              <div
+                class="absolute inset-0 bg-gradient-to-b from-amber-500/80 to-orange-700/90 z-10"
+              ></div>
+              <div
+                class="absolute inset-0 bg-[url('https://placehold.co/400x300/f59e0b/FFFFFF?text=Home+%26+Kitchen')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700 ease-in-out"
+              ></div>
+              <!-- Content -->
+              <div
+                class="absolute inset-0 z-20 p-6 flex flex-col justify-between"
+              >
+                <div
+                  class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-3 group-hover:bg-white/30 transition-all"
+                >
+                  <i class="fas fa-home text-white text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">
+                    Home & Kitchen
+                  </h3>
+                  <div class="flex items-center justify-between">
+                    <p class="text-white/90">Up to 35% off</p>
+                    <span
+                      class="bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center group-hover:bg-white/40 transition-all"
+                    >
+                      <i class="fas fa-arrow-right text-white"></i>
+                    </span>
+                  </div>
+                  <!-- Product Count Badge -->
+                  <div
+                    class="mt-2 inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-white"
+                  >
+                    <i class="fas fa-tag mr-1"></i> 38 products on sale
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <!-- Beauty Category -->
+          <a href="shop.html?category=beauty&deals=true" class="group">
+            <div
+              class="relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 transform group-hover:-translate-y-2 h-60"
+            >
+              <!-- Background Image with Overlay -->
+              <div
+                class="absolute inset-0 bg-gradient-to-b from-purple-500/80 to-violet-700/90 z-10"
+              ></div>
+              <div
+                class="absolute inset-0 bg-[url('https://placehold.co/400x300/8B5CF6/FFFFFF?text=Beauty')] bg-cover bg-center group-hover:scale-110 transition-transform duration-700 ease-in-out"
+              ></div>
+              <!-- Content -->
+              <div
+                class="absolute inset-0 z-20 p-6 flex flex-col justify-between"
+              >
+                <div
+                  class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-3 group-hover:bg-white/30 transition-all"
+                >
+                  <i class="fas fa-spa text-white text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-1">Beauty</h3>
+                  <div class="flex items-center justify-between">
+                    <p class="text-white/90">Up to 30% off</p>
+                    <span
+                      class="bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center group-hover:bg-white/40 transition-all"
+                    >
+                      <i class="fas fa-arrow-right text-white"></i>
+                    </span>
+                  </div>
+                  <!-- Product Count Badge -->
+                  <div
+                    class="mt-2 inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-white"
+                  >
+                    <i class="fas fa-tag mr-1"></i> 29 products on sale
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+      <!-- Beauty Deals -->
+      <section class="mb-16" id="beauty-deals">
+        <div class="relative mb-8">
+          <!-- Section Header with Gradient Background -->
+          <div
+            class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-6 shadow-sm"
+          >
+            <div
+              class="flex flex-col md:flex-row justify-between items-start md:items-center"
+            >
+              <div class="mb-4 md:mb-0">
+                <h2 class="text-3xl font-bold text-purple-800">
+                  Beauty & Personal Care
+                </h2>
+                <p class="text-purple-600 mt-2">
+                  Pamper yourself with exclusive deals on premium products
+                </p>
+              </div>
+              <a
+                href="shop.html?category=beauty&deals=true"
+                class="flex items-center group bg-white px-4 py-2 rounded-full shadow-sm hover:shadow transition-all"
+              >
+                <span class="text-purple-700 font-medium">View All Deals</span>
+                <i
+                  class="fas fa-arrow-right ml-2 text-purple-500 transform group-hover:translate-x-1 transition-transform"
+                ></i>
+              </a>
+            </div>
+            <!-- Decorative Elements -->
+            <div
+              class="absolute -top-3 -right-3 w-16 h-16 bg-purple-200 rounded-full opacity-50"
+            ></div>
+            <div
+              class="absolute bottom-4 right-8 w-8 h-8 bg-pink-300 rounded-full opacity-40"
+            ></div>
+            <div
+              class="absolute top-1/2 right-1/4 w-4 h-4 bg-purple-400 rounded-full opacity-30"
+            ></div>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <!-- Beauty Deal 1 -->
+          <div
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Product Image Container -->
+            <div class="relative overflow-hidden">
+              <img
+                src="https://placehold.co/400x400/EC4899/FFFFFF?text=Skincare"
+                alt="Skincare Set"
+                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <!-- Discount Badge -->
+              <div class="absolute top-3 left-3 z-10">
+                <div
+                  class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md"
+                >
+                  SAVE 30%
+                </div>
+              </div>
+              <!-- Wishlist Button -->
+              <button
+                class="absolute top-3 right-3 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all z-10 text-gray-400 hover:text-red-500"
+              >
+                <i class="fas fa-heart"></i>
+              </button>
+              <!-- Quick Actions on Hover -->
+              <div
+                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
+              >
+                <button
+                  class="bg-white text-purple-700 p-3 rounded-full hover:bg-purple-50 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+              <!-- Limited Time Offer Badge -->
+              <div
+                class="absolute bottom-3 left-3 bg-yellow-400/90 backdrop-blur-sm text-xs font-bold text-yellow-900 px-3 py-1 rounded-lg"
+              >
+                <i class="fas fa-clock mr-1"></i> Limited Time Offer
+              </div>
+            </div>
+            <!-- Product Info -->
+            <div class="p-5">
+              <!-- Rating -->
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span
+                  class="bg-gray-100 text-gray-700 text-xs font-medium ml-2 px-2 py-0.5 rounded-full"
+                  >4.5 (118)</span
+                >
+              </div>
+              <!-- Product Name -->
+              <h3
+                class="font-semibold text-lg mb-1 group-hover:text-purple-700 transition-colors"
+              >
+                Premium Skincare Set
+              </h3>
+              <!-- Short Description -->
+              <p class="text-gray-600 text-sm mb-3">
+                Complete 5-step routine with anti-aging benefits
+              </p>
+              <!-- Price and CTA -->
+              <div class="flex items-center justify-between">
+                <div class="flex flex-col">
+                  <span class="text-gray-400 line-through text-sm">$99.99</span>
+                  <span class="text-xl font-bold text-purple-700">$69.99</span>
+                </div>
+                <div class="text-green-600 text-sm font-medium">
+                  <i class="fas fa-check-circle mr-1"></i> In Stock
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Beauty Deal 2 -->
+          <div
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Product Image Container -->
+            <div class="relative overflow-hidden">
+              <img
+                src="https://placehold.co/400x400/F97316/FFFFFF?text=Haircare"
+                alt="Hair Care Products"
+                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <!-- Discount Badge -->
+              <div class="absolute top-3 left-3 z-10">
+                <div
+                  class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md"
+                >
+                  SAVE 25%
+                </div>
+              </div>
+              <!-- Wishlist Button -->
+              <button
+                class="absolute top-3 right-3 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all z-10 text-gray-400 hover:text-red-500"
+              >
+                <i class="fas fa-heart"></i>
+              </button>
+              <!-- Quick Actions on Hover -->
+              <div
+                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
+              >
+                <button
+                  class="bg-white text-purple-700 p-3 rounded-full hover:bg-purple-50 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+              <!-- Best Seller Badge -->
+              <div
+                class="absolute bottom-3 left-3 bg-purple-500/90 backdrop-blur-sm text-xs font-bold text-white px-3 py-1 rounded-lg"
+              >
+                <i class="fas fa-award mr-1"></i> Best Seller
+              </div>
+            </div>
+            <!-- Product Info -->
+            <div class="p-5">
+              <!-- Rating -->
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span
+                  class="bg-gray-100 text-gray-700 text-xs font-medium ml-2 px-2 py-0.5 rounded-full"
+                  >4.0 (87)</span
+                >
+              </div>
+              <!-- Product Name -->
+              <h3
+                class="font-semibold text-lg mb-1 group-hover:text-purple-700 transition-colors"
+              >
+                Luxury Hair Care Bundle
+              </h3>
+              <!-- Short Description -->
+              <p class="text-gray-600 text-sm mb-3">
+                Shampoo, conditioner & treatment mask for damaged hair
+              </p>
+              <!-- Price and CTA -->
+              <div class="flex items-center justify-between">
+                <div class="flex flex-col">
+                  <span class="text-gray-400 line-through text-sm">$79.99</span>
+                  <span class="text-xl font-bold text-purple-700">$59.99</span>
+                </div>
+                <div class="text-green-600 text-sm font-medium">
+                  <i class="fas fa-check-circle mr-1"></i> In Stock
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Beauty Deal 3 -->
+          <div
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Product Image Container -->
+            <div class="relative overflow-hidden">
+              <img
+                src="https://placehold.co/400x400/8B5CF6/FFFFFF?text=Makeup"
+                alt="Makeup Kit"
+                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <!-- Discount Badge -->
+              <div class="absolute top-3 left-3 z-10">
+                <div
+                  class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md"
+                >
+                  SAVE 40%
+                </div>
+              </div>
+              <!-- Wishlist Button -->
+              <button
+                class="absolute top-3 right-3 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all z-10 text-gray-400 hover:text-red-500"
+              >
+                <i class="fas fa-heart"></i>
+              </button>
+              <!-- Quick Actions on Hover -->
+              <div
+                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
+              >
+                <button
+                  class="bg-white text-purple-700 p-3 rounded-full hover:bg-purple-50 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+              <!-- Top Rated Badge -->
+              <div
+                class="absolute bottom-3 left-3 bg-green-500/90 backdrop-blur-sm text-xs font-bold text-white px-3 py-1 rounded-lg"
+              >
+                <i class="fas fa-thumbs-up mr-1"></i> Top Rated
+              </div>
+            </div>
+            <!-- Product Info -->
+            <div class="p-5">
+              <!-- Rating -->
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span
+                  class="bg-gray-100 text-gray-700 text-xs font-medium ml-2 px-2 py-0.5 rounded-full"
+                  >5.0 (64)</span
+                >
+              </div>
+              <!-- Product Name -->
+              <h3
+                class="font-semibold text-lg mb-1 group-hover:text-purple-700 transition-colors"
+              >
+                Professional Makeup Kit
+              </h3>
+              <!-- Short Description -->
+              <p class="text-gray-600 text-sm mb-3">
+                Complete 24-piece set with brushes and case
+              </p>
+              <!-- Price and CTA -->
+              <div class="flex items-center justify-between">
+                <div class="flex flex-col">
+                  <span class="text-gray-400 line-through text-sm"
+                    >$149.99</span
+                  >
+                  <span class="text-xl font-bold text-purple-700">$89.99</span>
+                </div>
+                <div class="text-green-600 text-sm font-medium">
+                  <i class="fas fa-check-circle mr-1"></i> In Stock
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Beauty Deal 4 -->
+          <div
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Product Image Container -->
+            <div class="relative overflow-hidden">
+              <img
+                src="https://placehold.co/400x400/06B6D4/FFFFFF?text=Fragrance"
+                alt="Fragrance"
+                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <!-- Discount Badge -->
+              <div class="absolute top-3 left-3 z-10">
+                <div
+                  class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md"
+                >
+                  SAVE 20%
+                </div>
+              </div>
+              <!-- Wishlist Button -->
+              <button
+                class="absolute top-3 right-3 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all z-10 text-gray-400 hover:text-red-500"
+              >
+                <i class="fas fa-heart"></i>
+              </button>
+              <!-- Quick Actions on Hover -->
+              <div
+                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
+              >
+                <button
+                  class="bg-white text-purple-700 p-3 rounded-full hover:bg-purple-50 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+              <!-- New Arrival Badge -->
+              <div
+                class="absolute bottom-3 left-3 bg-blue-500/90 backdrop-blur-sm text-xs font-bold text-white px-3 py-1 rounded-lg"
+              >
+                <i class="fas fa-tag mr-1"></i> New Arrival
+              </div>
+            </div>
+            <!-- Product Info -->
+            <div class="p-5">
+              <!-- Rating -->
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span
+                  class="bg-gray-100 text-gray-700 text-xs font-medium ml-2 px-2 py-0.5 rounded-full"
+                  >3.5 (92)</span
+                >
+              </div>
+              <!-- Product Name -->
+              <h3
+                class="font-semibold text-lg mb-1 group-hover:text-purple-700 transition-colors"
+              >
+                Luxury Perfume Collection
+              </h3>
+              <!-- Short Description -->
+              <p class="text-gray-600 text-sm mb-3">
+                Set of 3 designer fragrances in gift box
+              </p>
+              <!-- Price and CTA -->
+              <div class="flex items-center justify-between">
+                <div class="flex flex-col">
+                  <span class="text-gray-400 line-through text-sm"
+                    >$129.99</span
+                  >
+                  <span class="text-xl font-bold text-purple-700">$103.99</span>
+                </div>
+                <div class="text-green-600 text-sm font-medium">
+                  <i class="fas fa-check-circle mr-1"></i> In Stock
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Newsletter Section -->
+      <section class="mb-12 relative overflow-hidden">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-800 opacity-90 rounded-2xl"
+        ></div>
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+          <div
+            class="absolute -top-24 -left-24 w-64 h-64 bg-white opacity-10 rounded-full"
+          ></div>
+          <div
+            class="absolute top-20 right-10 w-32 h-32 bg-white opacity-10 rounded-full"
+          ></div>
+          <div
+            class="absolute bottom-10 left-1/4 w-40 h-40 bg-white opacity-10 rounded-full"
+          ></div>
+          <div
+            class="absolute -bottom-20 -right-20 w-80 h-80 bg-white opacity-10 rounded-full"
+          ></div>
+        </div>
+        <div class="relative py-12 px-8 md:px-12 text-center max-w-4xl mx-auto">
+          <!-- Icon -->
+          <div
+            class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6"
+          >
+            <i class="fas fa-envelope text-white text-2xl"></i>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+            Get Exclusive Deals & Offers
+          </h2>
+          <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+            Join our community of deal hunters and save up to 50% on your
+            favorite products. Be the first to know about flash sales and
+            limited-time offers!
+          </p>
+          <!-- Benefits -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div
+                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3"
+              >
+                <i class="fas fa-tag text-white"></i>
+              </div>
+              <h3 class="text-white font-medium mb-1">Exclusive Discounts</h3>
+              <p class="text-white/80 text-sm">
+                Members-only deals not available elsewhere
+              </p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div
+                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3"
+              >
+                <i class="fas fa-gift text-white"></i>
+              </div>
+              <h3 class="text-white font-medium mb-1">Free Gifts</h3>
+              <p class="text-white/80 text-sm">
+                Surprise gifts with selected purchases
+              </p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div
+                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3"
+              >
+                <i class="fas fa-bell text-white"></i>
+              </div>
+              <h3 class="text-white font-medium mb-1">Early Access</h3>
+              <p class="text-white/80 text-sm">
+                Shop new arrivals before anyone else
+              </p>
+            </div>
+          </div>
+          <!-- Subscription Form -->
+          <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-6">
+            <input
+              type="email"
+              placeholder="Your email address"
+              class="flex-1 px-5 py-3 rounded-lg border-0 shadow-lg focus:outline-none focus:ring-2 focus:ring-white/50"
+            />
+            <button
+              type="submit"
+              class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-600 transition shadow-lg transform hover:scale-105"
+            >
+              <i class="fas fa-paper-plane mr-2"></i>Subscribe Now
+            </button>
+          </form>
+          <!-- Social Proof -->
+          <div class="text-white/90 text-sm mb-4">
+            Join over 25,000+ happy subscribers
+          </div>
+          <!-- Privacy Note -->
+          <p class="text-xs text-white/70 mt-4 max-w-md mx-auto">
+            By subscribing, you agree to receive marketing emails from us. We
+            respect your privacy and you can unsubscribe at any time.
+          </p>
+        </div>
+      </section>
+      <!-- Category Quick Navigation -->
+      <section class="mb-16">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold mb-3">Shop Deals By Category</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Browse our hottest deals across popular categories and find exactly
+            what you're looking for at unbeatable prices.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <!-- Electronics Category -->
+          <a
+            href="#electronics-deals"
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Background Image with Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60 z-10"
+            ></div>
+            <img
+              src="https://placehold.co/400x300/3B82F6/FFFFFF?text=Electronics+Deals"
+              alt="Electronics"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="relative z-20 p-6 flex flex-col items-center justify-between h-full min-h-[180px]"
+            >
+              <!-- Icon -->
+              <div
+                class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-auto group-hover:bg-purple-600/30 transition-all duration-300 transform group-hover:scale-110"
+              >
+                <i class="fas fa-laptop text-white text-2xl"></i>
+              </div>
+              <!-- Content -->
+              <div class="text-center mt-auto">
+                <h3
+                  class="font-bold text-white text-xl mb-1 group-hover:text-yellow-300 transition-colors"
+                >
+                  Electronics
+                </h3>
+                <p class="text-white/90 font-medium mb-2">Up to 40% off</p>
+                <span
+                  class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full"
+                >
+                  <i class="fas fa-tag mr-1"></i> 120+ products
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- Fashion Category -->
+          <a
+            href="#fashion-deals"
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Background Image with Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60 z-10"
+            ></div>
+            <img
+              src="https://placehold.co/400x300/ec4899/FFFFFF?text=Fashion+Deals"
+              alt="Fashion"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="relative z-20 p-6 flex flex-col items-center justify-between h-full min-h-[180px]"
+            >
+              <!-- Icon -->
+              <div
+                class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-auto group-hover:bg-purple-600/30 transition-all duration-300 transform group-hover:scale-110"
+              >
+                <i class="fas fa-tshirt text-white text-2xl"></i>
+              </div>
+              <!-- Content -->
+              <div class="text-center mt-auto">
+                <h3
+                  class="font-bold text-white text-xl mb-1 group-hover:text-yellow-300 transition-colors"
+                >
+                  Fashion
+                </h3>
+                <p class="text-white/90 font-medium mb-2">Up to 50% off</p>
+                <span
+                  class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full"
+                >
+                  <i class="fas fa-tag mr-1"></i> 85+ products
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- Home & Kitchen Category -->
+          <a
+            href="#home-deals"
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Background Image with Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60 z-10"
+            ></div>
+            <img
+              src="https://placehold.co/400x300/f59e0b/FFFFFF?text=Home+Deals"
+              alt="Home & Kitchen"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="relative z-20 p-6 flex flex-col items-center justify-between h-full min-h-[180px]"
+            >
+              <!-- Icon -->
+              <div
+                class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-auto group-hover:bg-purple-600/30 transition-all duration-300 transform group-hover:scale-110"
+              >
+                <i class="fas fa-couch text-white text-2xl"></i>
+              </div>
+              <!-- Content -->
+              <div class="text-center mt-auto">
+                <h3
+                  class="font-bold text-white text-xl mb-1 group-hover:text-yellow-300 transition-colors"
+                >
+                  Home & Kitchen
+                </h3>
+                <p class="text-white/90 font-medium mb-2">Up to 35% off</p>
+                <span
+                  class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full"
+                >
+                  <i class="fas fa-tag mr-1"></i> 95+ products
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- Beauty Category -->
+          <a
+            href="#beauty-deals"
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Background Image with Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60 z-10"
+            ></div>
+            <img
+              src="https://placehold.co/400x300/8B5CF6/FFFFFF?text=Beauty+Deals"
+              alt="Beauty"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div
+              class="relative z-20 p-6 flex flex-col items-center justify-between h-full min-h-[180px]"
+            >
+              <!-- Icon -->
+              <div
+                class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-auto group-hover:bg-purple-600/30 transition-all duration-300 transform group-hover:scale-110"
+              >
+                <i class="fas fa-spa text-white text-2xl"></i>
+              </div>
+              <!-- Content -->
+              <div class="text-center mt-auto">
+                <h3
+                  class="font-bold text-white text-xl mb-1 group-hover:text-yellow-300 transition-colors"
+                >
+                  Beauty
+                </h3>
+                <p class="text-white/90 font-medium mb-2">Up to 30% off</p>
+                <span
+                  class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full"
+                >
+                  <i class="fas fa-tag mr-1"></i> 70+ products
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+      <!-- Flash Deals Section -->
+      <section class="mb-16" id="flash-deals">
+        <!-- Section Header -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-center mb-8"
+        >
+          <div class="flex items-center mb-4 md:mb-0">
+            <div class="relative">
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg blur opacity-25"
+              ></div>
+              <div
+                class="relative bg-gradient-to-r from-red-500 to-orange-500 text-white p-2 rounded-lg mr-3"
+              >
+                <i class="fas fa-bolt text-xl"></i>
+              </div>
+            </div>
+            <div>
+              <h2 class="text-3xl font-bold">Flash Deals</h2>
+              <p class="text-gray-600">
+                Limited-time offers that won't last long!
+              </p>
+            </div>
+          </div>
+          <a
+            href="shop.html?deals=flash"
+            class="group flex items-center bg-white px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <span
+              class="text-purple-700 font-medium mr-2 group-hover:mr-3 transition-all"
+              >View All Deals</span
+            >
+            <i
+              class="fas fa-arrow-right text-purple-700 group-hover:translate-x-1 transition-transform"
+            ></i>
+          </a>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <!-- Flash Deal Product 1 -->
+          <div
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Product Image Container -->
+            <div class="relative overflow-hidden">
+              <img
+                src="https://placehold.co/400x400/3B82F6/FFFFFF?text=Headphones"
+                alt="Wireless Headphones"
+                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <!-- Discount Badge -->
+              <div class="absolute top-3 left-3 z-10">
+                <div
+                  class="bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md"
+                >
+                  SAVE 40%
+                </div>
+              </div>
+              <!-- Wishlist Button -->
+              <button
+                class="absolute top-3 right-3 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all z-10 text-gray-400 hover:text-red-500"
+              >
+                <i class="fas fa-heart"></i>
+              </button>
+              <!-- Quick Actions on Hover -->
+              <div
+                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
+              >
+                <button
+                  class="bg-white text-purple-700 p-3 rounded-full hover:bg-purple-50 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+              <!-- Flash Deal Badge -->
+              <div
+                class="absolute bottom-3 left-3 bg-red-500/90 backdrop-blur-sm text-xs font-bold text-white px-3 py-1 rounded-lg"
+              >
+                <i class="fas fa-bolt mr-1"></i> Flash Deal
+              </div>
+            </div>
+            <!-- Product Info -->
+            <div class="p-5">
+              <!-- Rating -->
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span
+                  class="bg-gray-100 text-gray-700 text-xs font-medium ml-2 px-2 py-0.5 rounded-full"
+                  >4.5 (128)</span
+                >
+              </div>
+              <!-- Product Name -->
+              <h3
+                class="font-semibold text-lg mb-1 group-hover:text-purple-700 transition-colors"
+              >
+                Premium Wireless Headphones
+              </h3>
+              <!-- Short Description -->
+              <p class="text-gray-600 text-sm mb-3">
+                Noise cancelling with 30hr battery life
+              </p>
+              <!-- Price and CTA -->
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex flex-col">
+                  <span class="text-gray-400 line-through text-sm"
+                    >$199.99</span
+                  >
+                  <span class="text-xl font-bold text-purple-700">$119.99</span>
+                </div>
+                <div class="text-green-600 text-sm font-medium">
+                  <i class="fas fa-check-circle mr-1"></i> In Stock
+                </div>
+              </div>
+              <!-- Remaining Time -->
+              <div class="mt-2 pt-3 border-t border-gray-100">
+                <p class="text-xs font-medium text-gray-700 mb-2">
+                  Offer ends in:
+                </p>
+                <div class="flex justify-center space-x-2">
+                  <div
+                    class="bg-gray-800 text-white text-center px-2 py-1 rounded-md w-10"
+                  >
+                    <span class="text-sm font-bold">05</span>
+                    <p class="text-xs text-gray-300">Hours</p>
+                  </div>
+                  <div
+                    class="bg-gray-800 text-white text-center px-2 py-1 rounded-md w-10"
+                  >
+                    <span class="text-sm font-bold">23</span>
+                    <p class="text-xs text-gray-300">Mins</p>
+                  </div>
+                  <div
+                    class="bg-gray-800 text-white text-center px-2 py-1 rounded-md w-10"
+                  >
+                    <span class="text-sm font-bold">47</span>
+                    <p class="text-xs text-gray-300">Secs</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Flash Deal Product 2 -->
+          <div
+            class="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <!-- Product Image Container -->
+            <div class="relative overflow-hidden">
+              <img
+                src="https://placehold.co/400x400/06B6D4/FFFFFF?text=Smartwatch"
+                alt="Smartwatch"
+                class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <!-- Discount Badge -->
+              <div class="absolute top-3 left-3 z-10">
+                <div
+                  class="bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md"
+                >
+                  SAVE 30%
+                </div>
+              </div>
+              <!-- Wishlist Button -->
+              <button
+                class="absolute top-3 right-3 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all z-10 text-gray-400 hover:text-red-500"
+              >
+                <i class="fas fa-heart"></i>
+              </button>
+              <!-- Quick Actions on Hover -->
+              <div
+                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3"
+              >
+                <button
+                  class="bg-white text-purple-700 p-3 rounded-full hover:bg-purple-50 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button
+                  class="bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition-colors transform hover:scale-105"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+              <!-- Flash Deal Badge -->
+              <div
+                class="absolute bottom-3 left-3 bg-red-500/90 backdrop-blur-sm text-xs font-bold text-white px-3 py-1 rounded-lg"
+              >
+                <i class="fas fa-bolt mr-1"></i> Flash Deal
+              </div>
+            </div>
+            <!-- Product Info -->
+            <div class="p-5">
+              <!-- Rating -->
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span
+                  class="bg-gray-100 text-gray-700 text-xs font-medium ml-2 px-2 py-0.5 rounded-full"
+                  >4.0 (95)</span
+                >
+              </div>
+              <!-- Product Name -->
+              <h3
+                class="font-semibold text-lg mb-1 group-hover:text-purple-700 transition-colors"
+              >
+                Smart Fitness Watch
+              </h3>
+              <!-- Short Description -->
+              <p class="text-gray-600 text-sm mb-3">
+                Heart rate monitor & activity tracking
+              </p>
+              <!-- Price and CTA -->
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex flex-col">
+                  <span class="text-gray-400 line-through text-sm"
+                    >$149.99</span
+                  >
+                  <span class="text-xl font-bold text-purple-700">$104.99</span>
+                </div>
+                <div class="text-green-600 text-sm font-medium">
+                  <i class="fas fa-check-circle mr-1"></i> In Stock
+                </div>
+              </div>
+              <!-- Remaining Time -->
+              <div class="mt-2 pt-3 border-t border-gray-100">
+                <p class="text-xs font-medium text-gray-700 mb-2">
+                  Offer ends in:
+                </p>
+                <div class="flex justify-center space-x-2">
+                  <div
+                    class="bg-gray-800 text-white text-center px-2 py-1 rounded-md w-10"
+                  >
+                    <span class="text-sm font-bold">03</span>
+                    <p class="text-xs text-gray-300">Hours</p>
+                  </div>
+                  <div
+                    class="bg-gray-800 text-white text-center px-2 py-1 rounded-md w-10"
+                  >
+                    <span class="text-sm font-bold">12</span>
+                    <p class="text-xs text-gray-300">Mins</p>
+                  </div>
+                  <div
+                    class="bg-gray-800 text-white text-center px-2 py-1 rounded-md w-10"
+                  >
+                    <span class="text-sm font-bold">33</span>
+                    <p class="text-xs text-gray-300">Secs</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Flash Deal Product 3 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/10B981/FFFFFF?text=Camera"
+                alt="Digital Camera"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-25%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">4K Digital Camera</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">5.0 (42)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$599.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$449.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+              <!-- Remaining Time -->
+              <div class="mt-3 pt-3 border-t border-gray-100">
+                <p class="text-xs text-gray-500 mb-1">Offer ends in:</p>
+                <div class="flex space-x-1 text-xs">
+                  <span class="bg-gray-100 px-1 py-0.5 rounded">08</span>
+                  <span>:</span>
+                  <span class="bg-gray-100 px-1 py-0.5 rounded">45</span>
+                  <span>:</span>
+                  <span class="bg-gray-100 px-1 py-0.5 rounded">19</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Flash Deal Product 4 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/F59E0B/FFFFFF?text=Blender"
+                alt="Blender"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-35%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">High-Speed Blender</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">4.5 (78)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$129.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$84.49</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+              <!-- Remaining Time -->
+              <div class="mt-3 pt-3 border-t border-gray-100">
+                <p class="text-xs text-gray-500 mb-1">Offer ends in:</p>
+                <div class="flex space-x-1 text-xs">
+                  <span class="bg-gray-100 px-1 py-0.5 rounded">02</span>
+                  <span>:</span>
+                  <span class="bg-gray-100 px-1 py-0.5 rounded">18</span>
+                  <span>:</span>
+                  <span class="bg-gray-100 px-1 py-0.5 rounded">55</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Deal of the Day -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6">Deal of the Day</h2>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 relative">
+              <img
+                src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Laptop"
+                alt="Laptop Deal"
+                class="w-full h-full object-cover"
+              />
+              <span
+                class="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full"
+                >-45% OFF</span
+              >
+            </div>
+            <div class="md:w-3/5 p-6 md:p-8">
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2"
+                  >4.7 (235 reviews)</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Ultra-Slim Laptop Pro</h3>
+              <p class="text-gray-600 mb-4">
+                15.6" FHD Display, 16GB RAM, 512GB SSD, Intel Core i7, Backlit
+                Keyboard
+              </p>
+              <div class="flex items-center mb-4">
+                <span class="text-gray-400 line-through text-lg"
+                  >$1,299.99</span
+                >
+                <span class="text-3xl font-bold text-indigo-600 ml-3"
+                  >$714.99</span
+                >
+                <span
+                  class="ml-3 bg-green-100 text-green-800 text-xs px-2 py-1 rounded"
+                  >You save $585.00</span
+                >
+              </div>
+              <!-- Features -->
+              <div class="grid grid-cols-2 gap-3 mb-6">
+                <div class="flex items-center">
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  <span class="text-sm">Free shipping</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  <span class="text-sm">In stock: 15 units</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  <span class="text-sm">2-year warranty</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  <span class="text-sm">30-day returns</span>
+                </div>
+              </div>
+              <!-- Countdown -->
+              <div class="mb-6">
+                <p class="text-sm text-gray-500 mb-2">Hurry! Offer ends in:</p>
+                <div class="flex space-x-2">
+                  <div class="bg-gray-100 px-3 py-2 rounded text-center">
+                    <span class="block text-xl font-bold">10</span>
+                    <span class="text-xs text-gray-500">Hours</span>
+                  </div>
+                  <div class="bg-gray-100 px-3 py-2 rounded text-center">
+                    <span class="block text-xl font-bold">35</span>
+                    <span class="text-xs text-gray-500">Minutes</span>
+                  </div>
+                  <div class="bg-gray-100 px-3 py-2 rounded text-center">
+                    <span class="block text-xl font-bold">22</span>
+                    <span class="text-xs text-gray-500">Seconds</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Progress Bar -->
+              <div class="mb-6">
+                <div class="flex justify-between text-sm mb-1">
+                  <span>Already sold: 85</span>
+                  <span>Available: 15</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-indigo-600 h-2.5 rounded-full"
+                    style="width: 85%"
+                  ></div>
+                </div>
+              </div>
+              <!-- Action Buttons -->
+              <div class="flex space-x-3">
+                <button
+                  class="flex-1 bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition flex items-center justify-center"
+                >
+                  <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                </button>
+                <button
+                  class="bg-gray-200 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-300 transition"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Electronics Deals -->
+      <section class="mb-12" id="electronics-deals">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-semibold">Electronics Deals</h2>
+          <a
+            href="shop.html?category=electronics&deals=true"
+            class="text-indigo-600 hover:text-indigo-800 transition"
+            >View All <i class="fas fa-arrow-right ml-1"></i
+          ></a>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <!-- Electronics Deal 1 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/3B82F6/FFFFFF?text=Smartphone"
+                alt="Smartphone"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-20%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">Premium Smartphone</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">4.0 (156)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$799.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$639.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Electronics Deal 2 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/06B6D4/FFFFFF?text=Tablet"
+                alt="Tablet"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-15%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">10.2" Tablet</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">4.5 (98)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$329.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$280.49</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Electronics Deal 3 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/10B981/FFFFFF?text=Speaker"
+                alt="Bluetooth Speaker"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-25%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">Wireless Bluetooth Speaker</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">5.0 (64)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$79.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$59.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Electronics Deal 4 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/EC4899/FFFFFF?text=Earbuds"
+                alt="Wireless Earbuds"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-30%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">True Wireless Earbuds</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">4.0 (112)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$99.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$69.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Fashion Deals -->
+      <section class="mb-12" id="fashion-deals">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-semibold">Fashion Deals</h2>
+          <a
+            href="shop.html?category=fashion&deals=true"
+            class="text-indigo-600 hover:text-indigo-800 transition"
+            >View All <i class="fas fa-arrow-right ml-1"></i
+          ></a>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <!-- Fashion Deal 1 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/EF4444/FFFFFF?text=Jacket"
+                alt="Denim Jacket"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-40%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">Classic Denim Jacket</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">4.5 (87)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$89.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$53.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Fashion Deal 2 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/8B5CF6/FFFFFF?text=Sneakers"
+                alt="Sneakers"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-30%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">Casual Sneakers</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">4.0 (124)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$69.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$48.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Fashion Deal 3 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/10B981/FFFFFF?text=Watch"
+                alt="Watch"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-25%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">Luxury Wrist Watch</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">5.0 (56)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$199.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$149.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Fashion Deal 4 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/F59E0B/FFFFFF?text=Sunglasses"
+                alt="Sunglasses"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-50%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">Designer Sunglasses</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">3.5 (92)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$129.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$64.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Coupon Section -->
+      <section
+        class="mb-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg overflow-hidden"
+      >
+        <div class="flex flex-col md:flex-row items-center p-6 md:p-8">
+          <div class="md:w-2/3 mb-6 md:mb-0">
+            <h2 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-2">
+              Extra 10% Off Your First Order
+            </h2>
+            <p class="text-indigo-900 mb-4">
+              Use coupon code <span class="font-bold">WELCOME10</span> at
+              checkout
+            </p>
+            <a
+              href="shop.html"
+              class="inline-block bg-indigo-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-800 transition"
+              >Shop Now</a
+            >
+          </div>
+          <div class="md:w-1/3 flex justify-center">
+            <div class="bg-white p-4 rounded-lg shadow-md transform rotate-3">
+              <div class="border-2 border-dashed border-indigo-600 p-4 rounded">
+                <div class="text-center">
+                  <h3 class="text-xl font-bold text-indigo-600 mb-1">
+                    WELCOME10
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-2">
+                    10% OFF your first order
+                  </p>
+                  <div class="text-xs text-gray-500">
+                    Valid until 31/12/2023
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Home & Kitchen Deals -->
+      <section class="mb-12" id="home-deals">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-semibold">Home & Kitchen Deals</h2>
+          <a
+            href="shop.html?category=home&deals=true"
+            class="text-indigo-600 hover:text-indigo-800 transition"
+            >View All <i class="fas fa-arrow-right ml-1"></i
+          ></a>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <!-- Home Deal 1 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/EF4444/FFFFFF?text=Coffee+Maker"
+                alt="Coffee Maker"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-35%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">Programmable Coffee Maker</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">4.5 (132)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$89.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$58.49</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Home Deal 2 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/8B5CF6/FFFFFF?text=Cookware"
+                alt="Cookware Set"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-30%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">10-Piece Cookware Set</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">4.0 (98)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$199.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$139.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Home Deal 3 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/10B981/FFFFFF?text=Vacuum"
+                alt="Robot Vacuum"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-25%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">Smart Robot Vacuum</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">5.0 (76)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$299.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$224.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Home Deal 4 -->
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+          >
+            <div class="relative">
+              <img
+                src="https://placehold.co/400x400/EC4899/FFFFFF?text=Bedding"
+                alt="Bedding Set"
+                class="w-full h-48 object-cover"
+              />
+              <span
+                class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded"
+                >-40%</span
+              >
+              <div
+                class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md"
+              >
+                <button
+                  class="text-gray-400 hover:text-red-500 transition focus:outline-none"
+                >
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-2">Luxury Bedding Set</h3>
+              <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="text-gray-500 text-sm ml-2">4.0 (104)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-gray-400 line-through">$149.99</span>
+                  <span class="text-lg font-bold text-indigo-600 ml-2"
+                    >$89.99</span
+                  >
+                </div>
+                <button
+                  class="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      // Mobile menu toggle
+      document
+        .getElementById("mobileMenuButton")
+        .addEventListener("click", function () {
+          document.getElementById("mobileMenu").classList.toggle("hidden");
+        });
+
+      // Search toggle
+      document
+        .getElementById("searchToggle")
+        .addEventListener("click", function () {
+          document.getElementById("searchOverlay").classList.toggle("hidden");
+        });
+      document
+        .getElementById("mobileSearchToggle")
+        .addEventListener("click", function () {
+          document.getElementById("searchOverlay").classList.toggle("hidden");
+        });
+
+      // Dark mode toggle
+      document
+        .getElementById("darkModeToggle")
+        .addEventListener("click", function () {
+          document.documentElement.classList.toggle("dark");
+        });
+      document
+        .getElementById("mobileDarkModeToggle")
+        .addEventListener("click", function () {
+          document.documentElement.classList.toggle("dark");
+        });
+
+      // Countdown timer
+      let days = 2;
+      let hours = 18;
+      let minutes = 45;
+      let seconds = 30;
+
+      const updateTimer = () => {
+        seconds--;
+        if (seconds < 0) {
+          seconds = 59;
+          minutes--;
+          if (minutes < 0) {
+            minutes = 59;
+            hours--;
+            if (hours < 0) {
+              hours = 23;
+              days--;
+              if (days < 0) {
+                days = 0;
+                hours = 0;
+                minutes = 0;
+                seconds = 0;
+                clearInterval(timer);
+              }
+            }
+          }
+        }
+
+        document.getElementById("days").textContent = days
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("hours").textContent = hours
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("minutes").textContent = minutes
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("seconds").textContent = seconds
+          .toString()
+          .padStart(2, "0");
+      };
+
+      const timer = setInterval(updateTimer, 1000);
+    </script>
+  </body>
+</html>

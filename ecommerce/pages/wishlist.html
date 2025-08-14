@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - ShopEase</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <a href="../index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-indigo-600 transition" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Navigation Icons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="searchToggle">
+                        <i class="fas fa-search text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="darkModeToggle">
+                        <i class="fas fa-moon text-xl"></i>
+                    </a>
+                    <a href="wishlist.html" class="text-indigo-600 font-medium transition relative">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                    </a>
+                    <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                    </a>
+                    <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-user text-xl mr-1"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2">
+                <nav class="flex flex-col space-y-3 py-4">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                    <div class="flex items-center space-x-4 pt-3 border-t border-gray-100">
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="mobileSearchToggle">
+                            <i class="fas fa-search text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="mobileDarkModeToggle">
+                            <i class="fas fa-moon text-xl"></i>
+                        </a>
+                        <a href="wishlist.html" class="text-indigo-600 font-medium transition relative">
+                            <i class="fas fa-heart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                        </a>
+                        <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                        </a>
+                        <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                            <i class="fas fa-user text-xl"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="hidden bg-white border-t" id="searchOverlay">
+            <div class="container mx-auto px-4 py-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search for products..." class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <button id="closeSearch" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-sm font-medium text-gray-600 mb-2">Popular Searches:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Wireless Headphones</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Smart Watches</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Fitness Trackers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Bluetooth Speakers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Laptop Accessories</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-2 text-sm">
+                <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                <span class="text-gray-400">/</span>
+                <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">My Account</a>
+                <span class="text-gray-400">/</span>
+                <span class="text-indigo-600 font-medium">Wishlist</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Wishlist Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">My Wishlist</h1>
+            <p class="text-gray-600">Save items you love and come back to them later.</p>
+        </div>
+        
+        <!-- Wishlist Summary -->
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 mb-8 shadow-sm">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
+                        <i class="fas fa-heart text-indigo-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800">3 Saved Items</h2>
+                        <p class="text-gray-600">Total value: <span class="font-medium text-indigo-600">$749.97</span></p>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button id="clearWishlist" class="flex items-center px-4 py-2 border border-red-200 text-red-600 rounded-lg hover:bg-red-50 transition-all duration-300">
+                        <i class="fas fa-trash-alt mr-2"></i> Clear All
+                    </button>
+                    <button id="addAllToCart" class="flex items-center px-6 py-2 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        <i class="fas fa-shopping-cart mr-2"></i> Add All to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wishlist Items -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="border-b border-gray-100 bg-gray-50 px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-semibold text-gray-700">Saved Items (3)</h3>
+                    <div class="flex items-center">
+                        <span class="text-sm text-gray-500 mr-2">Sort by:</span>
+                        <select class="text-sm border-gray-200 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                            <option>Date Added</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Name</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="py-3 px-6 text-left text-sm font-medium text-gray-600">Product</th>
+                            <th class="py-3 px-6 text-left text-sm font-medium text-gray-600">Price</th>
+                            <th class="py-3 px-6 text-left text-sm font-medium text-gray-600">Stock Status</th>
+                            <th class="py-3 px-6 text-left text-sm font-medium text-gray-600">Added On</th>
+                            <th class="py-3 px-6 text-left text-sm font-medium text-gray-600">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wishlistItems">
+                        <!-- Wishlist Item 1 -->
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors" data-id="product-1">
+                            <td class="py-5 px-6">
+                                <div class="flex items-center">
+                                    <div class="relative mr-4 flex-shrink-0">
+                                        <a href="product-details.html" class="block w-20 h-20 overflow-hidden rounded-lg shadow-sm">
+                                            <img src="../images/product-placeholder.svg" alt="Wireless Noise-Cancelling Headphones" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                                        </a>
+                                        <span class="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg">-17%</span>
+                                    </div>
+                                    <div>
+                                        <a href="product-details.html" class="font-medium text-gray-800 hover:text-indigo-600 transition block mb-1">Wireless Noise-Cancelling Headphones</a>
+                                        <div class="flex items-center mb-1">
+                                            <div class="flex text-yellow-400 text-xs mr-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <span class="text-xs text-gray-500">(42 reviews)</span>
+                                        </div>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <span class="mr-3"><i class="fas fa-circle text-black text-xs mr-1"></i> Black</span>
+                                            <span><i class="fas fa-tag text-xs mr-1"></i> Electronics</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <div class="font-bold text-indigo-600">$249.99</div>
+                                <div class="text-sm text-gray-500 line-through">$299.99</div>
+                                <div class="text-xs text-green-600 mt-1">You save: $50.00</div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    <i class="fas fa-check-circle mr-1"></i> In Stock
+                                </span>
+                                <div class="text-xs text-gray-500 mt-1">Ships in 24 hours</div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <div class="text-sm text-gray-600">Aug 15, 2023</div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <div class="flex flex-col space-y-2">
+                                    <button class="add-to-cart flex items-center justify-center bg-indigo-600 text-white py-2 px-4 rounded-lg text-sm hover:bg-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md">
+                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                    </button>
+                                    <button class="remove-from-wishlist flex items-center justify-center text-gray-600 hover:text-red-600 py-1 px-4 border border-gray-200 rounded-lg text-sm hover:bg-gray-50 transition-all duration-300">
+                                        <i class="fas fa-trash-alt mr-2"></i> Remove
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- Wishlist Item 2 -->
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors" data-id="product-2">
+                            <td class="py-5 px-6">
+                                <div class="flex items-center">
+                                    <div class="relative mr-4 flex-shrink-0">
+                                        <a href="product-details.html" class="block w-20 h-20 overflow-hidden rounded-lg shadow-sm">
+                                            <img src="../images/product-placeholder.svg" alt="Smart Fitness Watch" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                                        </a>
+                                        <span class="absolute top-0 left-0 bg-indigo-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg">NEW</span>
+                                    </div>
+                                    <div>
+                                        <a href="product-details.html" class="font-medium text-gray-800 hover:text-indigo-600 transition block mb-1">Smart Fitness Watch</a>
+                                        <div class="flex items-center mb-1">
+                                            <div class="flex text-yellow-400 text-xs mr-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                            <span class="text-xs text-gray-500">(36 reviews)</span>
+                                        </div>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <span class="mr-3"><i class="fas fa-circle text-gray-400 text-xs mr-1"></i> Silver</span>
+                                            <span><i class="fas fa-tag text-xs mr-1"></i> Wearables</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <div class="font-bold text-indigo-600">$179.95</div>
+                                <div class="text-xs text-gray-500 mt-1">Free shipping</div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    <i class="fas fa-check-circle mr-1"></i> In Stock
+                                </span>
+                                <div class="text-xs text-gray-500 mt-1">Ships in 24 hours</div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <div class="text-sm text-gray-600">Aug 18, 2023</div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <div class="flex flex-col space-y-2">
+                                    <button class="add-to-cart flex items-center justify-center bg-indigo-600 text-white py-2 px-4 rounded-lg text-sm hover:bg-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md">
+                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                    </button>
+                                    <button class="remove-from-wishlist flex items-center justify-center text-gray-600 hover:text-red-600 py-1 px-4 border border-gray-200 rounded-lg text-sm hover:bg-gray-50 transition-all duration-300">
+                                        <i class="fas fa-trash-alt mr-2"></i> Remove
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- Wishlist Item 3 -->
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors" data-id="product-3">
+                            <td class="py-5 px-6">
+                                <div class="flex items-center">
+                                    <div class="relative mr-4 flex-shrink-0">
+                                        <a href="product-details.html" class="block w-20 h-20 overflow-hidden rounded-lg shadow-sm">
+                                            <img src="../images/product-placeholder.svg" alt="Portable Bluetooth Speaker" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">
+                                        </a>
+                                        <span class="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg">-25%</span>
+                                    </div>
+                                    <div>
+                                        <a href="product-details.html" class="font-medium text-gray-800 hover:text-indigo-600 transition block mb-1">Portable Bluetooth Speaker</a>
+                                        <div class="flex items-center mb-1">
+                                            <div class="flex text-yellow-400 text-xs mr-2">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                            <span class="text-xs text-gray-500">(28 reviews)</span>
+                                        </div>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <span class="mr-3"><i class="fas fa-circle text-blue-500 text-xs mr-1"></i> Blue</span>
+                                            <span><i class="fas fa-tag text-xs mr-1"></i> Audio</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <div class="font-bold text-indigo-600">$89.99</div>
+                                <div class="text-sm text-gray-500 line-through">$119.99</div>
+                                <div class="text-xs text-green-600 mt-1">You save: $30.00</div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    <i class="fas fa-exclamation-circle mr-1"></i> Low Stock
+                                </span>
+                                <div class="text-xs text-gray-500 mt-1">Only 3 left</div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <div class="text-sm text-gray-600">Aug 20, 2023</div>
+                            </td>
+                            <td class="py-5 px-6">
+                                <div class="flex flex-col space-y-2">
+                                    <button class="add-to-cart flex items-center justify-center bg-indigo-600 text-white py-2 px-4 rounded-lg text-sm hover:bg-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md">
+                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                    </button>
+                                    <button class="remove-from-wishlist flex items-center justify-center text-gray-600 hover:text-red-600 py-1 px-4 border border-gray-200 rounded-lg text-sm hover:bg-gray-50 transition-all duration-300">
+                                        <i class="fas fa-trash-alt mr-2"></i> Remove
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Empty Wishlist State (Hidden by default) -->
+            <div id="emptyWishlist" class="hidden text-center py-16">
+                <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-8">
+                    <div class="bg-indigo-50 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+                        <i class="far fa-heart text-indigo-500 text-4xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">Your wishlist is empty</h2>
+                    <p class="text-gray-600 mb-8 max-w-xs mx-auto">Save items you love and come back to them later when you're ready to make a purchase.</p>
+                    <a href="shop.html" class="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-3 px-8 rounded-lg font-medium hover:from-indigo-700 hover:to-indigo-800 transition-all duration-300 inline-flex items-center justify-center shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        <i class="fas fa-shopping-bag mr-2"></i> Explore Products
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recommended Products -->
+        <div class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">You Might Also Like</h2>
+                    <p class="text-gray-600">Products similar to items in your wishlist</p>
+                </div>
+                <a href="shop.html" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center transition-colors">
+                    View All <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden group">
+                    <div class="relative">
+                        <a href="product-details.html" class="block h-64 overflow-hidden">
+                            <img src="../images/product-placeholder.svg" alt="Wireless Earbuds" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </a>
+                        <div class="absolute top-2 right-2 space-y-2">
+                            <button class="bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm hover:bg-gray-100 transition add-to-wishlist">
+                                <i class="far fa-heart text-gray-600"></i>
+                            </button>
+                            <button class="bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm hover:bg-gray-100 transition quick-view" data-product-id="4">
+                                <i class="far fa-eye text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-20%</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-xs text-gray-500 mb-1">Audio</div>
+                        <a href="product-details.html" class="text-gray-800 font-medium hover:text-indigo-600 transition mb-2 block">Wireless Earbuds with Noise Cancellation</a>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="text-xs text-gray-500">(42)</div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-indigo-600 font-bold">$79.99</span>
+                                <span class="text-gray-400 text-sm line-through ml-1">$99.99</span>
+                            </div>
+                            <button class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-indigo-700 transition add-to-cart-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden group">
+                    <div class="relative">
+                        <a href="product-details.html" class="block h-64 overflow-hidden">
+                            <img src="../images/product-placeholder.svg" alt="Smart Home Speaker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </a>
+                        <div class="absolute top-2 right-2 space-y-2">
+                            <button class="bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm hover:bg-gray-100 transition add-to-wishlist">
+                                <i class="far fa-heart text-gray-600"></i>
+                            </button>
+                            <button class="bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm hover:bg-gray-100 transition quick-view" data-product-id="5">
+                                <i class="far fa-eye text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">New</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-xs text-gray-500 mb-1">Smart Home</div>
+                        <a href="product-details.html" class="text-gray-800 font-medium hover:text-indigo-600 transition mb-2 block">Smart Home Speaker with Voice Assistant</a>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="text-xs text-gray-500">(87)</div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-indigo-600 font-bold">$129.99</span>
+                            </div>
+                            <button class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-indigo-700 transition add-to-cart-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden group">
+                    <div class="relative">
+                        <a href="product-details.html" class="block h-64 overflow-hidden">
+                            <img src="../images/product-placeholder.svg" alt="Laptop Backpack" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </a>
+                        <div class="absolute top-2 right-2 space-y-2">
+                            <button class="bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm hover:bg-gray-100 transition add-to-wishlist">
+                                <i class="far fa-heart text-gray-600"></i>
+                            </button>
+                            <button class="bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm hover:bg-gray-100 transition quick-view" data-product-id="6">
+                                <i class="far fa-eye text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-xs text-gray-500 mb-1">Accessories</div>
+                        <a href="product-details.html" class="text-gray-800 font-medium hover:text-indigo-600 transition mb-2 block">Water-Resistant Laptop Backpack</a>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div class="text-xs text-gray-500">(29)</div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-indigo-600 font-bold">$59.95</span>
+                                <span class="text-gray-400 text-sm line-through ml-1">$69.95</span>
+                            </div>
+                            <button class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-indigo-700 transition add-to-cart-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden group">
+                    <div class="relative">
+                        <a href="product-details.html" class="block h-64 overflow-hidden">
+                            <img src="../images/product-placeholder.svg" alt="Wireless Charger" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </a>
+                        <div class="absolute top-2 right-2 space-y-2">
+                            <button class="bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm hover:bg-gray-100 transition add-to-wishlist">
+                                <i class="far fa-heart text-gray-600"></i>
+                            </button>
+                            <button class="bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm hover:bg-gray-100 transition quick-view" data-product-id="7">
+                                <i class="far fa-eye text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-indigo-500 text-white text-xs font-bold px-2 py-1 rounded">Bestseller</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-xs text-gray-500 mb-1">Accessories</div>
+                        <a href="product-details.html" class="text-gray-800 font-medium hover:text-indigo-600 transition mb-2 block">Fast Wireless Charging Pad</a>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="text-xs text-gray-500">(56)</div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-indigo-600 font-bold">$34.99</span>
+                            </div>
+                            <button class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-indigo-700 transition add-to-cart-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">ShopEase</h3>
+                    <p class="text-gray-400 mb-4">Your one-stop destination for quality products at affordable prices. Shop with ease, shop with confidence.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white transition">Shop</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white transition">Categories</a></li>
+                        <li><a href="deals.html" class="text-gray-400 hover:text-white transition">Flash Sales</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="account.html" class="text-gray-400 hover:text-white transition">My Account</a></li>
+                        <li><a href="orders.html" class="text-gray-400 hover:text-white transition">Order History</a></li>
+                        <li><a href="wishlist.html" class="text-gray-400 hover:text-white transition">Wishlist</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="returns.html" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
+                        <li><a href="shipping.html" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-indigo-400 mt-1 mr-2"></i>
+                            <span class="text-gray-400">123 Commerce St, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">(123) 456-7890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">support@shopease.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">Mon-Fri: 9AM - 8PM EST</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 ShopEase. All rights reserved.</p>
+                    <div class="flex space-x-4">
+                        <a href="terms.html" class="text-gray-400 hover:text-white transition text-sm">Terms of Service</a>
+                        <a href="privacy.html" class="text-gray-400 hover:text-white transition text-sm">Privacy Policy</a>
+                        <a href="sitemap.html" class="text-gray-400 hover:text-white transition text-sm">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 scale-0">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="../js/main.js"></script>
+    
+    <!-- Wishlist Page Specific JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn') || sessionStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                // Redirect to login page
+                window.location.href = 'login.html?redirect=wishlist.html';
+            }
+            
+            // Initialize wishlist
+            initWishlist();
+            
+            // Add to cart functionality
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productRow = this.closest('tr');
+                    const productId = productRow.getAttribute('data-id');
+                    const productName = productRow.querySelector('a.font-medium').textContent;
+                    const productPrice = productRow.querySelector('.font-medium').textContent;
+                    
+                    // Add to cart logic
+                    addToCart(productId, productName, productPrice, 1);
+                    
+                    // Show notification
+                    showNotification(`${productName} added to cart!`);
+                });
+            });
+            
+            // Remove from wishlist functionality
+            document.querySelectorAll('.remove-from-wishlist').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productRow = this.closest('tr');
+                    const productId = productRow.getAttribute('data-id');
+                    const productName = productRow.querySelector('a.font-medium').textContent;
+                    
+                    // Remove from wishlist
+                    removeFromWishlist(productId);
+                    
+                    // Remove row from table
+                    productRow.remove();
+                    
+                    // Update wishlist count
+                    updateWishlistCount();
+                    
+                    // Show notification
+                    showNotification(`${productName} removed from wishlist!`);
+                    
+                    // Check if wishlist is empty
+                    checkEmptyWishlist();
+                });
+            });
+            
+            // Clear wishlist button
+            document.getElementById('clearWishlist').addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear your wishlist?')) {
+                    // Clear wishlist
+                    localStorage.setItem('wishlist', JSON.stringify([]));
+                    
+                    // Update UI
+                    document.getElementById('wishlistItems').innerHTML = '';
+                    updateWishlistCount();
+                    checkEmptyWishlist();
+                    
+                    // Show notification
+                    showNotification('Wishlist cleared!');
+                }
+            });
+            
+            // Add all to cart button
+            document.getElementById('addAllToCart').addEventListener('click', function() {
+                const wishlistItems = document.querySelectorAll('#wishlistItems tr');
+                
+                if (wishlistItems.length === 0) {
+                    showNotification('Your wishlist is empty!');
+                    return;
+                }
+                
+                wishlistItems.forEach(item => {
+                    const productId = item.getAttribute('data-id');
+                    const productName = item.querySelector('a.font-medium').textContent;
+                    const productPrice = item.querySelector('.font-medium').textContent;
+                    
+                    // Add to cart logic
+                    addToCart(productId, productName, productPrice, 1);
+                });
+                
+                // Show notification
+                showNotification('All items added to cart!');
+            });
+            
+            // Add to wishlist buttons in recommended products
+            document.querySelectorAll('.add-to-wishlist').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.group');
+                    const productName = productCard.querySelector('a.text-gray-800').textContent;
+                    const productId = 'product-' + Math.floor(Math.random() * 1000); // Generate random ID for demo
+                    
+                    // Toggle wishlist icon
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('far')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        icon.classList.add('text-red-500');
+                        
+                        // Add to wishlist logic
+                        addToWishlist(productId, productName);
+                        
+                        // Show notification
+                        showNotification(`${productName} added to wishlist!`);
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.remove('text-red-500');
+                        icon.classList.add('far');
+                        
+                        // Remove from wishlist logic
+                        removeFromWishlist(productId);
+                        
+                        // Show notification
+                        showNotification(`${productName} removed from wishlist!`);
+                    }
+                });
+            });
+            
+            // Add to cart buttons in recommended products
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.group');
+                    const productName = productCard.querySelector('a.text-gray-800').textContent;
+                    const productPrice = productCard.querySelector('.text-indigo-600').textContent;
+                    const productId = 'product-' + Math.floor(Math.random() * 1000); // Generate random ID for demo
+                    
+                    // Add to cart logic
+                    addToCart(productId, productName, productPrice, 1);
+                    
+                    // Show notification
+                    showNotification(`${productName} added to cart!`);
+                });
+            });
+        });
+        
+        // Initialize wishlist
+        function initWishlist() {
+            // Check if wishlist is empty
+            checkEmptyWishlist();
+            
+            // Update wishlist count
+            updateWishlistCount();
+        }
+        
+        // Check if wishlist is empty
+        function checkEmptyWishlist() {
+            const wishlistItems = document.querySelectorAll('#wishlistItems tr');
+            const emptyWishlist = document.getElementById('emptyWishlist');
+            const wishlistTable = document.querySelector('table');
+            const wishlistActions = document.querySelector('.flex.justify-between.items-center');
+            
+            if (wishlistItems.length === 0) {
+                emptyWishlist.classList.remove('hidden');
+                wishlistTable.classList.add('hidden');
+                wishlistActions.classList.add('hidden');
+            } else {
+                emptyWishlist.classList.add('hidden');
+                wishlistTable.classList.remove('hidden');
+                wishlistActions.classList.remove('hidden');
+            }
+        }
+        
+        // Update wishlist count
+        function updateWishlistCount() {
+            const wishlistItems = document.querySelectorAll('#wishlistItems tr');
+            const wishlistCount = wishlistItems.length;
+            
+            // Update count in header
+            document.querySelector('h1').textContent = `My Wishlist (${wishlistCount})`;
+            
+            // Update count in header icons
+            const wishlistCountBadges = document.querySelectorAll('a[href="wishlist.html"] span');
+            wishlistCountBadges.forEach(badge => {
+                badge.textContent = wishlistCount;
+            });
+        }
+        
+        // Add to wishlist
+        function addToWishlist(productId, productName) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            
+            // Check if product is already in wishlist
+            if (!wishlist.some(item => item.id === productId)) {
+                wishlist.push({
+                    id: productId,
+                    name: productName
+                });
+                
+                // Save to localStorage
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+        }
+        
+        // Remove from wishlist
+        function removeFromWishlist(productId) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            
+            // Remove product from wishlist
+            wishlist = wishlist.filter(item => item.id !== productId);
+            
+            // Save to localStorage
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+        
+        // Add to cart
+        function addToCart(productId, productName, productPrice, quantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Clean price string
+            const price = parseFloat(productPrice.replace(/[^0-9.]/g, ''));
+            
+            // Check if product is already in cart
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: price,
+                    quantity: quantity
+                });
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count
+            updateCartCount();
+        }
+        
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Update count in header icons
+            const cartCountBadges = document.querySelectorAll('a[href="cart.html"] span');
+            cartCountBadges.forEach(badge => {
+                badge.textContent = cartCount;
+            });
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            // Create notification element if it doesn't exist
+            let notification = document.getElementById('notification');
+            
+            if (!notification) {
+                notification = document.createElement('div');
+                notification.id = 'notification';
+                notification.className = 'fixed top-4 right-4 bg-indigo-600 text-white py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 scale-0 z-50';
+                document.body.appendChild(notification);
+            }
+            
+            // Set message
+            notification.textContent = message;
+            
+            // Show notification
+            notification.classList.remove('scale-0');
+            notification.classList.add('scale-100');
+            
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('scale-100');
+                notification.classList.add('scale-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

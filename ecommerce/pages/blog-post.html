@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Fashion Trends - ShopEase Blog</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <a href="../index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition font-semibold text-indigo-600">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-indigo-600 transition" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Navigation Icons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="searchToggle">
+                        <i class="fas fa-search text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="darkModeToggle">
+                        <i class="fas fa-moon text-xl"></i>
+                    </a>
+                    <a href="wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                    </a>
+                    <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                    </a>
+                    <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-user text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <nav class="container mx-auto px-4 py-2">
+                <ul>
+                    <li><a href="../index.html" class="block py-2 text-gray-600 hover:text-indigo-600 transition">Home</a></li>
+                    <li><a href="shop.html" class="block py-2 text-gray-600 hover:text-indigo-600 transition">Shop</a></li>
+                    <li><a href="categories.html" class="block py-2 text-gray-600 hover:text-indigo-600 transition">Categories</a></li>
+                    <li><a href="deals.html" class="block py-2 text-gray-600 hover:text-indigo-600 transition">Deals</a></li>
+                    <li><a href="blog.html" class="block py-2 text-gray-600 hover:text-indigo-600 transition">Blog</a></li>
+                    <li><a href="contact.html" class="block py-2 text-gray-600 hover:text-indigo-600 transition">Contact</a></li>
+                    <li class="border-t mt-2 pt-2">
+                        <a href="wishlist.html" class="block py-2 text-gray-600 hover:text-indigo-600 transition">
+                            <i class="fas fa-heart mr-2"></i> Wishlist
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cart.html" class="block py-2 text-gray-600 hover:text-indigo-600 transition">
+                            <i class="fas fa-shopping-cart mr-2"></i> Cart
+                        </a>
+                    </li>
+                    <li>
+                        <a href="account.html" class="block py-2 text-gray-600 hover:text-indigo-600 transition">
+                            <i class="fas fa-user mr-2"></i> Account
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Search Bar (Hidden by default) -->
+        <div class="hidden bg-white border-t" id="searchBar">
+            <div class="container mx-auto px-4 py-3">
+                <form class="flex items-center">
+                    <input type="text" placeholder="Search for products..." class="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-2 text-sm">
+                <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                <i class="fas fa-chevron-right text-xs text-gray-400"></i>
+                <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                <i class="fas fa-chevron-right text-xs text-gray-400"></i>
+                <span class="text-indigo-600 font-medium">Summer Fashion Trends</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Blog Post Header -->
+            <div class="mb-8">
+                <div class="flex items-center text-sm text-gray-500 mb-3">
+                    <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold mr-4">Fashion</span>
+                    <span class="flex items-center mr-4"><i class="far fa-calendar-alt mr-1"></i> June 15, 2023</span>
+                    <span class="flex items-center mr-4"><i class="far fa-clock mr-1"></i> 5 min read</span>
+                    <span class="flex items-center"><i class="far fa-comment mr-1"></i> 12 comments</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-4">Summer Fashion Trends You Need to Know in 2023</h1>
+                
+                <!-- Author Info -->
+                <div class="flex items-center mb-6">
+                    <img src="../images/avatars/author-1.jpg" alt="Sarah Johnson" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h3 class="font-semibold">Sarah Johnson</h3>
+                        <p class="text-gray-600 text-sm">Fashion Editor</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Featured Image -->
+            <div class="mb-8">
+                <img src="../images/blog/featured-post.jpg" alt="Summer Fashion Trends" class="w-full h-96 object-cover rounded-xl">
+            </div>
+            
+            <!-- Blog Content -->
+            <div class="prose prose-lg max-w-none mb-12">
+                <p class="text-lg leading-relaxed mb-6">Summer is here, and it's time to refresh your wardrobe with the season's hottest trends. From vibrant colors to sustainable fashion choices, this year's summer fashion is all about expressing individuality while staying comfortable in the heat.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">1. Vibrant Colors and Bold Patterns</h2>
+                <p class="mb-4">This summer is all about making a statement with color. Bright yellows, electric blues, and vibrant pinks are dominating runways and street style alike. Don't be afraid to mix and match bold patterns – floral prints, geometric designs, and tropical motifs are particularly popular this season.</p>
+                <p class="mb-6">For those who prefer a more subtle approach, try incorporating colorful accessories into your outfit. A bright handbag or statement jewelry can instantly elevate a simple summer look.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">2. Sustainable and Ethical Fashion</h2>
+                <p class="mb-4">Sustainability continues to be a major focus in fashion, with more consumers making environmentally conscious choices. Brands are responding with eco-friendly materials, ethical production processes, and transparent supply chains.</p>
+                <p class="mb-6">Look for pieces made from organic cotton, recycled polyester, or innovative materials like Tencel and hemp. Many brands now offer "capsule collections" designed to be mixed and matched, reducing the need for excessive consumption.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">3. Relaxed Silhouettes</h2>
+                <p class="mb-4">The pandemic has permanently shifted our approach to comfort, and this summer's trends reflect that change. Loose, flowing silhouettes are replacing tight-fitting styles, with wide-leg pants, oversized shirts, and billowy dresses taking center stage.</p>
+                <p class="mb-6">The key to pulling off this look is balance – pair an oversized top with more fitted bottoms, or vice versa. This prevents the outfit from looking shapeless while maintaining that effortless comfort we've all come to appreciate.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">4. Y2K Revival</h2>
+                <p class="mb-4">Fashion is cyclical, and the early 2000s are having a major comeback moment. Low-rise jeans, baby tees, platform sandals, and butterfly clips are all making their way back into our wardrobes.</p>
+                <p class="mb-6">For a modern take on Y2K fashion, try incorporating just one or two nostalgic pieces into your outfit rather than going for a head-to-toe throwback look. This keeps the style feeling fresh rather than costumey.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">5. Statement Accessories</h2>
+                <p class="mb-4">Accessories are taking center stage this summer, with oversized sunglasses, chunky jewelry, and statement bags being key trends. Crochet and raffia bags are particularly popular for their beachy, bohemian vibe.</p>
+                <p class="mb-6">Don't forget about headwear – bucket hats continue their reign as a summer essential, providing both style and sun protection. For a more elegant look, silky headscarves tied in various ways are making a strong comeback.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">How to Shop These Trends Responsibly</h2>
+                <p class="mb-4">While it's fun to keep up with trends, it's important to shop mindfully. Before making a purchase, consider whether the item will integrate well with your existing wardrobe and if you'll wear it beyond this season.</p>
+                <p class="mb-6">Secondhand shopping is another great way to try new trends without contributing to fast fashion's environmental impact. Thrift stores, vintage shops, and online resale platforms offer unique pieces that often come with more affordable price tags.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4">Conclusion</h2>
+                <p class="mb-4">This summer's fashion trends offer something for everyone, whether you're drawn to bold colors, sustainable practices, or nostalgic styles. Remember that the best trend is the one that makes you feel confident and comfortable – fashion should be fun, not stressful!</p>
+                <p>What summer trends are you most excited to try? Let us know in the comments below!</p>
+            </div>
+            
+            <!-- Social Share -->
+            <div class="border-t border-b py-6 mb-8">
+                <div class="flex flex-wrap items-center justify-between">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="font-semibold mb-2">Share this article:</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 transition">
+                                <i class="fab fa-facebook-f text-xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600 transition">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-red-600 hover:text-red-800 transition">
+                                <i class="fab fa-pinterest text-xl"></i>
+                            </a>
+                            <a href="#" class="text-green-600 hover:text-green-800 transition">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-800 hover:text-blue-900 transition">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="mr-2">Tags:</span>
+                        <a href="#" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm mr-2 hover:bg-gray-300 transition">Fashion</a>
+                        <a href="#" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm mr-2 hover:bg-gray-300 transition">Summer</a>
+                        <a href="#" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-300 transition">Trends</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Author Bio -->
+            <div class="bg-gray-100 rounded-xl p-6 mb-12">
+                <div class="flex flex-col md:flex-row items-center md:items-start">
+                    <img src="../images/avatars/author-1.jpg" alt="Sarah Johnson" class="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">About Sarah Johnson</h3>
+                        <p class="text-gray-700 mb-4">Sarah is a fashion editor with over 10 years of experience in the industry. She has worked with major fashion publications and brands, specializing in sustainable fashion and emerging trends. When she's not writing, Sarah enjoys thrift shopping and upcycling vintage pieces.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Comments Section -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6">Comments (12)</h3>
+                
+                <!-- Comment Form -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                    <h4 class="text-lg font-semibold mb-4">Leave a Comment</h4>
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-1">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="comment" class="block text-gray-700 mb-1">Comment</label>
+                            <textarea id="comment" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="saveInfo" class="mr-2">
+                            <label for="saveInfo" class="text-gray-700">Save my name and email for the next time I comment</label>
+                        </div>
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">Post Comment</button>
+                    </form>
+                </div>
+                
+                <!-- Comments List -->
+                <div class="space-y-6">
+                    <!-- Comment 1 -->
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <div class="flex items-start mb-4">
+                            <img src="../images/avatars/user-1.jpg" alt="User" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <h4 class="font-semibold mr-2">Emily Parker</h4>
+                                    <span class="text-gray-500 text-sm">June 16, 2023 at 10:23 AM</span>
+                                </div>
+                                <p class="text-gray-700">Great article! I've been seeing those Y2K trends everywhere lately. I'm not sure I'm ready for low-rise jeans to make a comeback though! 😅</p>
+                                <button class="text-indigo-600 hover:text-indigo-800 transition mt-2 text-sm font-medium">Reply</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Nested Reply -->
+                        <div class="ml-12 pl-4 border-l-2 border-gray-200">
+                            <div class="flex items-start mt-4">
+                                <img src="../images/avatars/author-1.jpg" alt="Author" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <div class="flex items-center mb-1">
+                                        <h4 class="font-semibold mr-2">Sarah Johnson</h4>
+                                        <span class="text-gray-500 text-sm">June 16, 2023 at 11:05 AM</span>
+                                    </div>
+                                    <p class="text-gray-700">Thanks Emily! I hear you on the low-rise jeans - they're definitely not for everyone. The good news is that high-waisted styles are still very much in fashion too!</p>
+                                    <button class="text-indigo-600 hover:text-indigo-800 transition mt-2 text-sm font-medium">Reply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 2 -->
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <div class="flex items-start">
+                            <img src="../images/avatars/user-2.jpg" alt="User" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <h4 class="font-semibold mr-2">Michael Thompson</h4>
+                                    <span class="text-gray-500 text-sm">June 15, 2023 at 4:45 PM</span>
+                                </div>
+                                <p class="text-gray-700">I appreciate the focus on sustainable fashion in this article. It's so important that we start thinking about the environmental impact of our clothing choices. Do you have any recommendations for affordable sustainable brands?</p>
+                                <button class="text-indigo-600 hover:text-indigo-800 transition mt-2 text-sm font-medium">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 3 -->
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <div class="flex items-start">
+                            <img src="../images/avatars/user-3.jpg" alt="User" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <h4 class="font-semibold mr-2">Jessica Lee</h4>
+                                    <span class="text-gray-500 text-sm">June 15, 2023 at 2:30 PM</span>
+                                </div>
+                                <p class="text-gray-700">Those statement accessories are calling my name! I just bought a raffia bag and it goes with everything. Definitely the best summer investment I've made so far.</p>
+                                <button class="text-indigo-600 hover:text-indigo-800 transition mt-2 text-sm font-medium">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Load More Comments Button -->
+                    <button class="w-full py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition">Load More Comments</button>
+                </div>
+            </div>
+            
+            <!-- Related Posts -->
+            <div>
+                <h3 class="text-2xl font-bold mb-6">You May Also Like</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Related Post 1 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                        <img src="../images/blog/sustainable.jpg" alt="Sustainable Fashion" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold mr-2">Fashion</span>
+                                <span><i class="far fa-calendar-alt mr-1"></i> June 1, 2023</span>
+                            </div>
+                            <h3 class="font-bold mb-2">Sustainable Fashion: How to Build an Eco-Friendly Wardrobe</h3>
+                            <a href="blog-post.html" class="text-indigo-600 hover:text-indigo-800 transition text-sm font-medium">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Post 2 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                        <img src="../images/blog/accessories.jpg" alt="Accessories" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs font-semibold mr-2">Fashion</span>
+                                <span><i class="far fa-calendar-alt mr-1"></i> May 20, 2023</span>
+                            </div>
+                            <h3 class="font-bold mb-2">How to Choose the Perfect Accessories for Any Outfit</h3>
+                            <a href="blog-post.html" class="text-indigo-600 hover:text-indigo-800 transition text-sm font-medium">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Post 3 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+                        <img src="../images/blog/budget.jpg" alt="Budget Shopping" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-semibold mr-2">Shopping Tips</span>
+                                <span><i class="far fa-calendar-alt mr-1"></i> May 28, 2023</span>
+                            </div>
+                            <h3 class="font-bold mb-2">10 Clever Ways to Save Money While Shopping Online</h3>
+                            <a href="blog-post.html" class="text-indigo-600 hover:text-indigo-800 transition text-sm font-medium">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Newsletter Section -->
+    <section class="bg-indigo-600 py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-white mb-3">Subscribe to Our Newsletter</h2>
+                <p class="text-indigo-100 mb-6">Stay updated with the latest fashion trends, shopping tips, and exclusive offers.</p>
+                <form class="flex flex-col md:flex-row gap-2">
+                    <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-l-lg md:rounded-l-lg md:rounded-r-none rounded-r-lg focus:outline-none">
+                    <button type="submit" class="bg-indigo-800 text-white px-6 py-3 rounded-r-lg md:rounded-r-lg md:rounded-l-none rounded-l-lg font-semibold hover:bg-indigo-900 transition">Subscribe</button>
+                </form>
+                <p class="text-indigo-200 text-sm mt-4">By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <!-- Footer Top -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">ShopEase</h3>
+                    <p class="text-gray-400 mb-4">Your one-stop destination for all your shopping needs with the best deals and quality products.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQs</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="account.html" class="text-gray-400 hover:text-white transition">My Account</a></li>
+                        <li><a href="order-tracking.html" class="text-gray-400 hover:text-white transition">Order Tracking</a></li>
+                        <li><a href="wishlist.html" class="text-gray-400 hover:text-white transition">Wishlist</a></li>
+                        <li><a href="shipping.html" class="text-gray-400 hover:text-white transition">Shipping Info</a></li>
+                        <li><a href="returns.html" class="text-gray-400 hover:text-white transition">Returns & Exchanges</a></li>
+                        <li><a href="sitemap.html" class="text-gray-400 hover:text-white transition">Sitemap</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>123 Commerce Street, Suite 456, Shopington, SP 12345</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            <span>(123) 456-7890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>support@shopease.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span>Monday-Friday: 9AM-6PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="pt-8 border-t border-gray-700 text-center md:flex md:justify-between md:items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">&copy; 2023 ShopEase. All rights reserved.</p>
+                <div class="flex justify-center space-x-6">
+                    <img src="../images/payment-methods/visa.svg" alt="Visa" class="h-8">
+                    <img src="../images/payment-methods/mastercard.svg" alt="Mastercard" class="h-8">
+                    <img src="../images/payment-methods/paypal.svg" alt="PayPal" class="h-8">
+                    <img src="../images/payment-methods/apple-pay.svg" alt="Apple Pay" class="h-8">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-indigo-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform transition-transform hover:scale-110 hover:bg-indigo-700 opacity-0 invisible">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

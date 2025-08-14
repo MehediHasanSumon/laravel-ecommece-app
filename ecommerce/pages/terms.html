@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - ShopEase</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <a href="../index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-indigo-600 transition" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Navigation Icons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="searchToggle">
+                        <i class="fas fa-search text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="darkModeToggle">
+                        <i class="fas fa-moon text-xl"></i>
+                    </a>
+                    <a href="wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                    </a>
+                    <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                    </a>
+                    <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-user text-xl mr-1"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2">
+                <nav class="flex flex-col space-y-3 py-4">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                    <div class="flex items-center space-x-4 pt-3 border-t border-gray-100">
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="mobileSearchToggle">
+                            <i class="fas fa-search text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="mobileDarkModeToggle">
+                            <i class="fas fa-moon text-xl"></i>
+                        </a>
+                        <a href="wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                            <i class="fas fa-heart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                        </a>
+                        <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                        </a>
+                        <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                            <i class="fas fa-user text-xl"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="hidden bg-white border-t" id="searchOverlay">
+            <div class="container mx-auto px-4 py-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search for products..." class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <button id="closeSearch" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-sm font-medium text-gray-600 mb-2">Popular Searches:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Wireless Headphones</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Smart Watches</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Fitness Trackers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Bluetooth Speakers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Laptop Accessories</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-2 text-sm">
+                <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                <span class="text-gray-400">/</span>
+                <span class="text-indigo-600 font-medium">Terms of Service</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6 md:p-8">
+            <h1 class="text-3xl font-bold mb-6 text-gray-900">Terms of Service</h1>
+            <p class="text-gray-600 mb-6">Last Updated: January 1, 2023</p>
+            
+            <div class="prose max-w-none text-gray-700">
+                <p class="mb-4">Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the ShopEase website (the "Service") operated by ShopEase Inc. ("us", "we", or "our").</p>
+                
+                <p class="mb-4">Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.</p>
+                
+                <p class="mb-6">By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you may not access the Service.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">1. Accounts</h2>
+                
+                <p class="mb-4">When you create an account with us, you must provide information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.</p>
+                
+                <p class="mb-4">You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password, whether your password is with our Service or a third-party service.</p>
+                
+                <p class="mb-6">You agree not to disclose your password to any third party. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">2. Purchases</h2>
+                
+                <p class="mb-4">If you wish to purchase any product or service made available through the Service ("Purchase"), you may be asked to supply certain information relevant to your Purchase including, without limitation, your credit card number, the expiration date of your credit card, your billing address, and your shipping information.</p>
+                
+                <p class="mb-4">You represent and warrant that: (i) you have the legal right to use any credit card(s) or other payment method(s) in connection with any Purchase; and that (ii) the information you supply to us is true, correct, and complete.</p>
+                
+                <p class="mb-4">By submitting such information, you grant us the right to provide the information to third parties for purposes of facilitating the completion of Purchases.</p>
+                
+                <p class="mb-6">We reserve the right to refuse or cancel your order at any time for certain reasons including but not limited to: product or service availability, errors in the description or price of the product or service, error in your order, or other reasons.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">3. Product Availability and Pricing</h2>
+                
+                <p class="mb-4">We reserve the right to discontinue any product at any time. Prices for all products are subject to change without notice. We shall not be liable to you or to any third-party for any modification, price change, suspension, or discontinuance of the product.</p>
+                
+                <p class="mb-6">All descriptions of products or product pricing are subject to change at any time without notice, at our sole discretion. We reserve the right to discontinue any product at any time. Any offer for any product or service made on this site is void where prohibited.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">4. Shipping and Delivery</h2>
+                
+                <p class="mb-4">We will arrange for shipment of the products to you. Please check the individual product page for specific delivery options. You will pay all shipping and handling charges specified during the ordering process.</p>
+                
+                <p class="mb-4">Title and risk of loss pass to you upon our transfer of the products to the carrier. Shipping and delivery dates are estimates only and cannot be guaranteed. We are not liable for any delays in shipments.</p>
+                
+                <p class="mb-6">For international orders, you are responsible for assuring that the product can be lawfully imported to the destination country. When ordering from us, the recipient is the importer of record and must comply with all laws and regulations of the destination country.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">5. Returns and Refunds</h2>
+                
+                <p class="mb-4">We accept returns within 30 days of delivery for most items. To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.</p>
+                
+                <p class="mb-4">Several types of goods are exempt from being returned. Perishable goods such as food, flowers, newspapers, or magazines cannot be returned. We also do not accept returns for hazardous materials, flammable liquids or gases, or downloadable software products.</p>
+                
+                <p class="mb-6">To complete your return, we require a receipt or proof of purchase. Please do not send your purchase back to the manufacturer. For detailed information about our return policy, please refer to our Returns & Refunds page.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">6. Intellectual Property</h2>
+                
+                <p class="mb-4">The Service and its original content, features, and functionality are and will remain the exclusive property of ShopEase Inc. and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of ShopEase Inc.</p>
+                
+                <p class="mb-6">All content included on this site, such as text, graphics, logos, button icons, images, audio clips, digital downloads, data compilations, and software, is the property of ShopEase Inc. or its content suppliers and protected by international copyright laws.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">7. User Content</h2>
+                
+                <p class="mb-4">Our Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material ("Content"). You are responsible for the Content that you post to the Service, including its legality, reliability, and appropriateness.</p>
+                
+                <p class="mb-4">By posting Content to the Service, you grant us the right and license to use, modify, perform, display, reproduce, and distribute such Content on and through the Service. You retain any and all of your rights to any Content you submit, post, or display on or through the Service and you are responsible for protecting those rights.</p>
+                
+                <p class="mb-6">You represent and warrant that: (i) the Content is yours (you own it) or you have the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your Content on or through the Service does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">8. Prohibited Uses</h2>
+                
+                <p class="mb-4">You may use our Service only for lawful purposes and in accordance with these Terms. You agree not to use our Service:</p>
+                
+                <ul class="list-disc pl-6 mb-4">
+                    <li class="mb-2">In any way that violates any applicable national or international law or regulation.</li>
+                    <li class="mb-2">For the purpose of exploiting, harming, or attempting to exploit or harm minors in any way by exposing them to inappropriate content, asking for personally identifiable information, or otherwise.</li>
+                    <li class="mb-2">To transmit, or procure the sending of, any advertising or promotional material, including any "junk mail", "chain letter," "spam," or any other similar solicitation.</li>
+                    <li class="mb-2">To impersonate or attempt to impersonate the Company, a Company employee, another user, or any other person or entity.</li>
+                    <li class="mb-2">In any way that infringes upon the rights of others, or in any way is illegal, threatening, fraudulent, or harmful, or in connection with any unlawful, illegal, fraudulent, or harmful purpose or activity.</li>
+                </ul>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">9. Limitation of Liability</h2>
+                
+                <p class="mb-4">In no event shall ShopEase Inc., nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">10. Disclaimer</h2>
+                
+                <p class="mb-4">Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement, or course of performance.</p>
+                
+                <p class="mb-6">ShopEase Inc., its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will function uninterrupted, secure, or available at any particular time or location; b) any errors or defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of using the Service will meet your requirements.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">11. Governing Law</h2>
+                
+                <p class="mb-4">These Terms shall be governed and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.</p>
+                
+                <p class="mb-6">Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have between us regarding the Service.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">12. Changes to Terms</h2>
+                
+                <p class="mb-4">We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+                
+                <p class="mb-6">By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
+                
+                <h2 class="text-xl font-bold mt-8 mb-4 text-gray-900">13. Contact Us</h2>
+                
+                <p class="mb-4">If you have any questions about these Terms, please contact us:</p>
+                
+                <ul class="list-none mb-6">
+                    <li class="mb-2"><strong>By email:</strong> legal@shopease.com</li>
+                    <li class="mb-2"><strong>By phone:</strong> (123) 456-7890</li>
+                    <li class="mb-2"><strong>By mail:</strong> 123 Commerce St, Suite 100, New York, NY 10001</li>
+                </ul>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <p class="text-gray-600 text-sm">By using our website, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">ShopEase</h3>
+                    <p class="text-gray-400 mb-4">Your one-stop destination for quality products at affordable prices. Shop with ease, shop with confidence.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white transition">Shop</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white transition">Categories</a></li>
+                        <li><a href="deals.html" class="text-gray-400 hover:text-white transition">Flash Sales</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="account.html" class="text-gray-400 hover:text-white transition">My Account</a></li>
+                        <li><a href="orders.html" class="text-gray-400 hover:text-white transition">Order History</a></li>
+                        <li><a href="wishlist.html" class="text-gray-400 hover:text-white transition">Wishlist</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="returns.html" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
+                        <li><a href="shipping.html" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-indigo-400 mt-1 mr-2"></i>
+                            <span class="text-gray-400">123 Commerce St, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">(123) 456-7890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">support@shopease.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">Mon-Fri: 9AM - 8PM EST</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 ShopEase. All rights reserved.</p>
+                    <div class="flex space-x-4">
+                        <a href="terms.html" class="text-gray-400 hover:text-white transition text-sm">Terms of Service</a>
+                        <a href="privacy.html" class="text-gray-400 hover:text-white transition text-sm">Privacy Policy</a>
+                        <a href="sitemap.html" class="text-gray-400 hover:text-white transition text-sm">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 scale-0">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

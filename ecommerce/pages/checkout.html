@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopEase</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <a href="../index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                
+                <!-- Navigation Icons -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="darkModeToggle">
+                        <i class="fas fa-moon text-xl"></i>
+                    </a>
+                    <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-user text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Progress -->
+    <div class="bg-white border-b">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-arrow-left mr-2"></i> Back to Shopping
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold">1</div>
+                        <span class="ml-2 font-medium text-indigo-600">Shipping</span>
+                    </div>
+                    <div class="w-12 h-1 bg-gray-300 mx-2"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-semibold">2</div>
+                        <span class="ml-2 font-medium text-gray-600">Payment</span>
+                    </div>
+                    <div class="w-12 h-1 bg-gray-300 mx-2"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-semibold">3</div>
+                        <span class="ml-2 font-medium text-gray-600">Review</span>
+                    </div>
+                </div>
+                <div class="md:hidden text-sm font-medium text-indigo-600">
+                    Step 1 of 3: Shipping
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Checkout Form -->
+            <div class="lg:w-2/3">
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-xl font-bold mb-6">Contact Information</h2>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <p class="text-gray-600">Already have an account? <a href="login.html" class="text-indigo-600 hover:underline">Log in</a></p>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="createAccount" class="mr-2">
+                                <label for="createAccount" class="text-gray-600">Create an account</label>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-1">Email Address *</label>
+                                <input type="email" id="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-gray-700 mb-1">Phone Number *</label>
+                                <input type="tel" id="phone" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-xl font-bold mb-6">Shipping Address</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="firstName" class="block text-gray-700 mb-1">First Name *</label>
+                            <input type="text" id="firstName" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-gray-700 mb-1">Last Name *</label>
+                            <input type="text" id="lastName" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="address" class="block text-gray-700 mb-1">Address *</label>
+                        <input type="text" id="address" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="apartment" class="block text-gray-700 mb-1">Apartment, Suite, etc. (optional)</label>
+                        <input type="text" id="apartment" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label for="city" class="block text-gray-700 mb-1">City *</label>
+                            <input type="text" id="city" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                        </div>
+                        <div>
+                            <label for="state" class="block text-gray-700 mb-1">State/Province *</label>
+                            <select id="state" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                                <option value="" selected disabled>Select State</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <!-- More states would be listed here -->
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="zip" class="block text-gray-700 mb-1">ZIP/Postal Code *</label>
+                            <input type="text" id="zip" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="country" class="block text-gray-700 mb-1">Country *</label>
+                        <select id="country" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                            <option value="US" selected>United States</option>
+                            <option value="CA">Canada</option>
+                            <option value="UK">United Kingdom</option>
+                            <!-- More countries would be listed here -->
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center mb-6">
+                        <input type="checkbox" id="saveAddress" class="mr-2">
+                        <label for="saveAddress" class="text-gray-600">Save this address for future orders</label>
+                    </div>
+                    
+                    <div class="flex items-center mb-6">
+                        <input type="checkbox" id="differentBilling" class="mr-2">
+                        <label for="differentBilling" class="text-gray-600">Use a different billing address</label>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-xl font-bold mb-6">Shipping Method</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4 flex justify-between items-center hover:border-indigo-500 transition cursor-pointer">
+                            <div class="flex items-center">
+                                <input type="radio" name="shipping" id="standard" class="mr-3" checked>
+                                <label for="standard">
+                                    <div class="font-medium">Standard Shipping</div>
+                                    <div class="text-sm text-gray-500">Delivery in 3-5 business days</div>
+                                </label>
+                            </div>
+                            <div class="font-medium">$9.99</div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4 flex justify-between items-center hover:border-indigo-500 transition cursor-pointer">
+                            <div class="flex items-center">
+                                <input type="radio" name="shipping" id="express" class="mr-3">
+                                <label for="express">
+                                    <div class="font-medium">Express Shipping</div>
+                                    <div class="text-sm text-gray-500">Delivery in 1-2 business days</div>
+                                </label>
+                            </div>
+                            <div class="font-medium">$19.99</div>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-4 flex justify-between items-center hover:border-indigo-500 transition cursor-pointer">
+                            <div class="flex items-center">
+                                <input type="radio" name="shipping" id="overnight" class="mr-3">
+                                <label for="overnight">
+                                    <div class="font-medium">Overnight Shipping</div>
+                                    <div class="text-sm text-gray-500">Next business day delivery</div>
+                                </label>
+                            </div>
+                            <div class="font-medium">$29.99</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <a href="cart.html" class="text-indigo-600 hover:underline">
+                        <i class="fas fa-arrow-left mr-2"></i> Return to Cart
+                    </a>
+                    <button id="continueToPayment" class="bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition">
+                        Continue to Payment <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="lg:w-1/3">
+                <div class="bg-white border rounded-lg p-6 sticky top-24">
+                    <h2 class="text-xl font-bold mb-6">Order Summary</h2>
+                    
+                    <div class="max-h-64 overflow-y-auto mb-6">
+                        <!-- Order Item 1 -->
+                        <div class="flex items-center py-3 border-b border-gray-200">
+                            <div class="relative w-16 h-16 rounded-md overflow-hidden">
+                                <img src="../images/product-placeholder.svg" alt="Product 1" class="w-full h-full object-cover">
+                                <span class="absolute top-0 right-0 bg-gray-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">1</span>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h3 class="font-medium text-sm">Premium Wireless Headphones</h3>
+                                <p class="text-xs text-gray-500">Color: Black | Size: Standard</p>
+                            </div>
+                            <div class="font-medium text-sm">$129.99</div>
+                        </div>
+                        
+                        <!-- Order Item 2 -->
+                        <div class="flex items-center py-3 border-b border-gray-200">
+                            <div class="relative w-16 h-16 rounded-md overflow-hidden">
+                                <img src="../images/product-placeholder.svg" alt="Product 2" class="w-full h-full object-cover">
+                                <span class="absolute top-0 right-0 bg-gray-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h3 class="font-medium text-sm">Smart Fitness Tracker</h3>
+                                <p class="text-xs text-gray-500">Color: Blue | Size: M</p>
+                            </div>
+                            <div class="font-medium text-sm">$179.98</div>
+                        </div>
+                        
+                        <!-- Order Item 3 -->
+                        <div class="flex items-center py-3">
+                            <div class="relative w-16 h-16 rounded-md overflow-hidden">
+                                <img src="../images/product-placeholder.svg" alt="Product 3" class="w-full h-full object-cover">
+                                <span class="absolute top-0 right-0 bg-gray-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">1</span>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h3 class="font-medium text-sm">Leather Wallet</h3>
+                                <p class="text-xs text-gray-500">Color: Brown | Size: Standard</p>
+                            </div>
+                            <div class="font-medium text-sm">$49.99</div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 pt-4 mb-4">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span class="font-medium">$359.96</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Shipping</span>
+                            <span class="font-medium">$9.99</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Tax</span>
+                            <span class="font-medium">$28.80</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Discount</span>
+                            <span class="font-medium text-green-600">-$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 pt-4 mb-6">
+                        <div class="flex justify-between">
+                            <span class="font-bold">Total</span>
+                            <span class="font-bold text-indigo-600">$398.75</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="relative">
+                            <input type="text" placeholder="Discount code or gift card" class="w-full border border-gray-300 rounded-lg pl-4 pr-12 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-indigo-600 font-medium">Apply</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-medium mb-2">We Accept</h3>
+                        <div class="flex space-x-2">
+                            <img src="../images/visa.svg" alt="Visa" class="h-8">
+                            <img src="../images/mastercard.svg" alt="Mastercard" class="h-8">
+                            <img src="../images/paypal.svg" alt="PayPal" class="h-8">
+                            <img src="../images/apple-pay.svg" alt="Apple Pay" class="h-8">
+                        </div>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <p class="mb-2">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">ShopEase</h3>
+                    <p class="text-gray-400 mb-4">Your one-stop destination for quality products at affordable prices. Shop with ease, shop with confidence.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white transition">Shop</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white transition">Categories</a></li>
+                        <li><a href="deals.html" class="text-gray-400 hover:text-white transition">Flash Sales</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="account.html" class="text-gray-400 hover:text-white transition">My Account</a></li>
+                        <li><a href="orders.html" class="text-gray-400 hover:text-white transition">Order History</a></li>
+                        <li><a href="wishlist.html" class="text-gray-400 hover:text-white transition">Wishlist</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="returns.html" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
+                        <li><a href="shipping.html" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-indigo-400 mt-1 mr-2"></i>
+                            <span class="text-gray-400">123 Commerce St, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">(123) 456-7890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">support@shopease.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">Mon-Fri: 9AM - 8PM EST</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 ShopEase. All rights reserved.</p>
+                    <div class="flex space-x-4">
+                        <a href="terms.html" class="text-gray-400 hover:text-white transition text-sm">Terms of Service</a>
+                        <a href="privacy.html" class="text-gray-400 hover:text-white transition text-sm">Privacy Policy</a>
+                        <a href="sitemap.html" class="text-gray-400 hover:text-white transition text-sm">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="../js/main.js"></script>
+    
+    <!-- Checkout Page Specific JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Continue to Payment Button
+            const continueBtn = document.getElementById('continueToPayment');
+            continueBtn.addEventListener('click', function() {
+                // Validate form
+                const requiredFields = document.querySelectorAll('input[required], select[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value) {
+                        isValid = false;
+                        field.classList.add('border-red-500');
+                        
+                        // Add error message if it doesn't exist
+                        const errorId = `${field.id}-error`;
+                        if (!document.getElementById(errorId)) {
+                            const errorMsg = document.createElement('p');
+                            errorMsg.id = errorId;
+                            errorMsg.className = 'text-red-500 text-sm mt-1';
+                            errorMsg.textContent = 'This field is required';
+                            field.parentNode.appendChild(errorMsg);
+                        }
+                    } else {
+                        field.classList.remove('border-red-500');
+                        
+                        // Remove error message if it exists
+                        const errorId = `${field.id}-error`;
+                        const errorMsg = document.getElementById(errorId);
+                        if (errorMsg) {
+                            errorMsg.remove();
+                        }
+                    }
+                });
+                
+                if (isValid) {
+                    // In a real application, this would navigate to the payment page
+                    // For this demo, we'll show an alert
+                    alert('Form is valid! Proceeding to payment...');
+                    // window.location.href = 'payment.html';
+                } else {
+                    // Scroll to the first error
+                    const firstError = document.querySelector('.border-red-500');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstError.focus();
+                    }
+                }
+            });
+            
+            // Shipping Method Selection
+            const shippingOptions = document.querySelectorAll('[name="shipping"]');
+            shippingOptions.forEach(option => {
+                const container = option.closest('.border');
+                
+                // Set initial state
+                if (option.checked) {
+                    container.classList.add('border-indigo-500');
+                }
+                
+                // Add click event to the container
+                container.addEventListener('click', function() {
+                    // Uncheck all options and remove border
+                    shippingOptions.forEach(opt => {
+                        opt.checked = false;
+                        opt.closest('.border').classList.remove('border-indigo-500');
+                    });
+                    
+                    // Check the clicked option and add border
+                    option.checked = true;
+                    container.classList.add('border-indigo-500');
+                    
+                    // Update shipping cost in order summary
+                    const shippingCost = option.id === 'standard' ? '$9.99' : 
+                                        option.id === 'express' ? '$19.99' : '$29.99';
+                    
+                    document.querySelector('.lg\\:w-1\\/3 .text-gray-600:nth-child(3) + span').textContent = shippingCost;
+                    
+                    // Update total
+                    updateTotal();
+                });
+            });
+            
+            // Update total based on shipping method
+            function updateTotal() {
+                const subtotal = 359.96;
+                const discount = 0;
+                let shipping = 9.99; // Default shipping
+                
+                // Get selected shipping method
+                const selectedShipping = document.querySelector('[name="shipping"]:checked');
+                if (selectedShipping) {
+                    shipping = selectedShipping.id === 'standard' ? 9.99 : 
+                              selectedShipping.id === 'express' ? 19.99 : 29.99;
+                }
+                
+                const tax = subtotal * 0.08; // Assuming 8% tax rate
+                const total = subtotal + shipping + tax - discount;
+                
+                // Update total in the UI
+                document.querySelector('.lg\\:w-1\\/3 .font-bold + span').textContent = '$' + total.toFixed(2);
+            }
+            
+            // Different Billing Address Checkbox
+            const differentBillingCheckbox = document.getElementById('differentBilling');
+            differentBillingCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // In a real application, this would show billing address fields
+                    alert('In a complete implementation, billing address fields would appear here.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

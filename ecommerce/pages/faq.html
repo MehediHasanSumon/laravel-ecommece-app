@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - ShopEase</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <a href="../index.html" class="text-2xl font-bold text-indigo-600">ShopEase</a>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600 hover:text-indigo-600 transition" id="mobileMenuButton">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Navigation Icons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="searchToggle">
+                        <i class="fas fa-search text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="darkModeToggle">
+                        <i class="fas fa-moon text-xl"></i>
+                    </a>
+                    <a href="wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                    </a>
+                    <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                    </a>
+                    <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-user text-xl mr-1"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2">
+                <nav class="flex flex-col space-y-3 py-4">
+                    <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-indigo-600 transition">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-indigo-600 transition">Categories</a>
+                    <a href="deals.html" class="text-gray-600 hover:text-indigo-600 transition">Deals</a>
+                    <a href="blog.html" class="text-gray-600 hover:text-indigo-600 transition">Blog</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+                    <div class="flex items-center space-x-4 pt-3 border-t border-gray-100">
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition" id="mobileSearchToggle">
+                            <i class="fas fa-search text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-indigo-600 transition relative" id="mobileDarkModeToggle">
+                            <i class="fas fa-moon text-xl"></i>
+                        </a>
+                        <a href="wishlist.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                            <i class="fas fa-heart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+                        </a>
+                        <a href="cart.html" class="text-gray-600 hover:text-indigo-600 transition relative">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+                        </a>
+                        <a href="account.html" class="text-gray-600 hover:text-indigo-600 transition">
+                            <i class="fas fa-user text-xl"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="hidden bg-white border-t" id="searchOverlay">
+            <div class="container mx-auto px-4 py-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search for products..." class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <button id="closeSearch" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-sm font-medium text-gray-600 mb-2">Popular Searches:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Wireless Headphones</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Smart Watches</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Fitness Trackers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Bluetooth Speakers</a>
+                        <a href="#" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-full transition">Laptop Accessories</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-2 text-sm">
+                <a href="../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+                <span class="text-gray-400">/</span>
+                <span class="text-indigo-600 font-medium">FAQ</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Frequently Asked Questions</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">Find answers to the most common questions about our products, services, shipping, returns, and more.</p>
+            </div>
+            
+            <!-- FAQ Search -->
+            <div class="mb-12">
+                <div class="relative max-w-xl mx-auto">
+                    <input type="text" id="faqSearch" placeholder="Search for answers..." class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+            
+            <!-- FAQ Categories -->
+            <div class="mb-12">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="faq-category-btn bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-medium" data-category="all">All Questions</button>
+                    <button class="faq-category-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full text-sm font-medium" data-category="orders">Orders</button>
+                    <button class="faq-category-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full text-sm font-medium" data-category="shipping">Shipping</button>
+                    <button class="faq-category-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full text-sm font-medium" data-category="returns">Returns & Refunds</button>
+                    <button class="faq-category-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full text-sm font-medium" data-category="account">Account</button>
+                    <button class="faq-category-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full text-sm font-medium" data-category="products">Products</button>
+                </div>
+            </div>
+            
+            <!-- FAQ Accordion -->
+            <div class="space-y-6">
+                <!-- Orders Section -->
+                <div class="faq-section" data-category="orders">
+                    <h2 class="text-xl font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2">Orders</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How do I place an order?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">To place an order, browse our products and add items to your cart. When you're ready to checkout, click on the cart icon in the top right corner and follow the checkout process. You can checkout as a guest or create an account for faster checkout in the future.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How can I check the status of my order?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">You can check the status of your order by logging into your account and going to the "My Orders" section. If you checked out as a guest, you can use the order tracking link provided in your order confirmation email.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">Can I modify or cancel my order after it's been placed?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">You can modify or cancel your order within 1 hour of placing it by contacting our customer service team. After that, if your order has already been processed for shipping, it cannot be modified or canceled. In this case, you would need to return the item once received.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">What payment methods do you accept?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">We accept all major credit cards (Visa, Mastercard, American Express, Discover), PayPal, Apple Pay, Google Pay, and Shop Pay. We also offer Buy Now, Pay Later options through Klarna and Afterpay on eligible purchases.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shipping Section -->
+                <div class="faq-section" data-category="shipping">
+                    <h2 class="text-xl font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2">Shipping</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How long will it take to receive my order?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Shipping times depend on your location and the shipping method you choose at checkout:</p>
+                                <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                                    <li>Standard Shipping: 5-7 business days</li>
+                                    <li>Expedited Shipping: 3-5 business days</li>
+                                    <li>Express Shipping: 1-2 business days</li>
+                                    <li>Same-Day Delivery: Available in select cities for orders placed before 10 AM</li>
+                                </ul>
+                                <p class="mt-2 text-gray-600">Please note that these are estimated delivery times and may vary based on your location and other factors.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">Do you ship internationally?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Yes, we ship to most countries worldwide. International shipping typically takes 7-21 business days, depending on the destination and customs processing. Please note that customers are responsible for any duties, taxes, or customs fees imposed by their country.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How can I track my shipment?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Once your order ships, you will receive a shipping confirmation email with a tracking number. You can track your package by clicking the tracking link in the email, logging into your account and viewing your order history, or contacting our customer service team with your order number.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">Is free shipping available?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Yes, we offer free standard shipping on all domestic orders over $50. International orders and orders below $50 will have shipping costs calculated at checkout based on the destination and shipping method selected.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Returns & Refunds Section -->
+                <div class="faq-section" data-category="returns">
+                    <h2 class="text-xl font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2">Returns & Refunds</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">What is your return policy?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">We offer a 30-day return policy for most items. To be eligible for a return, your item must be in the same condition that you received it, unworn or unused, with tags, and in its original packaging. For complete details, please see our <a href="returns.html" class="text-indigo-600 hover:text-indigo-800 transition">Returns & Refunds Policy</a>.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How do I return an item?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">To return an item, please follow these steps:</p>
+                                <ol class="list-decimal pl-5 mt-2 space-y-1 text-gray-600">
+                                    <li>Log in to your ShopEase account</li>
+                                    <li>Go to "My Orders" and find the order containing the item(s) you wish to return</li>
+                                    <li>Select "Return Items" and follow the prompts</li>
+                                    <li>Print the return shipping label (if applicable)</li>
+                                    <li>Package the item securely in its original packaging</li>
+                                    <li>Attach the return shipping label to the outside of the package</li>
+                                    <li>Drop off the package at the designated shipping carrier</li>
+                                </ol>
+                                <p class="mt-2 text-gray-600">If you don't have an account or prefer not to use the online return process, please contact our customer service team.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How long does it take to process a refund?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Once we receive your returned item, we will inspect it and notify you of the status of your refund. If your return is approved, we will initiate a refund to your original payment method. Credit card refunds typically take 5-10 business days to appear on your statement, PayPal refunds are usually processed within 2-3 business days, and store credit is issued immediately.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">What if I received a damaged or defective item?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">If you receive a damaged or defective item, please contact us within 48 hours of delivery. Please provide photos of the damaged item and packaging. We will arrange for a replacement or full refund, including shipping costs. You won't be responsible for return shipping in this case.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Account Section -->
+                <div class="faq-section" data-category="account">
+                    <h2 class="text-xl font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2">Account</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How do I create an account?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">To create an account, click on the "Account" icon in the top right corner of the website and select "Register." Fill in your details, including your name, email address, and password. You can also create an account during the checkout process.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">I forgot my password. How can I reset it?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">If you forgot your password, click on the "Account" icon, select "Login," and then click on the "Forgot Password" link. Enter your email address, and we'll send you a password reset link. Follow the instructions in the email to create a new password.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How do I update my account information?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">To update your account information, log in to your account and go to the "Account Details" section. Here, you can update your personal information, change your password, manage your addresses, and update your communication preferences.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">Can I shop without creating an account?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Yes, we offer a guest checkout option that allows you to make purchases without creating an account. However, creating an account offers several benefits, including faster checkout, order history tracking, wishlist creation, and access to exclusive offers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Products Section -->
+                <div class="faq-section" data-category="products">
+                    <h2 class="text-xl font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2">Products</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How can I find the right size for clothing or shoes?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Each product page includes a size guide that provides detailed measurements to help you find the right fit. You can access the size guide by clicking on the "Size Guide" link near the size selection options on the product page. If you're still unsure, please contact our customer service team for assistance.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">Are your products authentic?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Yes, all products sold on ShopEase are 100% authentic. We source our products directly from manufacturers or authorized distributors to ensure authenticity and quality. We have a zero-tolerance policy for counterfeit items.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">How do I know if a product is in stock?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Product availability is displayed on each product page. If an item is in stock, you'll see the available quantity or simply "In Stock." If an item is out of stock, it will be marked as "Out of Stock" or "Sold Out." You can sign up for back-in-stock notifications on product pages for items that are currently unavailable.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                            <button class="faq-question w-full flex items-center justify-between px-6 py-4 text-left focus:outline-none">
+                                <span class="text-gray-800 font-medium">Do you offer product warranties?</span>
+                                <i class="fas fa-chevron-down text-indigo-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 pb-4 hidden">
+                                <p class="text-gray-600">Many of our products come with manufacturer warranties. Warranty information, if applicable, is listed on the product page under the "Specifications" or "Details" section. For electronics and appliances, we also offer extended warranty options that can be added to your purchase during checkout.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Still Have Questions -->
+            <div class="mt-16 text-center">
+                <h3 class="text-xl font-bold mb-4 text-gray-900">Still Have Questions?</h3>
+                <p class="text-gray-600 mb-6">Our customer service team is here to help you with any questions or concerns.</p>
+                <a href="contact.html" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition">Contact Us</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white pt-12 pb-8 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">ShopEase</h3>
+                    <p class="text-gray-400 mb-4">Your one-stop destination for quality products at affordable prices. Shop with ease, shop with confidence.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white transition">Shop</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white transition">Categories</a></li>
+                        <li><a href="deals.html" class="text-gray-400 hover:text-white transition">Flash Sales</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="account.html" class="text-gray-400 hover:text-white transition">My Account</a></li>
+                        <li><a href="orders.html" class="text-gray-400 hover:text-white transition">Order History</a></li>
+                        <li><a href="wishlist.html" class="text-gray-400 hover:text-white transition">Wishlist</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="returns.html" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
+                        <li><a href="shipping.html" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-indigo-400 mt-1 mr-2"></i>
+                            <span class="text-gray-400">123 Commerce St, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">(123) 456-7890</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">support@shopease.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock text-indigo-400 mr-2"></i>
+                            <span class="text-gray-400">Mon-Fri: 9AM - 8PM EST</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 ShopEase. All rights reserved.</p>
+                    <div class="flex space-x-4">
+                        <a href="terms.html" class="text-gray-400 hover:text-white transition text-sm">Terms of Service</a>
+                        <a href="privacy.html" class="text-gray-400 hover:text-white transition text-sm">Privacy Policy</a>
+                        <a href="sitemap.html" class="text-gray-400 hover:text-white transition text-sm">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 scale-0">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="../js/main.js"></script>
+    
+    <!-- FAQ Page JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ Accordion Functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle answer visibility
+                    if (answer.classList.contains('hidden')) {
+                        answer.classList.remove('hidden');
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        answer.classList.add('hidden');
+                        icon.style.transform = 'rotate(0)';
+                    }
+                });
+            });
+            
+            // FAQ Category Filtering
+            const categoryButtons = document.querySelectorAll('.faq-category-btn');
+            const faqSections = document.querySelectorAll('.faq-section');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active button styling
+                    categoryButtons.forEach(btn => {
+                        btn.classList.remove('bg-indigo-600', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    
+                    this.classList.remove('bg-gray-200', 'text-gray-700');
+                    this.classList.add('bg-indigo-600', 'text-white');
+                    
+                    // Show/hide sections based on category
+                    if (category === 'all') {
+                        faqSections.forEach(section => {
+                            section.style.display = 'block';
+                        });
+                    } else {
+                        faqSections.forEach(section => {
+                            if (section.getAttribute('data-category') === category) {
+                                section.style.display = 'block';
+                            } else {
+                                section.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // FAQ Search Functionality
+            const searchInput = document.getElementById('faqSearch');
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                if (searchTerm.length > 2) {
+                    // Show all sections for search results
+                    faqSections.forEach(section => {
+                        section.style.display = 'block';
+                    });
+                    
+                    // Reset category button styling
+                    categoryButtons.forEach(btn => {
+                        if (btn.getAttribute('data-category') === 'all') {
+                            btn.classList.add('bg-indigo-600', 'text-white');
+                            btn.classList.remove('bg-gray-200', 'text-gray-700');
+                        } else {
+                            btn.classList.remove('bg-indigo-600', 'text-white');
+                            btn.classList.add('bg-gray-200', 'text-gray-700');
+                        }
+                    });
+                    
+                    // Filter FAQ items based on search term
+                    let hasResults = false;
+                    
+                    faqItems.forEach(item => {
+                        const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                        const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                        
+                        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                            item.style.display = 'block';
+                            hasResults = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                } else if (searchTerm.length === 0) {
+                    // Reset to show all items when search is cleared
+                    faqItems.forEach(item => {
+                        item.style.display = 'block';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

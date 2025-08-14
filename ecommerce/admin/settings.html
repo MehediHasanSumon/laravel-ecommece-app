@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Admin Panel</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Admin Panel Styles */
+        .sidebar {
+            width: 250px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-link:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+        
+        .sidebar-link.active {
+            background-color: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid #6366f1;
+        }
+        
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        /* Dark mode styles */
+        .dark .card {
+            background-color: #1f2937;
+        }
+        
+        .dark .sidebar-link:hover {
+            background-color: rgba(99, 102, 241, 0.2);
+        }
+        
+        .dark .sidebar-link.active {
+            background-color: rgba(99, 102, 241, 0.2);
+        }
+        
+        /* Settings specific styles */
+        .settings-section {
+            margin-bottom: 2rem;
+        }
+        
+        .settings-section-title {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .dark .settings-section-title {
+            border-bottom-color: #374151;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #6366f1;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        
+        .dark .toggle-slider {
+            background-color: #4b5563;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+    <!-- Desktop Sidebar -->
+    <div class="flex h-screen overflow-hidden">
+        <aside class="hidden md:flex flex-col bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 sidebar">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                <h2 class="text-xl font-bold text-indigo-600 dark:text-indigo-400">E-Commerce Admin</h2>
+            </div>
+            
+            <nav class="flex-1 overflow-y-auto py-4">
+                <ul>
+                    <li class="mb-1">
+                        <a href="index.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="products.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-box w-5 h-5 mr-3"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="orders.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-shopping-cart w-5 h-5 mr-3"></i>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="customers.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-users w-5 h-5 mr-3"></i>
+                            <span>Customers</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="categories.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-tags w-5 h-5 mr-3"></i>
+                            <span>Categories</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="discounts.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-percent w-5 h-5 mr-3"></i>
+                            <span>Discounts</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-file-alt w-5 h-5 mr-3"></i>
+                            <span>Content</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <i class="fas fa-chart-bar w-5 h-5 mr-3"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="settings.html" class="sidebar-link active flex items-center px-4 py-3 text-indigo-600 dark:text-indigo-400 font-medium">
+                            <i class="fas fa-cog w-5 h-5 mr-3"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin User" class="w-8 h-8 rounded-full mr-3">
+                    <div>
+                        <p class="text-sm font-medium">John Doe</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Mobile Sidebar -->
+        <div id="mobileSidebar" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 md:hidden hidden">
+            <div class="absolute top-0 left-0 w-64 h-full bg-white dark:bg-gray-800 shadow-lg">
+                <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+                    <h2 class="text-xl font-bold text-indigo-600 dark:text-indigo-400">E-Commerce Admin</h2>
+                    <button id="closeSidebar" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <nav class="py-4">
+                    <ul>
+                        <li class="mb-1">
+                            <a href="index.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="products.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-box w-5 h-5 mr-3"></i>
+                                <span>Products</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="orders.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-shopping-cart w-5 h-5 mr-3"></i>
+                                <span>Orders</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="customers.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-users w-5 h-5 mr-3"></i>
+                                <span>Customers</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="categories.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-tags w-5 h-5 mr-3"></i>
+                                <span>Categories</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="discounts.html" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-percent w-5 h-5 mr-3"></i>
+                                <span>Discounts</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-file-alt w-5 h-5 mr-3"></i>
+                                <span>Content</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="#" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fas fa-chart-bar w-5 h-5 mr-3"></i>
+                                <span>Analytics</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="settings.html" class="sidebar-link active flex items-center px-4 py-3 text-indigo-600 dark:text-indigo-400 font-medium">
+                                <i class="fas fa-cog w-5 h-5 mr-3"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin User" class="w-8 h-8 rounded-full mr-3">
+                        <div>
+                            <p class="text-sm font-medium">John Doe</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Header -->
+            <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 flex items-center justify-between">
+                <div class="flex items-center">
+                    <button id="sidebarToggle" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 md:hidden">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h1 class="text-xl font-bold text-gray-800 dark:text-white ml-4 md:ml-0">Settings</h1>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search..." class="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                    
+                    <button class="relative p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute top-0 right-0 h-4 w-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">3</span>
+                    </button>
+                    
+                    <button id="darkModeToggle" class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <i class="fas fa-moon text-xl"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-6">
+                <!-- Settings Navigation -->
+                <div class="mb-6">
+                    <div class="flex flex-wrap gap-2">
+                        <button id="generalSettingsBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                            General
+                        </button>
+                        <button id="storeSettingsBtn" class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            Store
+                        </button>
+                        <button id="paymentSettingsBtn" class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            Payment
+                        </button>
+                        <button id="shippingSettingsBtn" class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            Shipping
+                        </button>
+                        <button id="taxSettingsBtn" class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            Tax
+                        </button>
+                        <button id="emailSettingsBtn" class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            Email
+                        </button>
+                        <button id="userSettingsBtn" class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            Users
+                        </button>
+                        <button id="apiSettingsBtn" class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            API
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- General Settings Section -->
+                <div id="generalSettings" class="settings-section">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white settings-section-title">General Settings</h2>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+                        <div class="mb-6">
+                            <h3 class="text-md font-medium text-gray-800 dark:text-white mb-4">Store Information</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="storeName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Store Name</label>
+                                    <input type="text" id="storeName" name="storeName" value="My E-Commerce Store" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                </div>
+                                
+                                <div>
+                                    <label for="storeEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Store Email</label>
+                                    <input type="email" id="storeEmail" name="storeEmail" value="contact@myecommerce.com" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                </div>
+                                
+                                <div>
+                                    <label for="storePhone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Store Phone</label>
+                                    <input type="tel" id="storePhone" name="storePhone" value="+1 (555) 123-4567" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                </div>
+                                
+                                <div>
+                                    <label for="storeAddress" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Store Address</label>
+                                    <input type="text" id="storeAddress" name="storeAddress" value="123 E-Commerce St, New York, NY 10001" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-md font-medium text-gray-800 dark:text-white mb-4">Localization</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="defaultLanguage" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Default Language</label>
+                                    <select id="defaultLanguage" name="defaultLanguage" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                        <option value="en">English</option>
+                                        <option value="es">Spanish</option>
+                                        <option value="fr">French</option>
+                                        <option value="de">German</option>
+                                        <option value="it">Italian</option>
+                                        <option value="ja">Japanese</option>
+                                        <option value="zh">Chinese</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="defaultCurrency" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Default Currency</label>
+                                    <select id="defaultCurrency" name="defaultCurrency" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                        <option value="USD">USD - US Dollar</option>
+                                        <option value="EUR">EUR - Euro</option>
+                                        <option value="GBP">GBP - British Pound</option>
+                                        <option value="JPY">JPY - Japanese Yen</option>
+                                        <option value="CAD">CAD - Canadian Dollar</option>
+                                        <option value="AUD">AUD - Australian Dollar</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="timezone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Timezone</label>
+                                    <select id="timezone" name="timezone" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                        <option value="UTC-8">Pacific Time (UTC-8)</option>
+                                        <option value="UTC-7">Mountain Time (UTC-7)</option>
+                                        <option value="UTC-6">Central Time (UTC-6)</option>
+                                        <option value="UTC-5">Eastern Time (UTC-5)</option>
+                                        <option value="UTC+0">Greenwich Mean Time (UTC+0)</option>
+                                        <option value="UTC+1">Central European Time (UTC+1)</option>
+                                        <option value="UTC+8">China Standard Time (UTC+8)</option>
+                                        <option value="UTC+9">Japan Standard Time (UTC+9)</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="dateFormat" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Date Format</label>
+                                    <select id="dateFormat" name="dateFormat" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                        <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                        <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                        <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-md font-medium text-gray-800 dark:text-white mb-4">Appearance</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Enable Dark Mode by Default</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Set dark mode as the default theme for admin panel</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="darkModeDefault">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Compact Sidebar</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Use icons-only sidebar to save space</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="compactSidebar">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Show Welcome Banner</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Display welcome message on dashboard</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="showWelcomeBanner" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div>
+                                    <label for="primaryColor" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Primary Color</label>
+                                    <div class="flex items-center space-x-2">
+                                        <input type="color" id="primaryColor" name="primaryColor" value="#6366f1" class="w-10 h-10 rounded border border-gray-300 dark:border-gray-600 cursor-pointer">
+                                        <input type="text" value="#6366f1" class="w-24 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                        <div class="mb-6">
+                            <h3 class="text-md font-medium text-gray-800 dark:text-white mb-4">System Settings</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Maintenance Mode</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Put store in maintenance mode</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="maintenanceMode">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Debug Mode</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Enable detailed error messages</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="debugMode">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Enable Caching</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Cache pages for faster loading</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="enableCaching" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div>
+                                    <label for="logLevel" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Log Level</label>
+                                    <select id="logLevel" name="logLevel" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                        <option value="error">Error</option>
+                                        <option value="warning">Warning</option>
+                                        <option value="info" selected>Info</option>
+                                        <option value="debug">Debug</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="sessionTimeout" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Admin Session Timeout (minutes)</label>
+                                    <input type="number" id="sessionTimeout" name="sessionTimeout" value="30" min="5" max="120" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-end">
+                            <button id="saveGeneralSettings" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Store Settings Section (Hidden by Default) -->
+                <div id="storeSettings" class="settings-section hidden">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white settings-section-title">Store Settings</h2>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+                        <div class="mb-6">
+                            <h3 class="text-md font-medium text-gray-800 dark:text-white mb-4">Product Settings</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Show Out of Stock Products</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Display products that are out of stock</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="showOutOfStock" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Enable Product Reviews</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Allow customers to leave product reviews</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="enableReviews" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Moderate Reviews</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Approve reviews before publishing</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="moderateReviews" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div>
+                                    <label for="productsPerPage" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Products Per Page</label>
+                                    <select id="productsPerPage" name="productsPerPage" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                        <option value="12">12</option>
+                                        <option value="24" selected>24</option>
+                                        <option value="36">36</option>
+                                        <option value="48">48</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="defaultSorting" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Default Product Sorting</label>
+                                    <select id="defaultSorting" name="defaultSorting" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                        <option value="newest">Newest First</option>
+                                        <option value="price_low">Price: Low to High</option>
+                                        <option value="price_high">Price: High to Low</option>
+                                        <option value="popularity" selected>Popularity</option>
+                                        <option value="rating">Average Rating</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-md font-medium text-gray-800 dark:text-white mb-4">Inventory Management</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Manage Stock</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Enable inventory tracking</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="manageStock" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Allow Backorders</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Allow customers to order out-of-stock items</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="allowBackorders">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div>
+                                    <label for="lowStockThreshold" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Low Stock Threshold</label>
+                                    <input type="number" id="lowStockThreshold" name="lowStockThreshold" value="5" min="1" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white">
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700 dark:text-gray-300">Notify on Low Stock</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Send email notification when product stock is low</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="notifyLowStock" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-end">
+                            <button id="saveStoreSettings" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Other Settings Sections (Hidden by Default) -->
+                <div id="paymentSettings" class="settings-section hidden">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white settings-section-title">Payment Settings</h2>
+                    <!-- Payment settings content would go here -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+                        <p class="text-gray-500 dark:text-gray-400">Payment settings content will be implemented here.</p>
+                    </div>
+                </div>
+                
+                <div id="shippingSettings" class="settings-section hidden">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white settings-section-title">Shipping Settings</h2>
+                    <!-- Shipping settings content would go here -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+                        <p class="text-gray-500 dark:text-gray-400">Shipping settings content will be implemented here.</p>
+                    </div>
+                </div>
+                
+                <div id="taxSettings" class="settings-section hidden">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white settings-section-title">Tax Settings</h2>
+                    <!-- Tax settings content would go here -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+                        <p class="text-gray-500 dark:text-gray-400">Tax settings content will be implemented here.</p>
+                    </div>
+                </div>
+                
+                <div id="emailSettings" class="settings-section hidden">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white settings-section-title">Email Settings</h2>
+                    <!-- Email settings content would go here -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+                        <p class="text-gray-500 dark:text-gray-400">Email settings content will be implemented here.</p>
+                    </div>
+                </div>
+                
+                <div id="userSettings" class="settings-section hidden">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white settings-section-title">User Settings</h2>
+                    <!-- User settings content would go here -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+                        <p class="text-gray-500 dark:text-gray-400">User settings content will be implemented here.</p>
+                    </div>
+                </div>
+                
+                <div id="apiSettings" class="settings-section hidden">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-white settings-section-title">API Settings</h2>
+                    <!-- API settings content would go here -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+                        <p class="text-gray-500 dark:text-gray-400">API settings content will be implemented here.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const saveGeneralSettings = document.getElementById('saveGeneralSettings');
+        const saveStoreSettings = document.getElementById('saveStoreSettings');
+        
+        // Settings Navigation Buttons
+        const generalSettingsBtn = document.getElementById('generalSettingsBtn');
+        const storeSettingsBtn = document.getElementById('storeSettingsBtn');
+        const paymentSettingsBtn = document.getElementById('paymentSettingsBtn');
+        const shippingSettingsBtn = document.getElementById('shippingSettingsBtn');
+        const taxSettingsBtn = document.getElementById('taxSettingsBtn');
+        const emailSettingsBtn = document.getElementById('emailSettingsBtn');
+        const userSettingsBtn = document.getElementById('userSettingsBtn');
+        const apiSettingsBtn = document.getElementById('apiSettingsBtn');
+        
+        // Settings Sections
+        const generalSettings = document.getElementById('generalSettings');
+        const storeSettings = document.getElementById('storeSettings');
+        const paymentSettings = document.getElementById('paymentSettings');
+        const shippingSettings = document.getElementById('shippingSettings');
+        const taxSettings = document.getElementById('taxSettings');
+        const emailSettings = document.getElementById('emailSettings');
+        const userSettings = document.getElementById('userSettings');
+        const apiSettings = document.getElementById('apiSettings');
+        
+        // Dark Mode Toggle
+        if (darkModeToggle) {
+            // Check for saved theme preference or respect OS preference
+            if (localStorage.getItem('darkMode') === 'true' || 
+                (localStorage.getItem('darkMode') === null && 
+                window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+                if (document.getElementById('darkModeDefault')) {
+                    document.getElementById('darkModeDefault').checked = true;
+                }
+            }
+            
+            // Toggle dark mode
+            darkModeToggle.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('darkMode', 'false');
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon text-xl"></i>';
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('darkMode', 'true');
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+                }
+            });
+        }
+        
+        // Mobile Sidebar Toggle
+        if (sidebarToggle && mobileSidebar && closeSidebar) {
+            sidebarToggle.addEventListener('click', () => {
+                mobileSidebar.classList.remove('hidden');
+            });
+            
+            closeSidebar.addEventListener('click', () => {
+                mobileSidebar.classList.add('hidden');
+            });
+            
+            // Close sidebar when clicking outside
+            mobileSidebar.addEventListener('click', (e) => {
+                if (e.target === mobileSidebar) {
+                    mobileSidebar.classList.add('hidden');
+                }
+            });
+        }
+        
+        // Settings Navigation
+        function showSettingsSection(section) {
+            // Hide all sections
+            generalSettings.classList.add('hidden');
+            storeSettings.classList.add('hidden');
+            paymentSettings.classList.add('hidden');
+            shippingSettings.classList.add('hidden');
+            taxSettings.classList.add('hidden');
+            emailSettings.classList.add('hidden');
+            userSettings.classList.add('hidden');
+            apiSettings.classList.add('hidden');
+            
+            // Reset all buttons
+            generalSettingsBtn.classList.remove('bg-indigo-600', 'text-white');
+            generalSettingsBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            storeSettingsBtn.classList.remove('bg-indigo-600', 'text-white');
+            storeSettingsBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            paymentSettingsBtn.classList.remove('bg-indigo-600', 'text-white');
+            paymentSettingsBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            shippingSettingsBtn.classList.remove('bg-indigo-600', 'text-white');
+            shippingSettingsBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            taxSettingsBtn.classList.remove('bg-indigo-600', 'text-white');
+            taxSettingsBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            emailSettingsBtn.classList.remove('bg-indigo-600', 'text-white');
+            emailSettingsBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            userSettingsBtn.classList.remove('bg-indigo-600', 'text-white');
+            userSettingsBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            apiSettingsBtn.classList.remove('bg-indigo-600', 'text-white');
+            apiSettingsBtn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            
+            // Show selected section and highlight button
+            section.classList.remove('hidden');
+            
+            if (section === generalSettings) {
+                generalSettingsBtn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                generalSettingsBtn.classList.add('bg-indigo-600', 'text-white');
+            } else if (section === storeSettings) {
+                storeSettingsBtn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                storeSettingsBtn.classList.add('bg-indigo-600', 'text-white');
+            } else if (section === paymentSettings) {
+                paymentSettingsBtn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                paymentSettingsBtn.classList.add('bg-indigo-600', 'text-white');
+            } else if (section === shippingSettings) {
+                shippingSettingsBtn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                shippingSettingsBtn.classList.add('bg-indigo-600', 'text-white');
+            } else if (section === taxSettings) {
+                taxSettingsBtn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                taxSettingsBtn.classList.add('bg-indigo-600', 'text-white');
+            } else if (section === emailSettings) {
+                emailSettingsBtn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                emailSettingsBtn.classList.add('bg-indigo-600', 'text-white');
+            } else if (section === userSettings) {
+                userSettingsBtn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                userSettingsBtn.classList.add('bg-indigo-600', 'text-white');
+            } else if (section === apiSettings) {
+                apiSettingsBtn.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                apiSettingsBtn.classList.add('bg-indigo-600', 'text-white');
+            }
+        }
+        
+        // Settings Navigation Event Listeners
+        if (generalSettingsBtn) {
+            generalSettingsBtn.addEventListener('click', () => showSettingsSection(generalSettings));
+        }
+        
+        if (storeSettingsBtn) {
+            storeSettingsBtn.addEventListener('click', () => showSettingsSection(storeSettings));
+        }
+        
+        if (paymentSettingsBtn) {
+            paymentSettingsBtn.addEventListener('click', () => showSettingsSection(paymentSettings));
+        }
+        
+        if (shippingSettingsBtn) {
+            shippingSettingsBtn.addEventListener('click', () => showSettingsSection(shippingSettings));
+        }
+        
+        if (taxSettingsBtn) {
+            taxSettingsBtn.addEventListener('click', () => showSettingsSection(taxSettings));
+        }
+        
+        if (emailSettingsBtn) {
+            emailSettingsBtn.addEventListener('click', () => showSettingsSection(emailSettings));
+        }
+        
+        if (userSettingsBtn) {
+            userSettingsBtn.addEventListener('click', () => showSettingsSection(userSettings));
+        }
+        
+        if (apiSettingsBtn) {
+            apiSettingsBtn.addEventListener('click', () => showSettingsSection(apiSettings));
+        }
+        
+        // Save Settings
+        if (saveGeneralSettings) {
+            saveGeneralSettings.addEventListener('click', () => {
+                // Here you would typically send the form data to your backend
+                // For demo purposes, we'll just show a success message
+                
+                // Show success notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+                notification.innerHTML = '<div class="flex items-center"><i class="fas fa-check-circle mr-2"></i> General settings saved successfully!</div>';
+                document.body.appendChild(notification);
+                
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            });
+        }
+        
+        if (saveStoreSettings) {
+            saveStoreSettings.addEventListener('click', () => {
+                // Here you would typically send the form data to your backend
+                // For demo purposes, we'll just show a success message
+                
+                // Show success notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+                notification.innerHTML = '<div class="flex items-center"><i class="fas fa-check-circle mr-2"></i> Store settings saved successfully!</div>';
+                document.body.appendChild(notification);
+                
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
