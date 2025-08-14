@@ -19,14 +19,8 @@ class DatabaseSeeder extends Seeder
         // Seed roles and assign permissions
         $this->call(RoleSeeder::class);
         
-        // Create admin user
-        $admin = User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-        ]);
-        
-        // Assign Super Admin role to admin user
-        $admin->assignRole('Super Admin');
+        // Seed super admin user
+        $this->call(SuperAdminSeeder::class);
         
         // Create test user
         $user = User::factory()->create([
